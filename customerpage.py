@@ -44,7 +44,9 @@ class CustomerScreen(QMainWindow):
     #go to login screen
 
     def current_balance(self):
-        pass
+        balance = []
+        for person in balance:
+            pass
     #show the current balance(csv)
 
 

@@ -1,4 +1,4 @@
-import sys, os, csv
+import sys, os, csv, datetime
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QTableWidget, QApplication, QMainWindow, QTableWidgetItem, QFileDialog, QDialog
 from PyQt5.QtCore import *
@@ -10,12 +10,14 @@ class AccountState(QTableWidget):
     def __init__(self):
         super().__init__()
         loadUi('statementpage.ui',self)
+        self.show()
         self.tableWidget.setColumnWidth(0,400)
         self.tableWidget.setColumnWidth(1,200)
         self.tableWidget.setColumnWidth(2,250)
         self.loaddata()
+        self.now = datetime.datetime.now()
     
     def loaddata(self):
-        pass
+        people = [{"ID Account":9990001, "Date" : self.now, "Action" :self.act_event}]
 
 
