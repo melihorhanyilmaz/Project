@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(54, 100, 139);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLineEdit" name="li_id">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>150</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 240, 245);
+color: rgb(0, 0, 0);
+font: 63 14pt ;Montserrat SemiBold;
+
+</string>
+    </property>
+    <property name="maxLength">
+     <number>7</number>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Normal</enum>
+    </property>
+    <property name="cursorMoveStyle">
+     <enum>Qt::LogicalMoveStyle</enum>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="li_password">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>270</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 240, 245);
+color: rgb(0, 0, 0);
+
+</string>
+    </property>
+    <property name="maxLength">
+     <number>7</number>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_id">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>100</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 63 9pt ;Montserrat SemiBold;</string>
+    </property>
+    <property name="text">
+     <string> PLEASE ENTER  ID NUMBER:</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_password">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>220</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::DefaultContextMenu</enum>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 63 9pt ;Montserrat SemiBold;</string>
+    </property>
+    <property name="text">
+     <string>  PLEASE ENTER PASSWORD:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="oneB">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>340</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 240, 245);
+color: rgb(34, 64, 89);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20 ;</string>
+    </property>
+    <property name="text">
+     <string>1</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="eraseB">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>420</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(240, 240, 119);
+color: rgb(54, 100, 139);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20;</string>
+    </property>
+    <property name="text">
+     <string>ERASE</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Downloads/is-less-than (1).png</normaloff>../../Downloads/is-less-than (1).png</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="okB">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>500</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+background-color: rgb(50, 173, 58);
+
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20;
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>OK</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Downloads/accept.png</normaloff>../../Downloads/accept.png</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="cancelB">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>340</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 0, 0);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20;
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>CANCEL</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Downloads/x-button.png</normaloff>../../Downloads/x-button.png</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="twoB">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>340</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 240, 245);
+color: rgb(34, 64, 89);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20 ;</string>
+    </property>
+    <property name="text">
+     <string>2</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="threeB">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>340</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 240, 245);
+color: rgb(34, 64, 89);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20 ;</string>
+    </property>
+    <property name="text">
+     <string>3</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="fourB">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>400</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 240, 245);
+color: rgb(34, 64, 89);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20 ;</string>
+    </property>
+    <property name="text">
+     <string>4</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="eightB">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>460</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 240, 245);
+color: rgb(34, 64, 89);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20 ;</string>
+    </property>
+    <property name="text">
+     <string>8</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="nineB">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>460</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 240, 245);
+color: rgb(34, 64, 89);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20 ;</string>
+    </property>
+    <property name="text">
+     <string>9</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="sixB">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>400</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 240, 245);
+color: rgb(34, 64, 89);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20 ;</string>
+    </property>
+    <property name="text">
+     <string>6</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="fiveB">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>400</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 240, 245);
+color: rgb(34, 64, 89);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20 ;</string>
+    </property>
+    <property name="text">
+     <string>5</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="sevenB">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>460</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 240, 245);
+color: rgb(34, 64, 89);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20 ;</string>
+    </property>
+    <property name="text">
+     <string>7</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="zeroB">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>520</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 240, 245);
+color: rgb(34, 64, 89);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20 ;</string>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_welcome">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>40</y>
+      <width>300</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 63 14pt &quot;Montserrat SemiBold&quot;;
+color: rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="text">
+     <string>WELCOME TO INFOTECHBANK ATM</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_error">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>320</y>
+      <width>221</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);
+font: 75 12pt &quot;MS Sans Serif&quot;;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="delB">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>520</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 240, 245);
+color: rgb(34, 64, 89);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20 ;</string>
+    </property>
+    <property name="text">
+     <string>del</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="clearB">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>520</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 240, 245);
+color: rgb(34, 64, 89);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20 ;</string>
+    </property>
+    <property name="text">
+     <string>clear</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>cancelB</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>698</x>
+     <y>395</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>741</x>
+     <y>296</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
