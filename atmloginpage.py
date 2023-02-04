@@ -5,15 +5,23 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.uic import loadUi
 import sys
+#from customerpage  import CustomerScreen
+from adminpage import AdminScreen
 
-
-class LoginScreen(QMainWindow):#?????parantez icine ne yazmam lazimmmmmmm
+class LoginScreen(QMainWindow):
     clicked=pyqtSignal
     def __init__(self):
         super(LoginScreen, self).__init__()
         loadUi("atmloginpage.ui", self)
+        self.show()
+        self.CustomerScreen_go=CustomerScreen()
+        self.AdminScreen_go=AdminScreen()
         self.la_welcome.show()
+        self.li_id.setValidator(QIntValidator(self))
         self.okB.clicked.connect(self.login)
+        
+
+        """""
         self.passwordlogin()
         self.idlogin()
         central_widget=QWidget(self)
@@ -162,33 +170,32 @@ class LoginScreen(QMainWindow):#?????parantez icine ne yazmam lazimmmmmmm
     def id_action9(self):
         # appending label text
         text1 = self.li_id.text()
-        self.li_id.setText(text1 + "9") 
-
-
+        self.li_id.setText(text1 + "9")
+        """""
     def login(self):
         id_number=self.li_password.text()
         password=self.li_password.text()
         if len( id_number)==0 or len (password)==0:
            self.la_error.setText("Please input all fields.")
+        elif   len( id_number) < 7 or len (password) < 7:
+            self.la_error.setText("Please input invalid IDNumber or Password") 
         else:
               if str(id_number).startswith("999"):
             #costumer sayfasina git degilse admin sayfasina git
                 self.okB.clicked.connect(self.go_to_customer_page)
-              else:
+              elif str(id_number).startswith("0"):
                 self.okB.clicked.connect(self.go_to_admin_page)
                 #gecersiz id veya password girerse csv lazimmmmmmmm?????
             
   
    
     def go_to_customer_page(self):
-        customerscreen=CustomerScreen()
-        widget.addWidget(customerscreen)
-        widget.setCurrentIndex(widget.CurrentIndex()+1)
+        self.CustomerScreen_go.show()
+        self.hide()
         
     def go_to_admin_page(self):
-        adminscreen=AdminScreen()
-        widget.addWidget(adminscreen)
-        widget.setCurrentIndex(widget.currentIndex()+1)
+        self.AdminScreen_go.show()
+        self.hide()
         
         
   
@@ -203,8 +210,8 @@ class CustomerScreen(QMainWindow):
     
 class AdminScreen(QMainWindow):
     def __init__(self):
-         super(AdminScreen, self).__init__()
-         loadUi("adminpage.ui", self)
+      super(AdminScreen, self).__init__()
+      loadUi("adminpage.ui", self)
     
     
     
@@ -213,7 +220,6 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setQuitOnLastWindowClosed(False)
     widget = QWidget()
-    widget.show()
     loginscreen=LoginScreen()
     loginscreen.show()
     sys.exit(app.exec_())
