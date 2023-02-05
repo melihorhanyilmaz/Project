@@ -4,16 +4,17 @@ from PyQt5.QtGui import *
 from PyQt5.uic import loadUi
 import sys
 #from customerpage import CustomerScreen
-#from loginpage import LoginScreen
+#import atmloginpage
+#from atmloginpage import LoginScreen
 
 class WithdrawScreen(QMainWindow):
     def __init__(self):
         super(WithdrawScreen, self).__init__()
         loadUi("withdrawpage.ui", self)
         self.show()
+        self.buttons()
         #self.go_to_loginscreen = LoginScreen()
         #self.go_to_customerscreen = CustomerScreen()
-        self.buttons()
 
     def buttons(self):
         self.B_exit.clicked.connect(self.button_exit)
@@ -52,7 +53,6 @@ class WithdrawScreen(QMainWindow):
         widget.setCurrentIndex(widget.currentIndex()-1)"""
         
     #go to previous screen
-
     def button_exit(self):
         """loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
@@ -133,34 +133,23 @@ class WithdrawScreen(QMainWindow):
         self.li_amount_withdraw.setText(text[:len(text)-1])
 
     def action10(self):
-        # appending label text
-        text = self.li_amount_withdraw.text()
-        self.li_amount_withdraw.setText(text + "10")
+        self.li_amount_withdraw.setText("10")
     
     def action20(self):
-        # appending label text
-        text = self.li_amount_withdraw.text()
-        self.li_amount_withdraw.setText(text + "20")
+        self.li_amount_withdraw.setText("20")
 
     def action50(self):
-        # appending label text
-        text = self.li_amount_withdraw.text()
-        self.li_amount_withdraw.setText(text + "50")
+        self.li_amount_withdraw.setText("50")
 
     def action100(self):
-        # appending label text
-        text = self.li_amount_withdraw.text()
-        self.li_amount_withdraw.setText(text + "100")
+        self.li_amount_withdraw.setText("100")
 
     def action200(self):
-        # appending label text
-        text = self.li_amount_withdraw.text()
-        self.li_amount_withdraw.setText(text + "200")
+        self.li_amount_withdraw.setText("200")
 
     def action500(self):
-        # appending label text
-        text = self.li_amount_withdraw.text()
-        self.li_amount_withdraw.setText(text + "500")
+        self.li_amount_withdraw.setText("500")
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
