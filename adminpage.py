@@ -4,16 +4,20 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.uic import loadUi
 from atmloginpage import LoginScreen
-from datetime import datetime
+import datetime
 import random
 import string 
 import sys
 
-class AdminScreen():
-    widget=QWidget()
-    customer_list=[]
-    customer_id = 9990000
-    
+class AdminScreen(QMainWindow):
+    def __init__(self,name,surname,email,firstbalance,id_number,password,now):
+        self.name=name
+        self.surname=surname
+        self.email=email
+        self.firstbalance=firstbalance
+        self.id_number=id_number
+        self.password=password
+        self.now=now
     
     def __init__(self):
          super(AdminScreen, self).__init__()
@@ -24,62 +28,33 @@ class AdminScreen():
          self.B_allcustomers.clicked.connect(self.show_allcustomers)
          self.B_exit.clicked.connect(self.exit_admin)
          
-    def create_random_password(length):
-        password=random.randint(1000000,9999999)
-        return password
-    create_random_password(7)
-    pass
-    '''def create_random_password(self):
-        digits=[0,1,2,3,4,5,6,7,8,9]
-        nummers = string.digits
-        password = ''.join(random.choice(nummers) for i in range(7))
-        return password
-    '''
-    
- 
-    '''def create_random_password(length):
-        nummers = string.digits
-        result = ''.join(random.choice(nummers) for i in range(length))
-        return result
-    print(create_random_password(7))'''
-    
+         print('init calisti')
+        
     def add_customer(self):
-        name=self.li_name.text()
+        self.name=self.li_name.text()
+        self.surname=self.li_surname.text()
+        self.email=self.li_email.text()
+        self.firstbalance=self.li_balance.text()
+        self.id_number=self.li_accountno.text()
+        self.password=self.li_password.text()
+        self.now=str(datetime.datetime.now())
         
-        surname=self.li_surname.text()
-        
-        email=self.li_email.text()
-        
-        firstbalance=self.li_balance.text()
-        
-        password=self.create_random_password()
-        
-        AdminScreen.customer_id +=1
-        self.customer_id = AdminScreen.customer_id
-        #AdminScreen.customer_list.append([self.name,self.surname,self.email])
-        
-        now=datetime.datetime.now()
-        
-        
-        
-        with open('allcustomers.txt','a',encoding="utf-8") as file:
-            file.write(self.name+' '+self.surname+':'+self.email+','+self.customer_id+','+self.firstbalance+','+self.password+','+self.now+'\n')
-    pass        
-
-        
-        
+        print('pass,id_num,alindi')
     
-    
+        with open('allcustomers1.txt','a',encoding="utf-8") as file:
+            file.write(self.name+','+self.surname+','+self.email+','+self.id_number+','+self.firstbalance+','+self.password+','+self.now+'\n')
+        print('dosya acti bilgileri yazdi')
     def show_allcustomers(self):
         
-        with open('allcustomers.txt','r',encoding="utf-8") as file:
-            file.write(self.name+' '+self.surname+':'+self.email+','+self.accountnumber+','+self.firstbalance+','+self.password+','+self.now+'\n')
-     #csv'nin güncellenmesi gerekiyor
+        with open('allcustomers1.txt','r',encoding="utf-8") as file:
+            file.write(self.name+','+self.surname+','+self.email+','+self.id_number+','+self.firstbalance+','+self.password+','+self.now+'\n')
+        print('dosya okundu')
+        #csv'nin güncellenmesi gerekiyor
     
     def exit_admin(self):
         self.LoginScreen_go.show()
         self.hide()
-    
+        print('log screene gitti')
 if __name__=="__main__":
     app=QApplication(sys.argv)
     widget=QWidget()
