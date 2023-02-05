@@ -5,8 +5,8 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.uic import loadUi
 import sys
-#from customerpage import CustomerScreen
-#from adminpage import AdminScreen
+from customerpage import CustomerScreen
+from adminpage import AdminScreen
 
 class LoginScreen(QMainWindow):
    
@@ -57,19 +57,16 @@ class LoginScreen(QMainWindow):
         self.hide()
         
 
-class CustomerScreen(QMainWindow):
+"""class CustomerScreen(QMainWindow):
     def __init__(self):
         super(CustomerScreen, self).__init__()
         loadUi("customerpage.ui", self)
    
-
-
-
     
 class AdminScreen(QMainWindow):
     def __init__(self):
       super(AdminScreen, self).__init__()
-      loadUi("adminpage.ui", self)        
+      loadUi("adminpage.ui", self)  """      
 
 if __name__ == "__main__":
     

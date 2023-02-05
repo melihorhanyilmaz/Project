@@ -21,3 +21,9 @@ class AccountState(QTableWidget):
         people = [{"ID Account":9990001, "Date" : self.now, "Action" :self.act_event}]
 
 
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = AccountState()
+    window.show()
+    sys.exit(app.exec())
+    

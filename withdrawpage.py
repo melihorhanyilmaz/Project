@@ -9,7 +9,7 @@ import sys
 class WithdrawScreen(QMainWindow):
     def __init__(self):
         super(WithdrawScreen, self).__init__()
-        loadUi("Proje\withdrawpage.ui", self)
+        loadUi("withdrawpage.ui", self)
         self.show()
         #self.go_to_loginscreen = LoginScreen()
         #self.go_to_customerscreen = CustomerScreen()

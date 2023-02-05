@@ -55,6 +55,12 @@ class CustomerScreen(QMainWindow):
         self.account_statement_go.show()
         self.hide()
 
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = CustomerScreen()
+    window.show()
+    sys.exit(app.exec())
+    
 
 
 
