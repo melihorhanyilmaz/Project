@@ -183,13 +183,13 @@ class DepositScreen(QMainWindow):
     #csv dosyasını yenileme
     #tarih-saat-işlem kaydı
     
-    def button_back():
+    def button_back(self):
         customerScreen = CustomerScreen()
         widget.addWidget(customerScreen)
         widget.setCurrentIndex(widget.currentIndex()-1)
     #go to previous screen
 
-    def button_exit():
+    def button_exit(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
         widget.setCurrentIndex(widget.currentIndex()-1)
