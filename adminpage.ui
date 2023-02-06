@@ -202,7 +202,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      <string>9999999</string>
     </property>
     <property name="text">
-     <string>999</string>
+     <string/>
     </property>
     <property name="maxLength">
      <number>7</number>
@@ -285,7 +285,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      <string>999999999999</string>
     </property>
    </widget>
-   <widget class="QLabel" name="la_curbalance_2">
+   <widget class="QLabel" name="la_password">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -317,10 +317,23 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="inputMask">
-     <string>999999999999</string>
+     <string>9999999</string>
     </property>
     <property name="maxLength">
-     <number>12</number>
+     <number>7</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_error">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>330</y>
+      <width>221</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -330,7 +343,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
