@@ -27,7 +27,7 @@
    </property>
    <column>
     <property name="text">
-     <string>New Column</string>
+     <string>Id Number</string>
     </property>
    </column>
    <column>
