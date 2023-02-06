@@ -210,7 +210,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
 font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
-     <string>  PLEASE SELECT OPERATION</string>
+     <string>  PLEASE SELECT AN OPERATION</string>
     </property>
     <property name="frame">
      <bool>false</bool>
