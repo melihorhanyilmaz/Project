@@ -69,7 +69,7 @@ class AdminScreen(QMainWindow):
         self.B_save.clicked.connect(self.add_customer)
         self.B_allcustomers.clicked.connect(self.show_allcustomers)
         self.B_exit.clicked.connect(self.exit_admin)
-         
+        self.li_password.setValidator(QIntValidator(self))   #................. 
         print('init calisti')
         
     def add_customer(self):
@@ -82,10 +82,20 @@ class AdminScreen(QMainWindow):
         self.now=str(datetime.datetime.now())
         
         print('pass,id_num,alindi')
+        if len( self.name)==0 or len (self.surname)==0 or len (self.email)==0 or len (self.firstbalance)==0 or len( self.id_number)==0 or len (self.password)==0 : #.......
+            self.la_error.setText("Please input all fields.")
+            print("Bosluklar kontrol edildi")
+        else:
+        
     
-        with open('allcustomers1.txt','a',encoding="utf-8") as file:
-            file.write(self.name+','+self.surname+','+self.email+','+self.id_number+','+self.firstbalance+','+self.password+','+self.now+'\n')
+            with open('allcustomers1.txt','a',encoding="utf-8") as file:
+                file.write(self.name+','+self.surname+','+self.email+','+self.id_number+','+self.firstbalance+','+self.password+','+self.now+'\n')  #.....iceri aldim
         print('dosya acti bilgileri yazdi')
+      
+    #def create_random_password(self,):                #...................
+        #self.password=random.randint(1000000,9999999)
+        #return   
+      
     def show_allcustomers(self):
         
         with open('allcustomers1.txt','r',encoding="utf-8") as file:
