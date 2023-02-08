@@ -185,29 +185,6 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      <string> Account Number</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="li_accountno">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>310</y>
-      <width>221</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
-    </property>
-    <property name="inputMask">
-     <string>9999999</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="maxLength">
-     <number>7</number>
-    </property>
-   </widget>
    <widget class="QPushButton" name="B_allcustomers">
     <property name="geometry">
      <rect>
@@ -300,7 +277,7 @@ background-color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
-     <string> create Password</string>
+     <string>Password</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="li_password">
@@ -331,6 +308,26 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
       <width>221</width>
       <height>13</height>
      </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_id">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>310</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
     </property>
     <property name="text">
      <string/>
