@@ -1,5 +1,6 @@
-import sys, random, datetime
-from PyQt5 import *
+import sys, random, datetime, csv, re, json
+import pandas as pd
+from PyQt5 import QtWidgets, QtCore,QtGui
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -7,48 +8,64 @@ from PyQt5.uic import loadUi
 
 
 class LoginScreen(QMainWindow):
-   
     def __init__(self):
         super(LoginScreen, self).__init__()
         loadUi("atmloginpage.ui", self)
         self.la_welcome.show()
         self.li_id.setValidator(QIntValidator(self))
         self.okB.clicked.connect(self.login)
-        #self.login()
+        
 
       
     def login(self):
-        id_number=self.li_id.text()
-        password=self.li_password.text()
-        print(id_number)
+        self.id_number=self.li_id.text()
+        self.password=self.li_password.text()
+        CustomerScreen.id = self.id_number
+        WithdrawScreen.id = self.id_number
+        DepositScreen.id = self.id_number
+        AccountState.id = self.id_number
+        allcustomerScreen.id = self.id_number
         print("Login sayfasi giris")
-        if len( id_number)==0 or len (password)==0:
+        
+        print(self.id_number)
+        df=pd.read_csv('allcustomers1.csv')
+        
+        checkpassword = df[df['id_number'] == int(self.id_number)]['password']
+        df.loc[df['id_number'] == int(self.id_number),('firstbalance')]=100
+        df.to_csv('allcustomers1.csv', mode ='w')
+        print(df)
+        print(df.info())  
+          
+        if len(self.id_number)==0 or len (self.password)==0:
             self.la_error.setText("Please input all fields.")
             print("Bosluklar kontrol edildi")
-        #elif   len( id_number) < 7 or len (password) < 7:
-            #self.la_error.setText("Please input invalid IDNumber or Password") 
-        
-        
-        if str(id_number).startswith("999"):
-            #costumer sayfasina git degilse admin sayfasina git
-                #self.okB.clicked.connect(self.go_to_customer_page)
-                print("Startswith999")
-                self.go_to_customer_page()
+        elif len(self.id_number) < 7 or len (self.password) < 7:
+            self.la_error.setText("Please input invalid IDNumber or Password")
+       
+                    
+        if str(self.id_number).startswith("999"):#ve password gecerli ise ibaresini de gir???
             
-        elif str(id_number).startswith("0"):
+            self.go_to_customer_page()
+                         
+            
+        elif str(self.id_number).startswith("0"):
                 
-                #self.okB.clicked.connect(self.go_to_admin_page)
             print("Startswith0")
+            print(self.password)
             self.go_to_admin_page()
-                #gecersiz id veya password girerse csv lazimmmmmmmm?????
+                
         
    
     def go_to_customer_page(self):
+        self.li_id.clear()
+        self.li_password.clear()
         customerScreen = CustomerScreen()
         widget.addWidget(customerScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
         
     def go_to_admin_page(self):
+        self.li_id.clear()
+        self.li_password.clear()
         adminScreen = AdminScreen()
         widget.addWidget(adminScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
@@ -59,8 +76,8 @@ class AdminScreen(QMainWindow):
         self.surname=surname
         self.email=email
         self.firstbalance=firstbalance
-        self.id_number=id_number
-        self.password=password
+        self.id_number = id_number
+        self.password = password
         self.now=now
     
     def __init__(self):
@@ -78,47 +95,76 @@ class AdminScreen(QMainWindow):
         self.email=self.li_email.text()
         self.firstbalance=self.li_balance.text()
         self.id_number=self.li_accountno.text()
-        self.password=self.li_password.text()
+        self.password= self.li_password.text()
         self.now=str(datetime.datetime.now())
         
         print('pass,id_num,alindi')
-        if len( self.name)==0 or len (self.surname)==0 or len (self.email)==0 or len (self.firstbalance)==0 or len( self.id_number)==0 or len (self.password)==0 : #.......
+        if self.name=="" or self.surname=="" or self.email=="" or self.id_number == 0 or self.password== 0 : #.......
             self.la_error.setText("Please input all fields.")
             print("Bosluklar kontrol edildi")
         else:
         
     
-            with open('allcustomers1.txt','a',encoding="utf-8") as file:
-                file.write(self.name+','+self.surname+','+self.email+','+self.id_number+','+self.firstbalance+','+self.password+','+self.now+'\n')  #.....iceri aldim
+            with open('allcustomers1.csv','a',encoding="utf-8") as file:
+                file.write(self.name+','+self.surname+','+self.email+','+str(self.id_number)+','+str(self.firstbalance)+','+str(self.password)+','+str(self.now)+'\n')  #.....iceri aldim
         print('dosya acti bilgileri yazdi')
-      
-    #def create_random_password(self,):                #...................
-        #self.password=random.randint(1000000,9999999)
-        #return   
+        self.li_name.clear()
+        self.li_surname.clear()
+        self.li_email.clear()
+        self.li_balance.clear()
+        self.li_accountno.clear()
+        self.li_password.clear()
+
+             
       
     def show_allcustomers(self):
-        
-        with open('allcustomers1.txt','r',encoding="utf-8") as file:
-            file.write(self.name+','+self.surname+','+self.email+','+self.id_number+','+self.firstbalance+','+self.password+','+self.now+'\n')
-        print('dosya okundu')
-        #csv'nin güncellenmesi gerekiyor
-    
+        allcustScreen = allcustomerScreen()
+        widget.addWidget(allcustScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+           
     def exit_admin(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
+        widget.setCurrentIndex(widget.currentIndex()-1)
+
+class allcustomerScreen(QDialog):
+    def __init__(self):
+        super(allcustomerScreen,self).__init__()
+        loadUi('all_customer.ui', self)
+        self.B_exit.clicked.connect(self.exit_allcustom)
+        self.B_refresh.clicked.connect(self.loadCsv)
+             
+    def loadCsv(self):
+         with open ('allcustomers1.csv','r')as f:
+            
+            pass
+                    
+    def exit_allcustom(self):
+        adminScreen = AdminScreen()
+        widget.addWidget(adminScreen)
         widget.setCurrentIndex(widget.currentIndex()-1)
 
 class CustomerScreen(QMainWindow):
     def __init__(self):
         super(CustomerScreen, self).__init__()
         loadUi('customerpage.ui', self)
+        print('cust init çalıştı')
+        #print(self.id)
         self.B_deposit.clicked.connect(self.button_deposit)
         self.B_withdraw.clicked.connect(self.button_withdraw)
         self.B_exit_cust_menu.clicked.connect(self.button_exit)
         self.B_changePassword.clicked.connect(self.change_password)
         self.B_statement.clicked.connect(self.account_statement)
-        #self.w = None 
-
+        
+        
+        with open('allcustomers1.csv','r',encoding='utf8') as cf :
+           customers = cf.readlines()
+           #print(customers)
+           
+        cf= pd.read_csv('allcustomers1.csv')
+        listcf=cf[["id_number",'password']]
+        #print(listcf) 
+        
     def button_deposit(self):
         depositScreen = DepositScreen()
         widget.addWidget(depositScreen)
@@ -137,16 +183,18 @@ class CustomerScreen(QMainWindow):
     def button_exit(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
+
         widget.setCurrentIndex(widget.currentIndex()-1)
+
     #go to login screen
 
     def current_balance(self):
+        #-if id_number ==
+        pass 
         balance = []
         for person in balance:
             pass
     #show the current balance(csv)
-
-
 
     def account_statement(self):
         accountScreen = AccountState()
@@ -269,7 +317,7 @@ class WithdrawScreen(QMainWindow):
     def __init__(self):
         super(WithdrawScreen, self).__init__()
         loadUi("withdrawpage.ui", self)
-        self.show()
+        #self.show()
         self.buttons()
         #self.go_to_loginscreen = LoginScreen()
         #self.go_to_customerscreen = CustomerScreen()
@@ -404,21 +452,17 @@ class WithdrawScreen(QMainWindow):
     def action500(self):
         self.li_amount_withdraw.setText("500")
 
-class AccountState(QTableWidget):
-    def __init__(self):
-        super().__init__()
-        loadUi('statementpage.ui',self)
-        self.show()
-        self.tableWidget.setColumnWidth(0,400)
-        self.tableWidget.setColumnWidth(1,200)
-        self.tableWidget.setColumnWidth(2,250)
-        self.loaddata()
-        self.now = datetime.datetime.now()
+class AccountState(QDialog):
+    def __init__(self) :
+        super(AccountState,self).__init__()
+        loadUi('statementpage.ui', self)
+        self.B_exit_state.clicked.connect(self.exit_state)
+        
     
-    def loaddata(self):
-        people = [{"ID Account":9990001, "Date" : self.now, "Action" :self.act_event}]
-        pass
-
+    def exit_state(self):
+        customerScreen = CustomerScreen()
+        widget.addWidget(customerScreen)
+        widget.setCurrentIndex(widget.currentIndex()-2)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

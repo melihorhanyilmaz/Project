@@ -1,0 +1,5 @@
+,name,surname,email,id_number,firstbalance,password,date
+0,savas,tas,savas123@gmail.com,9990002,220,5532348,2023-02-06 23:34:36.106085
+1,taner,tasci,tascitaner45@gmail.com,9990003,650,6513498,2023-02-06 23:35:13.477000
+2,soner,kisa,kisasoner_65@gmail.com,9990004,6000,7535152,2023-02-06 23:35:57.345420
+3,bilal,kaya,bilal_rock@gmail.com,9990005,800,7522565,2023-02-06 23:36:45.269726
