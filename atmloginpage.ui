@@ -219,13 +219,14 @@ font: 75 12pt &quot;MS Sans Serif&quot;;</string>
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>330</y>
+      <y>340</y>
       <width>401</width>
-      <height>211</height>
+      <height>201</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/newPrefix/Downloads/atm-machine.png);</string>
+     <string notr="true">
+background-image: url(:/newPrefix/Downloads/atm-machine.png);</string>
     </property>
     <property name="text">
      <string/>
@@ -254,7 +255,7 @@ font: 75 12pt &quot;MS Sans Serif&quot;;</string>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="../tus resim.qrc"/>
+  <include location="../tus_resim.qrc"/>
  </resources>
  <connections>
   <connection>
