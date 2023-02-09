@@ -42,23 +42,6 @@ border-radius: 20 </string>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="li_balance">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>90</y>
-      <width>231</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="li_amount_withdraw">
     <property name="geometry">
      <rect>
@@ -483,7 +466,7 @@ background-color: rgb(255, 255, 255);</string>
      <string>Please enter amount of money to withdraw:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="la_balance">
+   <widget class="QLabel" name="la_bal">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -530,6 +513,26 @@ border-radius: 20 ;</string>
     </property>
     <property name="text">
      <string>Clear</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_balance">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>100</y>
+      <width>231</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 63 14pt &quot;Montserrat SemiBold&quot;;
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
