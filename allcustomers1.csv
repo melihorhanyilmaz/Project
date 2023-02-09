@@ -1,9 +1,2 @@
 name,surname,email,id_number,firstbalance,password,date,withdrawmoney,depositmoney,sum
-Ebubekir,Baktır,ebubekirbaktir38@gmail.com,9990001.0,5000.0,1234567.0,2023-02-08 22:37:51.216020,85.0,532.0,67385408.0
-Melih Orhan,Yılmaz,melih.yilmaz@gmail.com,9990002.0,50000.0,7845127.0,2023-02-08 22:56:33.191255,214.0,,35820472.0
-Sema,Sarı,sema.sari@gmail.com,9990003.0,50000.0,6598772.0,2023-02-08 23:01:07.914484,8547.0,,133152935.0
-Nuseybe,KARAKURT,karakurtnuseybe@gmail.com,9990004.0,5.0,3256981.0,2023-02-08 23:09:50.901092,,,105975920.0
-ahmet,demir,demir@gmail.com,9990005.0,8770.0,,2023-02-09 15:39:00.267885,,,50002645.0
-mehmet,mert,mert@gmail.com,9990006.0,54447.0,,2023-02-09 15:49:15.568042,0.0,0.0,50276712.0
-ayşe,kapıcı,ayse@gmail.com,9990007.0,125487.0,,2023-02-09 15:50:51.515277,27.0,566666.0,31605328.0
-selma,ay,ay@hotmail.com,9990008.0,7888.0,8787878.0,2023-02-09 15:58:16.708278,200.0,400,8288.0
+
