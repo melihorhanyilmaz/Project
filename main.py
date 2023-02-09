@@ -27,22 +27,29 @@ class LoginScreen(QMainWindow):
       
         
         #pandas kodları
-        df=pd.read_csv('allcustomers1.csv')
+        datadf=pd.read_csv('allcustomers1.csv')  
         #df.loc[df['id_number'] == int(self.id_number),('firstbalance')]
-        checkpassword = df[df['id_number'] == int(self.id_number)]['password']
+        #checkpassword =len(df[df['id_number'] == int(self.id_number)]['password'])
+        #idnumber = len(df[df['id_number'] == int(self.id_number)]['id_number'])
         
         
-        
-        if len(self.id_number)==0 or len(self.password)==0 :
-            self.la_error.setText("Please input all fields.")
+        #Pf len(self.id_number)==0 or len(self.password)==0 :
+           # self.la_error.setText("Please input all fields.")
             
-        elif len(self.id_number) < 7 or len (self.password) < 7:
-            self.la_error.setText("Please input valid IDNumber or Password")
+        #elif len(self.id_number) < 7 or len (self.password) < 7:
+        #    self.la_error.setText("Please input valid IDNumber or Password")
         #if checkpassword == self.password :
         
-        if str(self.id_number).startswith("999") and len(self.id_number) == 7:#ve password gecerli ise ibaresini de gir???
-                self.go_to_customer_page()
-             
+        #ve password gecerli ise ibaresini de gir???
+        
+           
+        df = pd.DataFrame(datadf)
+        # df[(df[str('id_number')] != str(self.id_number)) | (df[str('password')] != str(self.password))]
+        #self.la_error.setText("Please input a valid IDNumber or Password")
+        df.loc[(df[str('id_number')] == str(self.id_number)) & (df[str('password')] == str(self.password))]
+        if str(self.id_number).startswith("999") and len(self.id_number) == 7:
+            self.go_to_customer_page()
+            
         elif self.id_number == "0112233" and self.password == "1223330":
                 print("Startswith0")
                 self.go_to_admin_page()
@@ -69,7 +76,7 @@ class LoginScreen(QMainWindow):
        
 
 class AdminScreen(QMainWindow):
-    id_number= 9990001
+    id_number= 9990000
     def __init__(self):
         super(AdminScreen, self).__init__()
         loadUi("adminpage.ui", self)
@@ -79,8 +86,9 @@ class AdminScreen(QMainWindow):
         #self.li_password.setValidator(QIntValidator(self))   #................. 
         print('init calisti')
         
-          ##....
-        self.id_number=AdminScreen.id_number 
+         
+        
+        
         #setlabel gelecek csvdeki son satırdakindan 1 fazla
         df = pd.read_csv('allcustomers1.csv')
         #Erow = pd.concat(df.iloc[-1,:])
@@ -93,6 +101,7 @@ class AdminScreen(QMainWindow):
         self.firstbalance = int(self.li_balance.text())
         self.password = self.li_password.text()
         self.now = str(datetime.datetime.now())
+        self.id_number=AdminScreen.id_number 
         self.id_number+=1
         self.la_id.setText(str(self.id_number))
         self.withdrawmoney = 0
@@ -111,7 +120,12 @@ class AdminScreen(QMainWindow):
     
             with open('allcustomers1.csv','a',encoding="utf-8") as file:
                 file.write(self.name+','+self.surname+','+self.email+','+str(self.id_number)+','+str(self.firstbalance)+','+str(self.password)+','+str(self.now)+','+str(self.withdrawmoney)+','+str(self.depositmoney)+','+str(self.sum)+'\n')  #.....iceri aldim
-                file.close()
+                
+            with open(f'{self.id_number}.csv','a',encoding="utf-8") as file:
+                statement = csv.writer(file)
+                statement.writerow(["Date", "Transaction Type","Current Balance"])
+                statement.writerow([datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S"),"New Account",self.firstbalance])
+            
             #print('dosya acti bilgileri yazdi')
             self.li_name.clear()
             self.li_surname.clear()
@@ -119,10 +133,10 @@ class AdminScreen(QMainWindow):
             self.la_id.update()
             self.li_balance.clear()
             self.li_password.clear()
-
+       
         df=pd.read_csv("allcustomers1.csv") 
         df['sum'] = df.sum(axis=1)
-        df.loc[df['id_number'] == int(self.id_number),('sum')] = df['firstbalance']
+        df.loc[df['id_number'] == (self.id_number),('sum')] = df['firstbalance']
         df.to_csv('allcustomers1.csv', mode ='r+', index = False )    
         print(df)
 
@@ -144,9 +158,7 @@ class allcustomerScreen(QDialog):
         loadUi('all_customer.ui', self)
         self.B_exit.clicked.connect(self.exit_allcustom)
         #self.B_refresh.clicked.connect(self.loadCsv)
-             
-    
-            
+       
                     
     def exit_allcustom(self):
         adminScreen = AdminScreen()
@@ -227,7 +239,7 @@ class DepositScreen(QMainWindow):
         self.nineB.clicked.connect(self.action9)
         self.delB.clicked.connect(self.action_del)
         self.clearB.clicked.connect(self.action_clear)
-    #self.button.clicked.connect()
+        #self.button.clicked.connect()
 
     def button_ok(self):
         self.money=self.li_amount_withdraw.text() 
@@ -240,7 +252,16 @@ class DepositScreen(QMainWindow):
        
         df.loc[df['id_number'] == int(self.id),('sum')] = df['firstbalance'] + int(self.money)
         df.to_csv('allcustomers1.csv', mode ='r+', index = False ) 
-        print(df)
+        
+        file = f"{self.id}.csv"
+        with open (file, "a", newline="\n") as f:
+            writer = csv.writer(f)
+            self.balance=str(df[df['id_number'] == int(self.id)]['sum'])
+            writer.writerow([datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S"),"Deposit", self.balance+"€"])
+        
+        
+        
+        self.button_back()
     #csv dosyasını yenileme
     #tarih-saat-işlem kaydı
     
@@ -374,10 +395,18 @@ class WithdrawScreen(QMainWindow):
         
         df['sum'] = df.sum(axis=1)
        
-        df.loc[df['id_number'] == int(self.id),('sum')] = df['firstbalance'] - int(self.amount)
+        df.loc[df['id_number'] == int(self.id),('sum')] = df['sum'] - int(self.amount)
         df.to_csv('allcustomers1.csv', mode ='r+', index = False ) 
         #Gdf.to_csv('allcustomers1.csv', mode ='r+', index = False )
-        print(df)
+        file = f"{self.id}.csv"
+        with open (file, "a", newline="\n") as f:
+            self.balance=str(df[df['id_number'] == int(self.id)]['sum'])
+            writer = csv.writer(f)
+            writer.writerow([datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S"),"Withdraw", self.balance+"€"])
+        
+        
+        
+        self.button_back()
 
     #csv dosyasını yenileme
     #tarih-saat-işlem kaydı
