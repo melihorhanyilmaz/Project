@@ -37,7 +37,7 @@ font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="B_update_cust">
+   <widget class="QPushButton" name="B_updatecust">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -72,7 +72,7 @@ border-radius: 20 </string>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="B_new_cust">
+   <widget class="QPushButton" name="B_newcust">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -107,7 +107,7 @@ border-radius: 20 </string>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="B_exit_cust_menu">
+   <widget class="QPushButton" name="B_exit">
     <property name="geometry">
      <rect>
       <x>670</x>
