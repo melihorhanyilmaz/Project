@@ -23,7 +23,7 @@ class LoginScreen(QMainWindow):
         CustomerScreen.id = self.id_number
         WithdrawScreen.id = self.id_number
         DepositScreen.id = self.id_number
-        allcustomerScreen.id = self.id_number
+        CustomerInfoScreen.id = self.id_number
       
         
         #pandas kodları
@@ -70,25 +70,69 @@ class LoginScreen(QMainWindow):
     def go_to_admin_page(self):
         self.li_id.clear()
         self.li_password.clear()
-        adminScreen = AdminScreen()
+        adminScreen = NewAdminScreen()
         widget.addWidget(adminScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
-       
 
-class AdminScreen(QMainWindow):
+class NewAdminScreen(QMainWindow):
+    def __init__(self):
+        super(NewAdminScreen,self).__init__() 
+        loadUi('newadminpage.ui', self)
+        #print('cust init çalıştı')
+        #print(self.id)
+        self.B_info.connect(self.button_info)
+        self.B_newcust.clicked.connect(self.button_new_customer)
+        self.B_updatecust.clicked.connect(self.button_update_customer)
+        self.B_exit.clicked.connect(self.button_exit)  
+    
+    def button_info(self):
+        custInfoScreen = CustomerInfoScreen()
+        widget.addWidget(custInfoScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
+    def button_new_customer():
+        createCustScreen = CreateCustomerScreen()
+        widget.addWidget(createCustScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
+    def button_update_customer():
+        updateScreen = UpdateScreen()
+        widget.addWidget(updateScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
+    def button_exit():
+        loginScreen = LoginScreen()
+        widget.addWidget(loginScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
+class CustomerInfoScreen(QDialog):
+    def __init__(self):
+        super(CustomerInfoScreen,self).__init__()
+        loadUi('all_customer.ui', self)
+        self.B_back.clicked.connect(self.button_back)
+        self.B_exit.clicked.connect(self.exit_allcustom)
+        #self.B_refresh.clicked.connect(self.loadCsv)
+       
+    def button_back(self):
+        newAdminScreen = NewAdminScreen()
+        widget.addWidget(newAdminScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
+    def exit_allcustom(self):
+        loginScreen = LoginScreen()
+        widget.addWidget(loginScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
+class CreateCustomerScreen(QMainWindow):
     id_number= 9990000
     def __init__(self):
-        super(AdminScreen, self).__init__()
-        loadUi("adminpage.ui", self)
+        super(CreateCustomerScreen, self).__init__()
+        loadUi("createcustomerpage.ui", self)
         self.B_save.clicked.connect(self.add_customer)
-        self.B_allcustomers.clicked.connect(self.show_allcustomers)
-        self.B_exit.clicked.connect(self.exit_admin)
+        self.B_back.clicked.connect(self.button_back)
+        self.B_exit.clicked.connect(self.button_exit)
         #self.li_password.setValidator(QIntValidator(self))   #................. 
-        print('init calisti')
-        
-         
-        
-        
+        print('init calisti')   
         #setlabel gelecek csvdeki son satırdakindan 1 fazla
         df = pd.read_csv('allcustomers1.csv')
         #Erow = pd.concat(df.iloc[-1,:])
@@ -101,7 +145,7 @@ class AdminScreen(QMainWindow):
         self.firstbalance = int(self.li_balance.text())
         self.password = self.li_password.text()
         self.now = str(datetime.datetime.now())
-        self.id_number=AdminScreen.id_number 
+        self.id_number=CreateCustomerScreen.id_number 
         self.id_number+=1
         self.la_id.setText(str(self.id_number))
         self.withdrawmoney = 0
@@ -139,32 +183,38 @@ class AdminScreen(QMainWindow):
         df.loc[df['id_number'] == (self.id_number),('sum')] = df['firstbalance']
         df.to_csv('allcustomers1.csv', mode ='r+', index = False )    
         print(df)
-
-    def show_allcustomers(self):
-        allcustScreen = allcustomerScreen()
-        widget.addWidget(allcustScreen)
-        widget.setCurrentIndex(widget.currentIndex()+1)
         
+    def button_back(self):
+        newAdminScreen = NewAdminScreen()
+        widget.addWidget(newAdminScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
            
-    def exit_admin(self):
+    def button_exit(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
         
-
-class allcustomerScreen(QDialog):
+class UpdateScreen(QMainWindow):
     def __init__(self):
-        super(allcustomerScreen,self).__init__()
-        loadUi('all_customer.ui', self)
-        self.B_exit.clicked.connect(self.exit_allcustom)
-        #self.B_refresh.clicked.connect(self.loadCsv)
-       
-                    
-    def exit_allcustom(self):
-        adminScreen = AdminScreen()
-        widget.addWidget(adminScreen)
+        super(UpdateScreen,self).__init__() 
+        loadUi('updatepage.ui', self)
+        self.B_update.clicked.connect(self.update_customer)
+        self.B_back.clicked.connect(self.button_back)
+        self.B_exit.clicked.connect(self.button_exit)
+
+    def update_customer(self):
+        pass
+
+    def button_back(self):
+        newAdminScreen = NewAdminScreen()
+        widget.addWidget(newAdminScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
-        
+
+    def button_exit(self):
+        loginScreen = LoginScreen()
+        widget.addWidget(loginScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
 
 class CustomerScreen(QMainWindow):
     def __init__(self):
