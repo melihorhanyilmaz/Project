@@ -1,6 +1,6 @@
-import sys, random, datetime, csv, re, json
 import pandas as pd
-from PyQt5 import QtWidgets, QtCore,QtGui
+import sys, random, datetime, csv, re
+from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -23,39 +23,42 @@ class LoginScreen(QMainWindow):
         CustomerScreen.id = self.id_number
         WithdrawScreen.id = self.id_number
         DepositScreen.id = self.id_number
-        AccountState.id = self.id_number
         allcustomerScreen.id = self.id_number
-        print("Login sayfasi giris")
+      
         
-        print(self.id_number)
-        df=pd.read_csv('allcustomers1.csv')
+        #pandas kodları
+        datadf=pd.read_csv('allcustomers1.csv')  
+        #df.loc[df['id_number'] == int(self.id_number),('firstbalance')]
+        #checkpassword =len(df[df['id_number'] == int(self.id_number)]['password'])
+        #idnumber = len(df[df['id_number'] == int(self.id_number)]['id_number'])
         
-        checkpassword = df[df['id_number'] == int(self.id_number)]['password']
-        df.loc[df['id_number'] == int(self.id_number),('firstbalance')]=100
-        df.to_csv('allcustomers1.csv', mode ='w')
-        print(df)
-        print(df.info())  
-          
-        if len(self.id_number)==0 or len (self.password)==0:
-            self.la_error.setText("Please input all fields.")
-            print("Bosluklar kontrol edildi")
-        elif len(self.id_number) < 7 or len (self.password) < 7:
-            self.la_error.setText("Please input invalid IDNumber or Password")
-       
-                    
-        if str(self.id_number).startswith("999"):#ve password gecerli ise ibaresini de gir???
+        
+        #Pf len(self.id_number)==0 or len(self.password)==0 :
+           # self.la_error.setText("Please input all fields.")
             
+        #elif len(self.id_number) < 7 or len (self.password) < 7:
+        #    self.la_error.setText("Please input valid IDNumber or Password")
+        #if checkpassword == self.password :
+        
+        #ve password gecerli ise ibaresini de gir???
+        
+           
+        df = pd.DataFrame(datadf)
+        # df[(df[str('id_number')] != str(self.id_number)) | (df[str('password')] != str(self.password))]
+        #self.la_error.setText("Please input a valid IDNumber or Password")
+        df.loc[(df[str('id_number')] == str(self.id_number)) & (df[str('password')] == str(self.password))]
+        if str(self.id_number).startswith("999") and len(self.id_number) == 7:
             self.go_to_customer_page()
-                         
             
-        elif str(self.id_number).startswith("0"):
-                
-            print("Startswith0")
-            print(self.password)
-            self.go_to_admin_page()
-                
+        elif self.id_number == "0112233" and self.password == "1223330":
+                print("Startswith0")
+                self.go_to_admin_page()
         
-   
+        else: 
+            self.la_error.setText("Please input valid IDNumber or Password")
+                
+
+
     def go_to_customer_page(self):
         self.li_id.clear()
         self.li_password.clear()
@@ -63,155 +66,167 @@ class LoginScreen(QMainWindow):
         widget.addWidget(customerScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
         
+
     def go_to_admin_page(self):
         self.li_id.clear()
         self.li_password.clear()
         adminScreen = AdminScreen()
         widget.addWidget(adminScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
+       
 
 class AdminScreen(QMainWindow):
-    def __init__(self,name,surname,email,firstbalance,id_number,password,now):
-        self.name=name
-        self.surname=surname
-        self.email=email
-        self.firstbalance=firstbalance
-        self.id_number = id_number
-        self.password = password
-        self.now=now
-    
+    id_number= 9990000
     def __init__(self):
         super(AdminScreen, self).__init__()
         loadUi("adminpage.ui", self)
         self.B_save.clicked.connect(self.add_customer)
         self.B_allcustomers.clicked.connect(self.show_allcustomers)
         self.B_exit.clicked.connect(self.exit_admin)
-        self.li_password.setValidator(QIntValidator(self))   #................. 
+        #self.li_password.setValidator(QIntValidator(self))   #................. 
         print('init calisti')
         
+         
+        
+        
+        #setlabel gelecek csvdeki son satırdakindan 1 fazla
+        df = pd.read_csv('allcustomers1.csv')
+        #Erow = pd.concat(df.iloc[-1,:])
+        #print(row)
+
     def add_customer(self):
         self.name=self.li_name.text()
-        self.surname=self.li_surname.text()
-        self.email=self.li_email.text()
-        self.firstbalance=self.li_balance.text()
-        self.id_number=self.li_accountno.text()
-        self.password= self.li_password.text()
-        self.now=str(datetime.datetime.now())
+        self.surname = self.li_surname.text()
+        self.email = self.li_email.text()
+        self.firstbalance = int(self.li_balance.text())
+        self.password = self.li_password.text()
+        self.now = str(datetime.datetime.now())
+        self.id_number=AdminScreen.id_number 
+        self.id_number+=1
+        self.la_id.setText(str(self.id_number))
+        self.withdrawmoney = 0
+        self.depositmoney = 0
+        self.sum = 0
+        #CustomerScreen.balance=self.firstbalance
+        WithdrawScreen.firstbalance = self.firstbalance
+        DepositScreen.firstbalance = self.firstbalance     
         
-        print('pass,id_num,alindi')
+        #print('pass,id_num,alindi')
         if self.name=="" or self.surname=="" or self.email=="" or self.id_number == 0 or self.password== 0 : #.......
             self.la_error.setText("Please input all fields.")
-            print("Bosluklar kontrol edildi")
+            #print("Bosluklar kontrol edildi")
         else:
         
     
             with open('allcustomers1.csv','a',encoding="utf-8") as file:
-                file.write(self.name+','+self.surname+','+self.email+','+str(self.id_number)+','+str(self.firstbalance)+','+str(self.password)+','+str(self.now)+'\n')  #.....iceri aldim
-        print('dosya acti bilgileri yazdi')
-        self.li_name.clear()
-        self.li_surname.clear()
-        self.li_email.clear()
-        self.li_balance.clear()
-        self.li_accountno.clear()
-        self.li_password.clear()
+                file.write(self.name+','+self.surname+','+self.email+','+str(self.id_number)+','+str(self.firstbalance)+','+str(self.password)+','+str(self.now)+','+str(self.withdrawmoney)+','+str(self.depositmoney)+','+str(self.sum)+'\n')  #.....iceri aldim
+                
+            with open(f'{self.id_number}.csv','a',encoding="utf-8") as file:
+                statement = csv.writer(file)
+                statement.writerow(["Date", "Transaction Type","Current Balance"])
+                statement.writerow([datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S"),"New Account",self.firstbalance])
+            
+            #print('dosya acti bilgileri yazdi')
+            self.li_name.clear()
+            self.li_surname.clear()
+            self.li_email.clear()
+            self.la_id.update()
+            self.li_balance.clear()
+            self.li_password.clear()
+       
+        df=pd.read_csv("allcustomers1.csv") 
+        df['sum'] = df.sum(axis=1)
+        df.loc[df['id_number'] == (self.id_number),('sum')] = df['firstbalance']
+        df.to_csv('allcustomers1.csv', mode ='r+', index = False )    
+        print(df)
 
-             
-      
     def show_allcustomers(self):
         allcustScreen = allcustomerScreen()
         widget.addWidget(allcustScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
+        
            
     def exit_admin(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
-        widget.setCurrentIndex(widget.currentIndex()-1)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+        
 
 class allcustomerScreen(QDialog):
     def __init__(self):
         super(allcustomerScreen,self).__init__()
         loadUi('all_customer.ui', self)
         self.B_exit.clicked.connect(self.exit_allcustom)
-        self.B_refresh.clicked.connect(self.loadCsv)
-             
-    def loadCsv(self):
-         with open ('allcustomers1.csv','r')as f:
-            
-            pass
+        #self.B_refresh.clicked.connect(self.loadCsv)
+       
                     
     def exit_allcustom(self):
         adminScreen = AdminScreen()
         widget.addWidget(adminScreen)
-        widget.setCurrentIndex(widget.currentIndex()-1)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+        
 
 class CustomerScreen(QMainWindow):
     def __init__(self):
         super(CustomerScreen, self).__init__()
         loadUi('customerpage.ui', self)
-        print('cust init çalıştı')
+        #print('cust init çalıştı')
         #print(self.id)
         self.B_deposit.clicked.connect(self.button_deposit)
         self.B_withdraw.clicked.connect(self.button_withdraw)
         self.B_exit_cust_menu.clicked.connect(self.button_exit)
-        self.B_changePassword.clicked.connect(self.change_password)
         self.B_statement.clicked.connect(self.account_statement)
         
         
-        with open('allcustomers1.csv','r',encoding='utf8') as cf :
-           customers = cf.readlines()
-           #print(customers)
-           
-        cf= pd.read_csv('allcustomers1.csv')
-        listcf=cf[["id_number",'password']]
+        
+
+       # with open('allcustomers1.csv','r',encoding='utf8') as df :
+          # customers =df.readlines()
+      #print(customers)
+        df= pd.read_csv('allcustomers1.csv')
+        balance=str(df[df['id_number'] == int(self.id)]['sum'])
+        self.la_balance.setText(balance)
+                
         #print(listcf) 
         
     def button_deposit(self):
         depositScreen = DepositScreen()
         widget.addWidget(depositScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
+        
     #go to screen import(deposit) money
 
     def button_withdraw(self):
         withdrawScreen = WithdrawScreen()
         widget.addWidget(withdrawScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
+        
     #go to screen withdraw money
-
-    def change_password(self):
+    def account_statement(self):
         pass
 
     def button_exit(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
-
-        widget.setCurrentIndex(widget.currentIndex()-1)
-
-    #go to login screen
-
-    def current_balance(self):
-        #-if id_number ==
-        pass 
-        balance = []
-        for person in balance:
-            pass
-    #show the current balance(csv)
-
-    def account_statement(self):
-        accountScreen = AccountState()
-        widget.addWidget(accountScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
-
+        
+       
 class DepositScreen(QMainWindow):
-    def __init__(self):
-         super(DepositScreen, self).__init__()
-         loadUi("insertpage.ui", self)
-         self.buttons()
+    def __init__(self): 
+        super(DepositScreen, self).__init__()
+        loadUi("insertpage.ui", self)
+        
+        
+        df= pd.read_csv('allcustomers1.csv')
+        self.balance=str(df[df['id_number'] == int(self.id)]['sum'])
+        self.la_balance.setText(self.balance)
+        self.buttons()
          
 
     def buttons(self):
         self.B_exit.clicked.connect(self.button_exit)
         self.B_back.clicked.connect(self.button_back)
-        #self.B_ok.clicked.connect()
+        self.B_ok.clicked.connect(self.button_ok)
         self.zeroB.clicked.connect(self.action0)
         self.oneB.clicked.connect(self.action1)
         self.twoB.clicked.connect(self.action2)
@@ -224,31 +239,52 @@ class DepositScreen(QMainWindow):
         self.nineB.clicked.connect(self.action9)
         self.delB.clicked.connect(self.action_del)
         self.clearB.clicked.connect(self.action_clear)
-    #self.button.clicked.connect()
+        #self.button.clicked.connect()
 
-    def button_ok():
-        pass
+    def button_ok(self):
+        self.money=self.li_amount_withdraw.text() 
+        print(self.money)
+        df=pd.read_csv("allcustomers1.csv")
+        #df.loc[df['id_number'] == int(self.id),('withdrawmoney')]=self.amount
+        df.loc[df['id_number'] == int(self.id),('depositmoney')]=self.money
+        df.to_csv('allcustomers1.csv', mode ='r+', index = False )
+        df['sum'] = df.sum(axis=1)
+       
+        df.loc[df['id_number'] == int(self.id),('sum')] = df['firstbalance'] + int(self.money)
+        df.to_csv('allcustomers1.csv', mode ='r+', index = False ) 
+        
+        file = f"{self.id}.csv"
+        with open (file, "a", newline="\n") as f:
+            writer = csv.writer(f)
+            self.balance=str(df[df['id_number'] == int(self.id)]['sum'])
+            writer.writerow([datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S"),"Deposit", self.balance+"€"])
+        
+        
+        
+        self.button_back()
     #csv dosyasını yenileme
     #tarih-saat-işlem kaydı
     
     def button_back(self):
-        customerScreen = CustomerScreen()
-        widget.addWidget(customerScreen)
-        widget.setCurrentIndex(widget.currentIndex()-1)
+        self.customerScreen = CustomerScreen()
+        widget.addWidget(self.customerScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+       
     #go to previous screen
 
     def button_exit(self):
-        loginScreen = LoginScreen()
-        widget.addWidget(loginScreen)
-        widget.setCurrentIndex(widget.currentIndex()-1)
+        self.loginScreen = LoginScreen()
+        widget.addWidget(self.loginScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+        
     #go to login screen
 
-    def current_balance():
-        pass
+   
+        
     #show the current balance(csv)
-    
-    def deposit_cash():
-        pass
+        
+
+   
     #butondan değer alma
     #yazarak değer alma
     #clicked ok will take this value
@@ -317,15 +353,17 @@ class WithdrawScreen(QMainWindow):
     def __init__(self):
         super(WithdrawScreen, self).__init__()
         loadUi("withdrawpage.ui", self)
-        #self.show()
+        
+        
+        df= pd.read_csv('allcustomers1.csv')
+        self.balance=str(df[df['id_number'] == int(self.id)]['sum'])
+        self.la_balance.setText(self.balance)
         self.buttons()
-        #self.go_to_loginscreen = LoginScreen()
-        #self.go_to_customerscreen = CustomerScreen()
 
     def buttons(self):
-        self.B_exit.clicked.connect(self.button_exit)
+        #Gself.B_exit.clicked.connect(self.button_exit)
         self.B_back.clicked.connect(self.button_back)
-        #self.B_ok.clicked.connect()
+        self.B_ok.clicked.connect(self.button_ok)
         self.zeroB.clicked.connect(self.action0)
         self.oneB.clicked.connect(self.action1)
         self.twoB.clicked.connect(self.action2)
@@ -346,30 +384,53 @@ class WithdrawScreen(QMainWindow):
         self.B_500.clicked.connect(self.action500)
     
 
-    def button_ok():
-        pass
+    def button_ok(self):
+        self.amount=self.li_amount_withdraw.text() 
+        print(self.amount)
+        df=pd.read_csv("allcustomers1.csv")
+        #df.loc[df['id_number'] == int(self.id),('withdrawmoney')]=self.amount
+        df.loc[df['id_number'] == int(self.id),('withdrawmoney')]=self.amount
+        df.to_csv('allcustomers1.csv', mode ='r+', index = False ) 
+        #Gprint(df['withdrawmoney'].dtypes) 
+        
+        df['sum'] = df.sum(axis=1)
+       
+        df.loc[df['id_number'] == int(self.id),('sum')] = df['sum'] - int(self.amount)
+        df.to_csv('allcustomers1.csv', mode ='r+', index = False ) 
+        #Gdf.to_csv('allcustomers1.csv', mode ='r+', index = False )
+        file = f"{self.id}.csv"
+        with open (file, "a", newline="\n") as f:
+            self.balance=str(df[df['id_number'] == int(self.id)]['sum'])
+            writer = csv.writer(f)
+            writer.writerow([datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S"),"Withdraw", self.balance+"€"])
+        
+        
+        
+        self.button_back()
+
     #csv dosyasını yenileme
     #tarih-saat-işlem kaydı
 
     def button_back(self):
         customerScreen = CustomerScreen()
         widget.addWidget(customerScreen)
-        widget.setCurrentIndex(widget.currentIndex()-1)
+        widget.setCurrentIndex(widget.currentIndex()+1)
         
     #go to previous screen
     def button_exit(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
-        widget.setCurrentIndex(widget.currentIndex()-2)
-    
+        widget.setCurrentIndex(widget.currentIndex()+1)
+        
     #go to login screen
 
-    def current_balance():
-        pass
+    
+        
     #show the current balance(csv)
 
-    def withdraw_cash():
-        pass
+    #def withdraw_cash(self):
+        
+        
     #butondan değer alma
     #yazarak değer alma
     #clicked ok will take this value
@@ -452,17 +513,7 @@ class WithdrawScreen(QMainWindow):
     def action500(self):
         self.li_amount_withdraw.setText("500")
 
-class AccountState(QDialog):
-    def __init__(self) :
-        super(AccountState,self).__init__()
-        loadUi('statementpage.ui', self)
-        self.B_exit_state.clicked.connect(self.exit_state)
-        
-    
-    def exit_state(self):
-        customerScreen = CustomerScreen()
-        widget.addWidget(customerScreen)
-        widget.setCurrentIndex(widget.currentIndex()-2)
+       
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
@@ -472,4 +523,8 @@ if __name__ == "__main__":
     widget.setFixedHeight(1000)
     widget.setFixedWidth(1000)
     widget.show()
-    sys.exit(app.exec_())
+    try:
+        sys.exit(app.exec_())
+
+    except:
+        print("Closing")
