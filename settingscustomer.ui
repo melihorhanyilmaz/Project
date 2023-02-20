@@ -154,17 +154,16 @@ color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>640</x>
-      <y>430</y>
+      <y>440</y>
       <width>101</width>
       <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 255, 0);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;
-border-radius: 20;
-color: rgb(0, 0, 0);
-</string>
+     <string notr="true">background-color: rgb(240, 240, 119);
+color: rgb(54, 100, 139);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20;</string>
     </property>
     <property name="text">
      <string>BACK</string>
@@ -176,35 +175,43 @@ color: rgb(0, 0, 0);
    <widget class="QLabel" name="la_error">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>250</x>
       <y>350</y>
-      <width>241</width>
-      <height>71</height>
+      <width>461</width>
+      <height>51</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat SemiBold</family>
+      <pointsize>14</pointsize>
+      <weight>7</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
-     <string>Error</string>
+     <string>Please enter 7 characters for new password</string>
     </property>
    </widget>
    <widget class="QPushButton" name="B_back_2">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>340</y>
+      <x>650</x>
+      <y>280</y>
       <width>101</width>
       <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 255, 0);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;
+     <string notr="true">background-color: rgb(50, 173, 58);
+font: 63 14pt ;Montserrat SemiBold;
 border-radius: 20;
-color: rgb(0, 0, 0);
-</string>
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>SAVE</string>
@@ -220,7 +227,7 @@ color: rgb(0, 0, 0);
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
