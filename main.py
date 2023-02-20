@@ -80,7 +80,7 @@ class NewAdminScreen(QMainWindow):
         loadUi('newadminpage.ui', self)
         #print('cust init çalıştı')
         #print(self.id)
-        self.B_info.connect(self.button_info)
+        self.B_info.clicked.connect(self.button_info)
         self.B_newcust.clicked.connect(self.button_new_customer)
         self.B_updatecust.clicked.connect(self.button_update_customer)
         self.B_exit.clicked.connect(self.button_exit)  
@@ -111,6 +111,9 @@ class CustomerInfoScreen(QDialog):
         loadUi('all_customer.ui', self)
         self.B_back.clicked.connect(self.button_back)
         self.B_exit.clicked.connect(self.exit_allcustom)
+        list = ["Melih", "Sema", "Ebubekir"]
+        self.c_date_2.addItems(list)
+        self.c_date_2.setEditable(True)
         #self.B_refresh.clicked.connect(self.loadCsv)
        
     def button_back(self):
