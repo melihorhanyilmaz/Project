@@ -17,16 +17,6 @@
    <string notr="true">background-color: rgb(54, 100, 139);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QDateTimeEdit" name="finish_TimeEdit">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>90</y>
-      <width>231</width>
-      <height>41</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="la_start_date">
     <property name="geometry">
      <rect>
@@ -89,7 +79,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <column/>
     <column/>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="c_date">
     <property name="geometry">
      <rect>
       <x>410</x>
@@ -226,7 +216,7 @@ border-radius: 20;
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="B_update">
+   <widget class="QPushButton" name="B_find">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -248,7 +238,7 @@ border-radius: 20 </string>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_2">
+   <widget class="QComboBox" name="c_activity">
     <property name="geometry">
      <rect>
       <x>410</x>
@@ -295,6 +285,26 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <item>
      <property name="text">
       <string>Deposit Money</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="c_date_2">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>90</y>
+      <width>231</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(54, 100, 139);
+background-color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>All Customers</string>
      </property>
     </item>
    </widget>
