@@ -1,4 +1,3 @@
-import pandas as pd
 import sys, random, datetime, csv, re
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
@@ -27,13 +26,9 @@ class LoginScreen(QMainWindow):
         CustomerInfoScreen.id = self.id_number
       
         
-        #pandas kodları
-        datadf=pd.read_csv('allcustomers1.csv')  
-     
-        df = pd.DataFrame(datadf)
-        # df[(df[str('id_number')] != str(self.id_number)) | (df[str('password')] != str(self.password))]
+        
         #self.la_error.setText("Please input a valid IDNumber or Password")
-        df.loc[(df[str('id_number')] == str(self.id_number)) & (df[str('password')] == str(self.password))]
+       
         if str(self.id_number).startswith("999") and len(self.id_number) == 7:
             self.go_to_customer_page()
             
@@ -124,8 +119,6 @@ class CreateCustomerScreen(QMainWindow):
         #self.li_password.setValidator(QIntValidator(self))   #................. 
         print('init calisti')   
         #setlabel gelecek csvdeki son satırdakindan 1 fazla
-        df = pd.read_csv('allcustomers1.csv')
-        #Erow = pd.concat(df.iloc[-1,:])
         #print(row)
 
     def add_customer(self):
@@ -167,11 +160,7 @@ class CreateCustomerScreen(QMainWindow):
             self.li_balance.clear()
             self.li_password.clear()
        
-        df=pd.read_csv("allcustomers1.csv") 
-        df['sum'] = df.sum(axis=1)
-        df.loc[df['id_number'] == (self.id_number),('sum')] = df['firstbalance']
-        df.to_csv('allcustomers1.csv', mode ='r+', index = False )    
-        print(df)
+        
         
     def button_back(self):
         newAdminScreen = NewAdminScreen()
@@ -216,10 +205,8 @@ class CustomerScreen(QMainWindow):
         self.B_exit_cust_menu.clicked.connect(self.button_exit)
         self.B_statement.clicked.connect(self.account_statement)
         self.b_settings.clicked.connect(self.settings)
-        
-        df= pd.read_csv('allcustomers1.csv')
-        balance=str(df[df['id_number'] == int(self.id)]['sum'])
-        self.la_balance.setText(balance)
+     
+        #self.la_balance.setText(balance) buraya balancedaki değeri ekrana yazdırma kodu eklenecek.
                 
         #print(listcf) 
         
@@ -253,9 +240,7 @@ class DepositScreen(QMainWindow):
         loadUi("insertpage.ui", self)
         
         
-        df= pd.read_csv('allcustomers1.csv')
-        self.balance=str(df[df['id_number'] == int(self.id)]['sum'])
-        self.la_balance.setText(self.balance)
+        #self.la_balance.setText(self.balance) buraya ekrana balance yazdırma kodu eklenecek
         self.buttons()
          
 
@@ -280,21 +265,10 @@ class DepositScreen(QMainWindow):
     def button_ok(self):
         self.money=self.li_amount_withdraw.text() 
         print(self.money)
-        df=pd.read_csv("allcustomers1.csv")
+        
         #df.loc[df['id_number'] == int(self.id),('withdrawmoney')]=self.amount
-        df.loc[df['id_number'] == int(self.id),('depositmoney')]=self.money
-        df.to_csv('allcustomers1.csv', mode ='r+', index = False )
-        df['sum'] = df.sum(axis=1)
-       
-        df.loc[df['id_number'] == int(self.id),('sum')] = df['firstbalance'] + int(self.money)
-        df.to_csv('allcustomers1.csv', mode ='r+', index = False ) 
-        
-        file = f"{self.id}.csv"
-        with open (file, "a", newline="\n") as f:
-            writer = csv.writer(f)
-            self.balance=str(df[df['id_number'] == int(self.id)]['sum'])
-            writer.writerow([datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S"),"Deposit", self.balance+"€"])
-        
+                
+              
         
         
         self.button_back()
@@ -390,10 +364,7 @@ class WithdrawScreen(QMainWindow):
         super(WithdrawScreen, self).__init__()
         loadUi("withdrawpage.ui", self)
         
-        
-        df= pd.read_csv('allcustomers1.csv')
-        self.balance=str(df[df['id_number'] == int(self.id)]['sum'])
-        self.la_balance.setText(self.balance)
+        #self.la_balance.setText(self.balance) buraya balance değerinin ekrana yazdırma kodu eklenecek.
         self.buttons()
 
     def buttons(self):
@@ -423,25 +394,8 @@ class WithdrawScreen(QMainWindow):
     def button_ok(self):
         self.amount=self.li_amount_withdraw.text() 
         print(self.amount)
-        df=pd.read_csv("allcustomers1.csv")
-        #df.loc[df['id_number'] == int(self.id),('withdrawmoney')]=self.amount
-        df.loc[df['id_number'] == int(self.id),('withdrawmoney')]=self.amount
-        df.to_csv('allcustomers1.csv', mode ='r+', index = False ) 
-        #Gprint(df['withdrawmoney'].dtypes) 
         
-        df['sum'] = df.sum(axis=1)
-       
-        df.loc[df['id_number'] == int(self.id),('sum')] = df['sum'] - int(self.amount)
-        df.to_csv('allcustomers1.csv', mode ='r+', index = False ) 
-        #Gdf.to_csv('allcustomers1.csv', mode ='r+', index = False )
-        file = f"{self.id}.csv"
-        with open (file, "a", newline="\n") as f:
-            self.balance=str(df[df['id_number'] == int(self.id)]['sum'])
-            writer = csv.writer(f)
-            writer.writerow([datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S"),"Withdraw", self.balance+"€"])
-        
-        
-        
+         
         self.button_back()
 
     #csv dosyasını yenileme
