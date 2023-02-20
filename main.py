@@ -72,17 +72,17 @@ class NewAdminScreen(QMainWindow):
         widget.addWidget(custInfoScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
 
-    def button_new_customer():
+    def button_new_customer(self):
         createCustScreen = CreateCustomerScreen()
         widget.addWidget(createCustScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
 
-    def button_update_customer():
+    def button_update_customer(self):
         updateScreen = UpdateScreen()
         widget.addWidget(updateScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
 
-    def button_exit():
+    def button_exit(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
