@@ -28,21 +28,7 @@ class LoginScreen(QMainWindow):
         
         #pandas kodları
         datadf=pd.read_csv('allcustomers1.csv')  
-        #df.loc[df['id_number'] == int(self.id_number),('firstbalance')]
-        #checkpassword =len(df[df['id_number'] == int(self.id_number)]['password'])
-        #idnumber = len(df[df['id_number'] == int(self.id_number)]['id_number'])
-        
-        
-        #Pf len(self.id_number)==0 or len(self.password)==0 :
-           # self.la_error.setText("Please input all fields.")
-            
-        #elif len(self.id_number) < 7 or len (self.password) < 7:
-        #    self.la_error.setText("Please input valid IDNumber or Password")
-        #if checkpassword == self.password :
-        
-        #ve password gecerli ise ibaresini de gir???
-        
-           
+     
         df = pd.DataFrame(datadf)
         # df[(df[str('id_number')] != str(self.id_number)) | (df[str('password')] != str(self.password))]
         #self.la_error.setText("Please input a valid IDNumber or Password")
@@ -154,7 +140,6 @@ class CreateCustomerScreen(QMainWindow):
         self.withdrawmoney = 0
         self.depositmoney = 0
         self.sum = 0
-        #CustomerScreen.balance=self.firstbalance
         WithdrawScreen.firstbalance = self.firstbalance
         DepositScreen.firstbalance = self.firstbalance     
         
@@ -229,13 +214,8 @@ class CustomerScreen(QMainWindow):
         self.B_withdraw.clicked.connect(self.button_withdraw)
         self.B_exit_cust_menu.clicked.connect(self.button_exit)
         self.B_statement.clicked.connect(self.account_statement)
+        self.b_settings.clicked.connect(self.settings)
         
-        
-        
-
-       # with open('allcustomers1.csv','r',encoding='utf8') as df :
-          # customers =df.readlines()
-      #print(customers)
         df= pd.read_csv('allcustomers1.csv')
         balance=str(df[df['id_number'] == int(self.id)]['sum'])
         self.la_balance.setText(balance)
@@ -257,7 +237,9 @@ class CustomerScreen(QMainWindow):
     #go to screen withdraw money
     def account_statement(self):
         pass
-
+    def settings(self):
+        pass 
+    
     def button_exit(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
