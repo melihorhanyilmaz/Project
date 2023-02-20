@@ -17,65 +17,21 @@
    <string notr="true">background-color: rgb(54, 100, 139);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLineEdit" name="li_newpassword">
+   <widget class="QDateTimeEdit" name="finish_TimeEdit">
     <property name="geometry">
      <rect>
       <x>410</x>
-      <y>260</y>
-      <width>221</width>
+      <y>90</y>
+      <width>231</width>
       <height>41</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
-    </property>
-    <property name="inputMask">
-     <string>9999999</string>
-    </property>
-    <property name="maxLength">
-     <number>7</number>
-    </property>
    </widget>
-   <widget class="QLineEdit" name="li_email">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>210</y>
-      <width>221</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
-    </property>
-    <property name="inputMask">
-     <string/>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="li_surname">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>160</y>
-      <width>221</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="la_surname">
+   <widget class="QLabel" name="la_start_date">
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>160</y>
+      <y>40</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -86,46 +42,59 @@ background-color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
-     <string> New Surname</string>
+     <string> Date</string>
     </property>
    </widget>
-   <widget class="QLabel" name="la_error">
+   <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>310</y>
-      <width>221</width>
-      <height>13</height>
+      <x>60</x>
+      <y>240</y>
+      <width>611</width>
+      <height>311</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="rowCount">
+     <number>20</number>
     </property>
+    <property name="columnCount">
+     <number>5</number>
+    </property>
+    <attribute name="horizontalHeaderCascadingSectionResizes">
+     <bool>false</bool>
+    </attribute>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
    </widget>
-   <widget class="QLabel" name="la_name">
+   <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>110</y>
-      <width>221</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(54, 100, 139);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;
-background-color: rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string> New Name</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="la_mail">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>210</y>
-      <width>221</width>
+      <x>410</x>
+      <y>40</y>
+      <width>231</width>
       <height>41</height>
      </rect>
     </property>
@@ -134,16 +103,33 @@ background-color: rgb(255, 255, 255);</string>
 background-color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
-    <property name="text">
-     <string> New E-Mail</string>
-    </property>
+    <item>
+     <property name="text">
+      <string>Last One Week</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Last One Month</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Last Three Months</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Last Six Months</string>
+     </property>
+    </item>
    </widget>
    <widget class="QPushButton" name="B_exit">
     <property name="geometry">
      <rect>
       <x>690</x>
-      <y>500</y>
-      <width>101</width>
+      <y>510</y>
+      <width>91</width>
       <height>41</height>
      </rect>
     </property>
@@ -161,33 +147,11 @@ color: rgb(255, 255, 255);
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="B_update">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>340</y>
-      <width>131</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 240, 245);
-color: rgb(34, 64, 89);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;
-border-radius: 20 </string>
-    </property>
-    <property name="text">
-     <string>Update</string>
-    </property>
-    <property name="checkable">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="la_new_password">
+   <widget class="QLabel" name="la_finish_date">
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>260</y>
+      <y>90</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -198,15 +162,53 @@ background-color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
-     <string> New Password</string>
+     <string> Customer</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_title">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>0</y>
+      <width>611</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
+    </property>
+    <property name="text">
+     <string>CUSTOMER INFO</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_customer">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>140</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(54, 100, 139);
+background-color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
+    </property>
+    <property name="text">
+     <string> Activity</string>
     </property>
    </widget>
    <widget class="QPushButton" name="B_back">
     <property name="geometry">
      <rect>
       <x>690</x>
-      <y>440</y>
-      <width>101</width>
+      <y>450</y>
+      <width>91</width>
       <height>41</height>
      </rect>
     </property>
@@ -224,42 +226,77 @@ border-radius: 20;
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="la_baslik">
+   <widget class="QPushButton" name="B_update">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>0</y>
-      <width>611</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
-    </property>
-    <property name="text">
-     <string> UPDATE CUSTOMER</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="li_name">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>110</y>
-      <width>221</width>
+      <x>340</x>
+      <y>190</y>
+      <width>131</width>
       <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
+     <string notr="true">color: rgb(54, 100, 139);
+background-color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;
+border-radius: 20 </string>
+    </property>
+    <property name="text">
+     <string>Find</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_2">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>140</y>
+      <width>231</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(54, 100, 139);
+background-color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
-    <property name="inputMask">
-     <string/>
-    </property>
+    <item>
+     <property name="text">
+      <string>All Activities</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Logins</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Logouts</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Internal Money Transfer</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>External Money Transfer</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Withdraw Money</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Deposit Money</string>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
