@@ -127,7 +127,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
 color: rgb(255, 255, 255);</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="B_exit_cust_menu">
+   <widget class="QPushButton" name="B_exit">
     <property name="geometry">
      <rect>
       <x>640</x>
@@ -198,7 +198,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      <string>Please enter 7 characters for new password</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="B_back_2">
+   <widget class="QPushButton" name="B_save">
     <property name="geometry">
      <rect>
       <x>650</x>

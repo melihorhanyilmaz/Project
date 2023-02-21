@@ -15,6 +15,7 @@ class LoginScreen(QMainWindow):
         self.li_id.setValidator(QIntValidator(self))
         self.okB.clicked.connect(self.login)
         
+        
 
       
     def login(self):
@@ -80,7 +81,9 @@ class NewAdminScreen(QMainWindow):
         self.B_newcust.clicked.connect(self.button_new_customer)
         self.B_updatecust.clicked.connect(self.button_update_customer)
         self.B_exit.clicked.connect(self.button_exit)  
-    
+
+       
+
     def button_info(self):
         custInfoScreen = CustomerInfoScreen()
         widget.addWidget(custInfoScreen)
@@ -111,7 +114,8 @@ class CustomerInfoScreen(QDialog):
         self.c_date_2.addItems(list)
         self.c_date_2.setEditable(True)
         #self.B_refresh.clicked.connect(self.loadCsv)
-       
+        
+        
     def button_back(self):
         newAdminScreen = NewAdminScreen()
         widget.addWidget(newAdminScreen)
@@ -160,7 +164,8 @@ class CreateCustomerScreen(QMainWindow):
         self.depositmoney = 0
         self.sum = 0
         WithdrawScreen.firstbalance = self.firstbalance
-        DepositScreen.firstbalance = self.firstbalance     
+        DepositScreen.firstbalance = self.firstbalance
+        CustomerScreen.balance = self.firstbalance     
         
         #print('pass,id_num,alindi')
         if self.name=="" or self.surname=="" or self.email=="" or self.id_number == 0 or self.password== 0 : #.......
@@ -231,16 +236,15 @@ class CustomerScreen(QMainWindow):
         super(CustomerScreen, self).__init__()
         loadUi('customerpage.ui', self)
         #print('cust init çalıştı')
-        #print(self.id)
+        print(self.id)
         self.B_deposit.clicked.connect(self.button_deposit)
         self.B_withdraw.clicked.connect(self.button_withdraw)
         self.B_exit_cust_menu.clicked.connect(self.button_exit)
         self.B_statement.clicked.connect(self.account_statement)
-        self.B_settings.clicked.connect(self.settings)
+        self.B_settings.clicked.connect(self.button_settings)
      
         #self.la_balance.setText(balance) buraya balancedaki değeri ekrana yazdırma kodu eklenecek.
-                
-        #print(listcf) 
+       
         
     def button_deposit(self):
         depositScreen = DepositScreen()
@@ -257,14 +261,38 @@ class CustomerScreen(QMainWindow):
     #go to screen withdraw money
     def account_statement(self):
         pass
-    def settings(self):
-        pass 
+
+    def button_settings(self):
+        changecustomer = CustomerSettings()
+        widget.addWidget(changecustomer)
+        widget.setCurrentIndex(widget.currentIndex()+1)
     
     def button_exit(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
-        
+
+     
+class CustomerSettings(QMainWindow):
+    def __init__(self):
+        super(CustomerSettings,self).__init__() 
+        loadUi('settingscustomer.ui', self)
+        self.B_exit.clicked.connect(self.button_exit)
+        self.B_back.clicked.connect(self.button_back)
+        self.B_save.clicked.connect(self.save_change)
+
+    def button_exit(self):
+        loginScreen = LoginScreen()
+        widget.addWidget(loginScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
+    def button_back(self):
+        self.customerScreen = CustomerScreen()
+        widget.addWidget(self.customerScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
+    def save_change(self):
+        pass
        
 class DepositScreen(QMainWindow):
     def __init__(self): 

@@ -198,9 +198,9 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_withdraw">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>130</x>
       <y>210</y>
-      <width>231</width>
+      <width>251</width>
       <height>41</height>
      </rect>
     </property>
@@ -222,9 +222,9 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_deposit">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>400</x>
       <y>210</y>
-      <width>231</width>
+      <width>241</width>
       <height>41</height>
      </rect>
     </property>
@@ -272,9 +272,9 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_dailywithdraw">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>130</x>
       <y>260</y>
-      <width>231</width>
+      <width>251</width>
       <height>41</height>
      </rect>
     </property>
@@ -295,9 +295,9 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_dailydeposit">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>400</x>
       <y>260</y>
-      <width>231</width>
+      <width>241</width>
       <height>41</height>
      </rect>
     </property>
