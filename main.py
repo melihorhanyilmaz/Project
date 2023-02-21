@@ -18,7 +18,7 @@ class LoginScreen(QMainWindow):
 
       
     def login(self):
-        self.id_number=self.li_id.text()
+        self.id_number=str(self.li_id.text())
         self.password=self.li_password.text()
         CustomerScreen.id = self.id_number
         WithdrawScreen.id = self.id_number
@@ -26,20 +26,34 @@ class LoginScreen(QMainWindow):
         CustomerInfoScreen.id = self.id_number
       
         
-        
-        #self.la_error.setText("Please input a valid IDNumber or Password")
-       
-        if str(self.id_number).startswith("999") and len(self.id_number) == 7:
-            self.go_to_customer_page()
-            
-        elif self.id_number == "0112233" and self.password == "1223330":
-                print("Startswith0")
+        if str(self.id_number).startswith("11") and len(self.id_number) == 7:
+            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+            cur = conn.cursor() 
+            cur.execute("SELECT * FROM admin_info WHERE admin_id = ' "+ self.id_number +"' and password = '"+ self.password +"'")
+            result=cur.fetchone()
+            print(result)
+            if result:
+                print(self.password)
                 self.go_to_admin_page()
-        
-        else: 
-            self.la_error.setText("Please input valid IDNumber or Password")
-                
-
+            else:
+                self.la_error.setText("Please input valid IDNumber and Password")
+            cur.close()
+            conn.commit()
+            conn.close()
+       
+        elif str(self.id_number).startswith("999") and len(self.id_number) == 7:
+               
+            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+            cur = conn.cursor() 
+            cur.execute("SELECT * FROM customer_info WHERE customer_id = ' "+ self.id_number +"' and password = '"+ self.password +"'")
+            result=cur.fetchone()
+            if result:
+                self.go_to_customer_page()
+            else:
+                self.la_error.setText("Please input valid IDNumber and Password")
+            cur.close()
+            conn.commit()
+            conn.close()
 
     def go_to_customer_page(self):
         self.li_id.clear()
@@ -109,14 +123,24 @@ class CustomerInfoScreen(QDialog):
         widget.setCurrentIndex(widget.currentIndex()+1)
 
 class CreateCustomerScreen(QMainWindow):
-    id_number= 9990000
     def __init__(self):
         super(CreateCustomerScreen, self).__init__()
         loadUi("createcustomerpage.ui", self)
         self.B_save.clicked.connect(self.add_customer)
         self.B_back.clicked.connect(self.button_back)
         self.B_exit.clicked.connect(self.button_exit)
-        #self.li_password.setValidator(QIntValidator(self))   #................. 
+        # geting last id from customer_id 
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor() 
+        cur.execute("SELECT * FROM customer_info")
+        last_id = cur.fetchone()
+        print(last_id)
+        self.id_number = last_id + 1
+        self.la_id.setText(str(self.id_number))
+        cur.close()
+        conn.commit()
+        conn.close()
+       
         print('init calisti')   
         #setlabel gelecek csvdeki son satırdakindan 1 fazla
         #print(row)
@@ -128,9 +152,10 @@ class CreateCustomerScreen(QMainWindow):
         self.firstbalance = int(self.li_balance.text())
         self.password = self.li_password.text()
         self.now = str(datetime.datetime.now())
-        self.id_number=CreateCustomerScreen.id_number 
-        self.id_number+=1
-        self.la_id.setText(str(self.id_number))
+        
+        #self.id_number+=1
+        
+       
         self.withdrawmoney = 0
         self.depositmoney = 0
         self.sum = 0
@@ -142,15 +167,21 @@ class CreateCustomerScreen(QMainWindow):
             self.la_error.setText("Please input all fields.")
             #print("Bosluklar kontrol edildi")
         else:
-        
-    
-            with open('allcustomers1.csv','a',encoding="utf-8") as file:
-                file.write(self.name+','+self.surname+','+self.email+','+str(self.id_number)+','+str(self.firstbalance)+','+str(self.password)+','+str(self.now)+','+str(self.withdrawmoney)+','+str(self.depositmoney)+','+str(self.sum)+'\n')  #.....iceri aldim
+            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+            cur = conn.cursor() 
+            cur.execute('INSERT INTO customer_info VALUES(%s,%s,%s,%s,%s,%s)',(self.id_number,self.password,str(self.name),str(self.surname),str(self.email),self.firstbalance))
+            cur.close()
+            conn.commit()
+            conn.close()
+            self.id_number+=1
+
+            #with open('allcustomers1.csv','a',encoding="utf-8") as file:
+                #file.write(self.name+','+self.surname+','+self.email+','+str(self.id_number)+','+str(self.firstbalance)+','+str(self.password)+','+str(self.now)+','+str(self.withdrawmoney)+','+str(self.depositmoney)+','+str(self.sum)+'\n')  #.....iceri aldim
                 
             with open(f'{self.id_number}.csv','a',encoding="utf-8") as file:
                 statement = csv.writer(file)
                 statement.writerow(["Date", "Transaction Type","Current Balance"])
-                statement.writerow([datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S"),"New Account",self.firstbalance])
+                statement.writerow([datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S"),"New Account",self.id_number,self.firstbalance])
             
             #print('dosya acti bilgileri yazdi')
             self.li_name.clear()
@@ -159,6 +190,7 @@ class CreateCustomerScreen(QMainWindow):
             self.la_id.update()
             self.li_balance.clear()
             self.li_password.clear()
+            
        
         
         
@@ -204,7 +236,7 @@ class CustomerScreen(QMainWindow):
         self.B_withdraw.clicked.connect(self.button_withdraw)
         self.B_exit_cust_menu.clicked.connect(self.button_exit)
         self.B_statement.clicked.connect(self.account_statement)
-        self.b_settings.clicked.connect(self.settings)
+        self.B_settings.clicked.connect(self.settings)
      
         #self.la_balance.setText(balance) buraya balancedaki değeri ekrana yazdırma kodu eklenecek.
                 
