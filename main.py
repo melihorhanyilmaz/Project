@@ -14,10 +14,7 @@ class LoginScreen(QMainWindow):
         self.la_welcome.show()
         self.li_id.setValidator(QIntValidator(self))
         self.okB.clicked.connect(self.login)
-        
-        
-
-      
+    
     def login(self):
         self.id_number=str(self.li_id.text())
         self.password=self.li_password.text()
@@ -27,17 +24,15 @@ class LoginScreen(QMainWindow):
         CustomerInfoScreen.id = self.id_number
       
         
-        if str(self.id_number).startswith("11") and len(self.id_number) == 7:
+        if str(self.id_number).startswith("1") and len(self.id_number) == 7:
             conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
             cur = conn.cursor() 
             cur.execute("SELECT * FROM admin_info WHERE admin_id = ' "+ self.id_number +"' and password = '"+ self.password +"'")
-            result=cur.fetchone()
-            print(result)
+            result=cur.fetchone() 
             if result:
-                print(self.password)
                 self.go_to_admin_page()
-            else:
-                self.la_error.setText("Please input valid IDNumber and Password")
+            #elif len(self.id_number) == 7 or str(self.id_number).startswith('1'):
+                #self.la_error.setText("Please input valid IDNumber and Password")
             cur.close()
             conn.commit()
             conn.close()
@@ -50,11 +45,15 @@ class LoginScreen(QMainWindow):
             result=cur.fetchone()
             if result:
                 self.go_to_customer_page()
-            else:
+            elif len(self.id_number) < 7 or str(self.id_number).startswith('9'):
                 self.la_error.setText("Please input valid IDNumber and Password")
             cur.close()
             conn.commit()
             conn.close()
+
+        else: 
+            self.la_error.setText("Please input valid IDNumber and Password")
+
 
     def go_to_customer_page(self):
         self.li_id.clear()
