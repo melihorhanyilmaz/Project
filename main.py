@@ -126,6 +126,7 @@ class CustomerInfoScreen(QDialog):
         widget.setCurrentIndex(widget.currentIndex()+1)
 
 class CreateCustomerScreen(QMainWindow):
+    id_number = 9990001
     def __init__(self):
         super(CreateCustomerScreen, self).__init__()
         loadUi("createcustomerpage.ui", self)
@@ -133,16 +134,16 @@ class CreateCustomerScreen(QMainWindow):
         self.B_back.clicked.connect(self.button_back)
         self.B_exit.clicked.connect(self.button_exit)
         # geting last id from customer_id 
-        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        """conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor() 
         cur.execute("SELECT * FROM customer_info")
         last_id = cur.fetchone()
         print(last_id)
-        self.id_number = last_id + 1
+        #self.id_number = last_id + 1
         self.la_id.setText(str(self.id_number))
         cur.close()
         conn.commit()
-        conn.close()
+        conn.close()"""
        
         print('init calisti')   
         #setlabel gelecek csvdeki son satırdakindan 1 fazla
@@ -166,7 +167,6 @@ class CreateCustomerScreen(QMainWindow):
         DepositScreen.firstbalance = self.firstbalance
         CustomerScreen.balance = self.firstbalance     
         
-        #print('pass,id_num,alindi')
         if self.name=="" or self.surname=="" or self.email=="" or self.id_number == 0 or self.password== 0 : #.......
             self.la_error.setText("Please input all fields.")
             #print("Bosluklar kontrol edildi")
@@ -177,17 +177,9 @@ class CreateCustomerScreen(QMainWindow):
             cur.close()
             conn.commit()
             conn.close()
-            self.id_number+=1
+            #self.id_number+=1
 
-            #with open('allcustomers1.csv','a',encoding="utf-8") as file:
-                #file.write(self.name+','+self.surname+','+self.email+','+str(self.id_number)+','+str(self.firstbalance)+','+str(self.password)+','+str(self.now)+','+str(self.withdrawmoney)+','+str(self.depositmoney)+','+str(self.sum)+'\n')  #.....iceri aldim
-                
-            with open(f'{self.id_number}.csv','a',encoding="utf-8") as file:
-                statement = csv.writer(file)
-                statement.writerow(["Date", "Transaction Type","Current Balance"])
-                statement.writerow([datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S"),"New Account",self.id_number,self.firstbalance])
-            
-            #print('dosya acti bilgileri yazdi')
+           
             self.li_name.clear()
             self.li_surname.clear()
             self.li_email.clear()
@@ -218,7 +210,7 @@ class UpdateScreen(QMainWindow):
         self.B_exit.clicked.connect(self.button_exit)
 
     def update_customer(self):
-        
+        self.customer_id=self.li_customerid.text()
         self.new_name=self.li_name.text()      #buradaki buton adlarini new_name,new_email yapmali miyiz?
         self.new_surname = self.li_surname.text()
         self.new_email = self.li_email.text()
@@ -231,11 +223,11 @@ class UpdateScreen(QMainWindow):
             
         else:
             conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-            cur = conn.cursor() 
-            cur.execute('UPDATE customer_info SET first_name=%s where customer_id=%s',(self.new_name,9990003))
-            cur.execute('UPDATE customer_info SET surname=%s where customer_id=%s',(self.new_surname,9990003))
-            cur.execute('UPDATE customer_info SET email=%s where customer_id=%s',(self.new_email,9990003))
-            cur.execute('UPDATE customer_info SET password=%s where customer_id=%s',(self.new_password,9990003))
+            cur = conn.cursor()
+            cur.execute('UPDATE customer_info SET first_name=%s where customer_id=%s',(self.new_name,self.customer_id))
+            cur.execute('UPDATE customer_info SET surname=%s where customer_id=%s',(self.new_surname,self.customer_id))
+            cur.execute('UPDATE customer_info SET email=%s where customer_id=%s',(self.new_email,self.customer_id))
+            cur.execute('UPDATE customer_info SET password=%s where customer_id=%s',(self.new_password,self.customer_id))
             cur.close()
             conn.commit()
             conn.close()
