@@ -219,6 +219,28 @@ class UpdateScreen(QMainWindow):
 
     def update_customer(self):
         pass
+        '''
+        self.new_name=self.li_name.text()      #buradaki buton adlarini new_name,new_email yapmali miyiz?
+        self.new_surname = self.li_surname.text()
+        self.new_email = self.li_email.text()
+        self.new_password = self.li_newpassword.text()
+        #self.now = str(datetime.datetime.now())
+        
+        if self.new_name=="" or self.new_surname=="" or self.new_email=="" or self.new_password== 0 : #.......
+            self.la_error.setText("Please input all fields.")
+            #print("Bosluklar kontrol edildi")
+            
+        else:
+            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+            cur = conn.cursor() 
+            cur.execute('UPDATE customer_info SET first_name=%s where customer_id=%s',(self.new_name,9990003))
+            cur.execute('UPDATE customer_info SET surname=%s where customer_id=%s',(self.new_surname,9990003))
+            cur.execute('UPDATE customer_info SET email=%s where customer_id=%s',(self.new_email,9990003))
+            cur.execute('UPDATE customer_info SET password=%s where customer_id=%s',(self.new_password,9990003))
+            cur.close()
+            conn.commit()
+            conn.close()'''
+           #9990003  id li bir customer olusturdum.update etmiyor ,tabloyu siliyor 
 
     def button_back(self):
         newAdminScreen = NewAdminScreen()
