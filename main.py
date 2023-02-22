@@ -584,7 +584,30 @@ class WithdrawScreen(QMainWindow):
     def action500(self):
         self.li_amount_withdraw.setText("500")
 
-       
+class StatementScreen(QDialog):
+    def __init__(self):
+        super(StatementScreen,self).__init__() 
+        loadUi('accountstatementpage.ui', self)
+        self.B_back.clicked.connect(self.button_back)
+        self.B_exit.clicked.connect(self.button_exit)
+        self.tableWidget.setColumnWidth(0,125)
+        self.tableWidget.setColumnWidth(1,100)
+        self.tableWidget.setColumnWidth(2,100)
+        self.tableWidget.setColumnWidth(3,75)
+        self.tableWidget.setColumnWidth(4,100)
+        self.loaddata()
+        self.now = datetime.datetime.now()
+
+    def button_back(self):
+        customerScreen = CustomerScreen()
+        widget.addWidget(customerScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
+    def button_exit(self):
+        loginScreen = LoginScreen()
+        widget.addWidget(loginScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
