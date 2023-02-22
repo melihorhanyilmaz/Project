@@ -218,8 +218,7 @@ class UpdateScreen(QMainWindow):
         self.B_exit.clicked.connect(self.button_exit)
 
     def update_customer(self):
-        pass
-        '''
+        
         self.new_name=self.li_name.text()      #buradaki buton adlarini new_name,new_email yapmali miyiz?
         self.new_surname = self.li_surname.text()
         self.new_email = self.li_email.text()
@@ -239,7 +238,7 @@ class UpdateScreen(QMainWindow):
             cur.execute('UPDATE customer_info SET password=%s where customer_id=%s',(self.new_password,9990003))
             cur.close()
             conn.commit()
-            conn.close()'''
+            conn.close()
            #9990003  id li bir customer olusturdum.update etmiyor ,tabloyu siliyor 
 
     def button_back(self):
