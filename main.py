@@ -22,6 +22,7 @@ class LoginScreen(QMainWindow):
         WithdrawScreen.id = self.id_number
         DepositScreen.id = self.id_number
         CustomerInfoScreen.id = self.id_number
+        CustomerSettings.id = self.id_number
       
         
         if str(self.id_number).startswith("1") and len(self.id_number) == 7:
@@ -126,28 +127,12 @@ class CustomerInfoScreen(QDialog):
         widget.setCurrentIndex(widget.currentIndex()+1)
 
 class CreateCustomerScreen(QMainWindow):
-    id_number = 9990001
     def __init__(self):
         super(CreateCustomerScreen, self).__init__()
         loadUi("createcustomerpage.ui", self)
         self.B_save.clicked.connect(self.add_customer)
         self.B_back.clicked.connect(self.button_back)
         self.B_exit.clicked.connect(self.button_exit)
-        # geting last id from customer_id 
-        """conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-        cur = conn.cursor() 
-        cur.execute("SELECT * FROM customer_info")
-        last_id = cur.fetchone()
-        print(last_id)
-        #self.id_number = last_id + 1
-        self.la_id.setText(str(self.id_number))
-        cur.close()
-        conn.commit()
-        conn.close()"""
-       
-        print('init calisti')   
-        #setlabel gelecek csvdeki son satırdakindan 1 fazla
-        #print(row)
 
     def add_customer(self):
         self.name=self.li_name.text()
@@ -157,8 +142,6 @@ class CreateCustomerScreen(QMainWindow):
         self.password = self.li_password.text()
         self.now = str(datetime.datetime.now())
         
-        #self.id_number+=1
-        
        
         self.withdrawmoney = 0
         self.depositmoney = 0
@@ -167,28 +150,24 @@ class CreateCustomerScreen(QMainWindow):
         DepositScreen.firstbalance = self.firstbalance
         CustomerScreen.balance = self.firstbalance     
         
-        if self.name=="" or self.surname=="" or self.email=="" or self.id_number == 0 or self.password== 0 : #.......
+        if self.name=="" or self.surname=="" or self.email=="" or self.password== 0 : 
             self.la_error.setText("Please input all fields.")
-            #print("Bosluklar kontrol edildi")
         else:
             conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
             cur = conn.cursor() 
-            cur.execute('INSERT INTO customer_info VALUES(%s,%s,%s,%s,%s,%s)',(self.id_number,self.password,str(self.name),str(self.surname),str(self.email),self.firstbalance))
+            cur.execute('INSERT INTO customer_info (password, first_name, surname, email, balance) VALUES(%s,%s,%s,%s,%s)',(self.password,str(self.name),str(self.surname),str(self.email),self.firstbalance))
             cur.close()
             conn.commit()
             conn.close()
-            #self.id_number+=1
+            self.la_error.setText("Succesfully Created")
 
            
             self.li_name.clear()
             self.li_surname.clear()
             self.li_email.clear()
-            self.la_id.update()
             self.li_balance.clear()
             self.li_password.clear()
             
-       
-        
         
     def button_back(self):
         newAdminScreen = NewAdminScreen()
@@ -211,16 +190,16 @@ class UpdateScreen(QMainWindow):
 
     def update_customer(self):
         self.customer_id=self.li_customerid.text()
-        self.new_name=self.li_name.text()      #buradaki buton adlarini new_name,new_email yapmali miyiz?
+        self.new_name=self.li_name.text()      
         self.new_surname = self.li_surname.text()
         self.new_email = self.li_email.text()
         self.new_password = self.li_newpassword.text()
         #self.now = str(datetime.datetime.now())
         
-        if self.new_name=="" or self.new_surname=="" or self.new_email=="" or self.new_password== 0 : #.......
+        if self.new_name=="" or self.new_surname=="" or self.new_email=="" or self.new_password== 0 : 
             self.la_error.setText("Please input all fields.")
-            #print("Bosluklar kontrol edildi")
             
+         
         else:
             conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
             cur = conn.cursor()
@@ -231,7 +210,7 @@ class UpdateScreen(QMainWindow):
             cur.close()
             conn.commit()
             conn.close()
-           #9990003  id li bir customer olusturdum.update etmiyor ,tabloyu siliyor 
+            self.la_error.setText("Succesfully Changed")
 
     def button_back(self):
         newAdminScreen = NewAdminScreen()
@@ -283,8 +262,7 @@ class CustomerScreen(QMainWindow):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
-
-     
+   
 class CustomerSettings(QMainWindow):
     def __init__(self):
         super(CustomerSettings,self).__init__() 
@@ -304,7 +282,24 @@ class CustomerSettings(QMainWindow):
         widget.setCurrentIndex(widget.currentIndex()+1)
 
     def save_change(self):
-        pass
+        self.new_email=self.li_name.text()      #buradaki buton adlarini new_name,new_email yapmali miyiz?
+        self.new_password = self.li_password.text()
+        self.new_confpassword = self.li_confpass.text()
+        #self.now = str(datetime.datetime.now())
+        
+        if self.new_email=="" or self.new_password == "" or self.new_confpassword == "" or self.new_password != self.new_confpassword:
+            self.la_error.setText("Please input all fields.")
+            #print("Bosluklar kontrol edildi")
+            
+        else:
+            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+            cur = conn.cursor()
+            cur.execute('UPDATE customer_info SET email=%s where customer_id=%s',(self.new_email,self.id))
+            cur.execute('UPDATE customer_info SET password=%s where customer_id=%s',(self.new_password,self.id))
+            cur.close()
+            conn.commit()
+            conn.close()
+            self.la_error.setText("Succesfully Changed")
        
 class DepositScreen(QMainWindow):
     def __init__(self): 

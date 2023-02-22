@@ -68,10 +68,56 @@
 font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
    </property>
    <property name="text">
-    <string> UPDATE CUSTOMER</string>
+    <string>ACCOUNT STATEMENT</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="B_exit">
+   <property name="geometry">
+    <rect>
+     <x>680</x>
+     <y>530</y>
+     <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 0, 0);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;
+border-radius: 20;
+color: rgb(255, 255, 255);
+</string>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="B_back">
+   <property name="geometry">
+    <rect>
+     <x>680</x>
+     <y>470</y>
+     <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(240, 240, 119);
+color: rgb(54, 100, 139);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;
+border-radius: 20;
+</string>
+   </property>
+   <property name="text">
+    <string>Back</string>
+   </property>
+   <property name="checkable">
+    <bool>false</bool>
    </property>
   </widget>
  </widget>

@@ -219,7 +219,10 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="inputMask">
-     <string>999999999999</string>
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>12</number>
     </property>
    </widget>
    <widget class="QLabel" name="la_password">
@@ -254,23 +257,13 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="inputMask">
-     <string>9999999</string>
+     <string/>
     </property>
     <property name="maxLength">
      <number>7</number>
     </property>
-   </widget>
-   <widget class="QLabel" name="la_error">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>500</y>
-      <width>221</width>
-      <height>13</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
     </property>
    </widget>
    <widget class="QPushButton" name="B_back">
@@ -294,6 +287,26 @@ border-radius: 20;
     </property>
     <property name="checkable">
      <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_error">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>430</y>
+      <width>451</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
