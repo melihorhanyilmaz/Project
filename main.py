@@ -24,36 +24,36 @@ class LoginScreen(QMainWindow):
         CustomerInfoScreen.id = self.id_number
         CustomerSettings.id = self.id_number
       
-        try: 
-            if str(self.id_number).startswith("1") and len(self.id_number) == 7:
-                conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-                cur = conn.cursor() 
-                cur.execute("SELECT * FROM admin_info WHERE admin_id = '"+ self.id_number +"'")
-                result=cur.fetchone()
-                if result:
-                    self.go_to_admin_page()
-                cur.close()
-                conn.commit()
-                conn.close()
-       
-            elif str(self.id_number).startswith("999") and len(self.id_number) == 7:
-               
-                conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-                cur = conn.cursor() 
-                cur.execute("SELECT * FROM customer_info WHERE customer_id = ' "+ self.id_number +"' and password = '"+ self.password +"'")
-                result=cur.fetchone()
-                if result:
-                    self.go_to_customer_page()
-                elif len(self.id_number) < 7 or str(self.id_number).startswith('9'):
-                    self.la_error.setText("Please input valid IDNumber and Password")
-                cur.close()
-                conn.commit()
-                conn.close()
-
-            else: 
+        #try: 
+        if str(self.id_number).startswith("1") and len(self.id_number) == 7:
+            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+            cur = conn.cursor() 
+            cur.execute("SELECT * FROM admin_info WHERE admin_id = '"+ self.id_number +"'")
+            result=cur.fetchone()
+            if result:
+                self.go_to_admin_page()
+            cur.close()
+            conn.commit()
+            conn.close()
+    
+        elif str(self.id_number).startswith("999") and len(self.id_number) == 7:
+            
+            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+            cur = conn.cursor() 
+            cur.execute("SELECT * FROM customer_info WHERE customer_id = ' "+ self.id_number +"' and password = '"+ self.password +"'")
+            result=cur.fetchone()
+            if result:
+                self.go_to_customer_page()
+            elif len(self.id_number) < 7 or str(self.id_number).startswith('9'):
                 self.la_error.setText("Please input valid IDNumber and Password")
-        except:
-                self.la_error.setText("Please input Password")
+            cur.close()
+            conn.commit()
+            conn.close()
+
+        else: 
+            self.la_error.setText("Please input valid IDNumber and Password")
+        #except:
+                #self.la_error.setText("Please input Password")
 
 
     def go_to_customer_page(self):
@@ -232,7 +232,14 @@ class CustomerScreen(QMainWindow):
         self.B_statement.clicked.connect(self.account_statement)
         self.B_settings.clicked.connect(self.button_settings)
      
-        #self.la_balance.setText(balance) buraya balancedaki değeri ekrana yazdırma kodu eklenecek.
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT balance FROM customer_info WHERE customer_id = '"+ self.id +"'") 
+        result=cur.fetchone()[0]
+        cur.close()
+        conn.commit()
+        conn.close()
+        self.la_balance.setText(str(result))
        
         
     def button_deposit(self):
@@ -304,9 +311,16 @@ class DepositScreen(QMainWindow):
         super(DepositScreen, self).__init__()
         loadUi("insertpage.ui", self)
         
-        
-        #self.la_balance.setText(self.balance) buraya ekrana balance yazdırma kodu eklenecek
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT balance FROM customer_info WHERE customer_id = '"+ self.id +"'") 
+        result=cur.fetchone()[0]
+        cur.close()
+        conn.commit()
+        conn.close()
+        self.la_balance.setText(str(result))
         self.buttons()
+       
          
 
     def buttons(self):
@@ -334,7 +348,6 @@ class DepositScreen(QMainWindow):
         cur = conn.cursor()
         cur.execute("SELECT balance FROM customer_info WHERE customer_id = '"+ self.id +"'") 
         result=cur.fetchone()[0]
-        print(result)
         cur.close()
         conn.commit()
         conn.close()
@@ -348,6 +361,7 @@ class DepositScreen(QMainWindow):
         conn.commit()
         conn.close()
         self.la_error.setText("Your money is in the account.")
+        self.la_balance.setText(str(result))
         # except:
         #    self.la_error.setText("Something went wrong. Please try again")
                 
@@ -447,7 +461,14 @@ class WithdrawScreen(QMainWindow):
         super(WithdrawScreen, self).__init__()
         loadUi("withdrawpage.ui", self)
         
-        #self.la_balance.setText(self.balance) buraya balance değerinin ekrana yazdırma kodu eklenecek.
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT balance FROM customer_info WHERE customer_id = '"+ self.id +"'") 
+        result=cur.fetchone()[0]
+        cur.close()
+        conn.commit()
+        conn.close()
+        self.la_balance.setText(str(result))
         self.buttons()
 
     def buttons(self):
@@ -482,7 +503,6 @@ class WithdrawScreen(QMainWindow):
         cur = conn.cursor()
         cur.execute("SELECT balance FROM customer_info WHERE customer_id = '"+ self.id +"'") 
         result=cur.fetchone()[0]
-        print(result)
         cur.close()
         conn.commit()
         conn.close()
@@ -496,6 +516,7 @@ class WithdrawScreen(QMainWindow):
             conn.commit()
             conn.close()
             self.la_error.setText(f"From your account {self.money} € has been withdrawn")
+            self.la_balance.setText(str(result))
         else: 
             self.la_error.setText(f"You have only {result} € in your account")
         #except:

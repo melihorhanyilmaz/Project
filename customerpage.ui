@@ -161,7 +161,7 @@ font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_current_balance">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>160</x>
       <y>30</y>
       <width>181</width>
       <height>41</height>
@@ -178,7 +178,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_balance">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>340</x>
       <y>30</y>
       <width>281</width>
       <height>41</height>
