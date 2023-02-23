@@ -361,7 +361,7 @@ class DepositScreen(QMainWindow):
         conn.commit()
         conn.close()
         self.la_error.setText("Your money is in the account.")
-        self.la_balance.setText(str(result))
+        self.la_balance.setText(str(self.new_balance))
         # except:
         #    self.la_error.setText("Something went wrong. Please try again")
                 
@@ -516,7 +516,7 @@ class WithdrawScreen(QMainWindow):
             conn.commit()
             conn.close()
             self.la_error.setText(f"From your account {self.money} € has been withdrawn")
-            self.la_balance.setText(str(result))
+            self.la_balance.setText(str(self.new_balance))
         else: 
             self.la_error.setText(f"You have only {result} € in your account")
         #except:

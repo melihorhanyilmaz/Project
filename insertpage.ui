@@ -195,9 +195,9 @@ border-radius: 20 ;</string>
    <widget class="QLabel" name="la_name">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>270</x>
       <y>210</y>
-      <width>231</width>
+      <width>271</width>
       <height>41</height>
      </rect>
     </property>
@@ -251,7 +251,7 @@ border-radius: 20 ;</string>
      <string>2</string>
     </property>
    </widget>
-   <widget class="QLabel" name="la_balance">
+   <widget class="QLabel" name="la_bal">
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -286,23 +286,6 @@ background-color: rgb(255, 255, 255);</string>
      <rect>
       <x>290</x>
       <y>260</y>
-      <width>231</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="li_balance">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>140</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -412,6 +395,29 @@ border-radius: 20 ;</string>
     <property name="styleSheet">
      <string notr="true">color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_balance">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>140</y>
+      <width>231</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 63 14pt &quot;Montserrat SemiBold&quot;;
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
     </property>
     <property name="text">
      <string/>
