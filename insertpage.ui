@@ -400,6 +400,23 @@ border-radius: 20 ;</string>
      <string>Clear</string>
     </property>
    </widget>
+   <widget class="QLabel" name="la_error">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>270</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

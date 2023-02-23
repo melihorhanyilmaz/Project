@@ -24,36 +24,37 @@ class LoginScreen(QMainWindow):
         CustomerInfoScreen.id = self.id_number
         CustomerSettings.id = self.id_number
       
-        
-        if str(self.id_number).startswith("1") and len(self.id_number) == 7:
-            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-            cur = conn.cursor() 
-            cur.execute("SELECT * FROM admin_info WHERE admin_id = ' "+ self.id_number +"' and password = '"+ self.password +"'")
-            result=cur.fetchone() 
-            if result:
-                self.go_to_admin_page()
-            #elif len(self.id_number) == 7 or str(self.id_number).startswith('1'):
-                #self.la_error.setText("Please input valid IDNumber and Password")
-            cur.close()
-            conn.commit()
-            conn.close()
+        try: 
+            if str(self.id_number).startswith("1") and len(self.id_number) == 7:
+                conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+                cur = conn.cursor() 
+                cur.execute("SELECT * FROM admin_info WHERE admin_id = ' "+ self.id_number +"' and password = '"+ self.password +"'")
+                result=cur.fetchone() 
+                if result:
+                    self.go_to_admin_page()
+            
+                cur.close()
+                conn.commit()
+                conn.close()
        
-        elif str(self.id_number).startswith("999") and len(self.id_number) == 7:
+            elif str(self.id_number).startswith("999") and len(self.id_number) == 7:
                
-            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-            cur = conn.cursor() 
-            cur.execute("SELECT * FROM customer_info WHERE customer_id = ' "+ self.id_number +"' and password = '"+ self.password +"'")
-            result=cur.fetchone()
-            if result:
-                self.go_to_customer_page()
-            elif len(self.id_number) < 7 or str(self.id_number).startswith('9'):
-                self.la_error.setText("Please input valid IDNumber and Password")
-            cur.close()
-            conn.commit()
-            conn.close()
+                conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+                cur = conn.cursor() 
+                cur.execute("SELECT * FROM customer_info WHERE customer_id = ' "+ self.id_number +"' and password = '"+ self.password +"'")
+                result=cur.fetchone()
+                if result:
+                    self.go_to_customer_page()
+                elif len(self.id_number) < 7 or str(self.id_number).startswith('9'):
+                    self.la_error.setText("Please input valid IDNumber and Password")
+                cur.close()
+                conn.commit()
+                conn.close()
 
-        else: 
-            self.la_error.setText("Please input valid IDNumber and Password")
+            else: 
+                self.la_error.setText("Please input valid IDNumber and Password")
+        except:
+                self.la_error.setText("Please input Password")
 
 
     def go_to_customer_page(self):
@@ -330,15 +331,26 @@ class DepositScreen(QMainWindow):
         #self.button.clicked.connect()
 
     def button_ok(self):
-        self.money=self.li_amount_withdraw.text() 
-        print(self.money)
-        
-        #df.loc[df['id_number'] == int(self.id),('withdrawmoney')]=self.amount
+        self.money=self.li_amount_withdraw.text()
+        try:
+            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+            cur = conn.cursor() 
+            cur.execute("SELECT balance FROM customer_info WHERE customer_id = ' "+ self.id_number +"'")
+            result=cur.fetchone()
+            print(result)
+            self.new_balance = result+self.money
+            cur.execute('UPDATE customer_info SET balance=%s where customer_id=%s',(self.new_balance,self.id))
+            cur.execute('UPDATE customer_info SET deposit_money=%s where customer_id=%s',(self.money,self.id))
+            cur.close()
+            conn.commit()
+            conn.close()    
+        except:
+            self.la_error.setText("")
                 
               
         
         
-        self.button_back()
+        #self.button_back()
     #csv dosyasını yenileme
     #tarih-saat-işlem kaydı
     
@@ -438,6 +450,7 @@ class WithdrawScreen(QMainWindow):
         #Gself.B_exit.clicked.connect(self.button_exit)
         self.B_back.clicked.connect(self.button_back)
         self.B_ok.clicked.connect(self.button_ok)
+        self.B_exit.clicked.connect(self.button_exit)
         self.zeroB.clicked.connect(self.action0)
         self.oneB.clicked.connect(self.action1)
         self.twoB.clicked.connect(self.action2)
@@ -459,18 +472,33 @@ class WithdrawScreen(QMainWindow):
     
 
     def button_ok(self):
-        self.amount=self.li_amount_withdraw.text() 
-        print(self.amount)
+        self.money=self.li_amount_withdraw.text() 
+        try:
+            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+            cur = conn.cursor() 
+            cur.execute("SELECT balance FROM customer_info WHERE customer_id = ' "+ self.id_number +"'")
+            result=cur.fetchone() 
+            if result < self.money or result == 0 :
+                self.la_error.setText("")
+            else:
+                self.new_balance = result-self.money
+                cur.execute('UPDATE customer_info SET balance=%s where customer_id=%s',(self.new_balance,self.id))
+                cur.execute('UPDATE customer_info SET withdraw_money=%s where customer_id=%s',(self.money,self.id))
+                cur.close()
+                conn.commit()
+                conn.close()
+        except:
+            self.la_error.setText("")
         
          
-        self.button_back()
+        #self.button_back()
 
     #csv dosyasını yenileme
     #tarih-saat-işlem kaydı
 
     def button_back(self):
-        customerScreen = CustomerScreen()
-        widget.addWidget(customerScreen)
+        self.customerScreen = CustomerScreen()
+        widget.addWidget(self.customerScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
         
     #go to previous screen
@@ -479,18 +507,7 @@ class WithdrawScreen(QMainWindow):
         widget.addWidget(loginScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
         
-    #go to login screen
-
-    
-        
-    #show the current balance(csv)
-
-    #def withdraw_cash(self):
-        
-        
-    #butondan değer alma
-    #yazarak değer alma
-    #clicked ok will take this value
+   
 
     def action0(self):
         # appending label text
