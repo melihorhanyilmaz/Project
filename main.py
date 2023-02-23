@@ -672,23 +672,55 @@ class InternalScreen(QMainWindow):
         self.B_send.clicked.connect(self.button_internal_send)
     
     def button_internal_send(self):
-        id_alici=str(self.li_alici_id.text())
-        send_amount=(self.li_amount.text())
-        name_alici=str(self.li_alici_name.text())
-        surname_alici=str(self.li_alici_surname.text())
+        self.id_alici=str(self.li_alici_id.text())
+        self.send_amount=(self.li_amount.text())
+        self.name_alici=str(self.li_alici_name.text())
+        self.surname_alici=str(self.li_alici_surname.text())
         #checking if id number exist or not
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor()
-        cur.execute("SELECT balance FROM customer_info WHERE customer_id = %s"+ (self.id))###self.customer_id mi olmali?
+        cur.execute("SELECT balance FROM customer_info WHERE customer_id = %s"+ (self.id))
         balance=cur.fetchone()[0]
-        if not balance:
-            self.la_error.setText("ID NUMBER is not exist.Please enter a invalid ID Number")
+        cur.close()
+        conn.close()
+        if balance >0 :
+            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+            cur = conn.cursor()
+            cur.execute("SELECT * FROM customer_info WHERE customer_id = %s AND first_name=%s AND surname=%s",(self.id_alici,self.name_alici,self.surname_alici))
+            checklist = cur.fetchall()
             cur.close()
             conn.close()
+            if checklist and (self.send_amount)<= balance:
+                new_balance = balance - self.send_amount
+                conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+                cur = conn.cursor()
+                cur.execute("SELECT balance FROM customer_info WHERE customer_id = %s ",(self.id_alici))
+                add_alici = cur.fetchall()[0]
+                balance_alici = add_alici + self.send_amount
+                cur.execute("UPDATE customer_info SET balance=%s WHERE customer_id=%s ",(balance_alici,self.id_alici) )
+                cur.close()
+                conn.close()
+
+
+
+
+
+
+
+                #################################################
+                conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+                cur = conn.cursor()
+                cur.execute("UPDATE customer_info SET balance=%s WHERE customer_id=%s ",(new_balance,self.id) )
+                cur.execute("UPDATE customer_info SET balance=%s WHERE customer_id=%s ",(balance_alici,self.id) )
+                conn.commit()
+                self.balance.setText(str(balance))
+                self.la_error.setText("Money Transfer succesful!")
+
+            
         else: #check if recipient's name and surname match with ID number
             conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
             cur = conn.cursor()
-            cur.execute("SELECT * FROM customer_info WHERE customer_id = %s AND first_name=%s AND surname=%s",(id_alici,name_alici,surname_alici))
+            cur.execute("SELECT * FROM customer_info WHERE customer_id = %s AND first_name=%s AND surname=%s",(self.id_alici,self.name_alici,self.surname_alici))
             result_match=cur.fetchone()
             if not result_match:
                 self.la_error.setText("Recipient ID ,Name and Surname not matched!!!")
@@ -708,6 +740,7 @@ class InternalScreen(QMainWindow):
                     self.la_error.setText("Insufficient Current Balance")
                 cur.close()
                 conn.close()
+                ###########################################################################################
     def button_exit(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
