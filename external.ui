@@ -31,10 +31,10 @@
 font: 75 12pt &quot;MS Sans Serif&quot;;</string>
     </property>
     <property name="text">
-     <string>HATA MESAJI</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QLineEdit" name="li_miktar">
+   <widget class="QLineEdit" name="li_amount">
     <property name="geometry">
      <rect>
       <x>350</x>
@@ -70,7 +70,7 @@ color: rgb(255, 255, 255);
      <string>CURRENT BALANCE:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="exitB">
+   <widget class="QPushButton" name="B_exit">
     <property name="geometry">
      <rect>
       <x>640</x>
@@ -93,7 +93,7 @@ color: rgb(255, 255, 255);</string>
       <normaloff>../../Downloads/x-button.png</normaloff>../../Downloads/x-button.png</iconset>
     </property>
    </widget>
-   <widget class="QLineEdit" name="li_name">
+   <widget class="QLineEdit" name="li_alici_name">
     <property name="geometry">
      <rect>
       <x>350</x>
@@ -110,7 +110,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLineEdit" name="li_surname">
+   <widget class="QLineEdit" name="li_alici_surname">
     <property name="geometry">
      <rect>
       <x>350</x>
@@ -146,10 +146,10 @@ color: rgb(255, 255, 255);
      <string>  INFOTECHBANK ATM EXTERNAL MONEY TRANSFER</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="sendB">
+   <widget class="QPushButton" name="B_send">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>620</x>
       <y>370</y>
       <width>171</width>
       <height>41</height>
@@ -169,7 +169,7 @@ border-radius: 20 </string>
       <normaloff>../../Downloads/x-button.png</normaloff>../../Downloads/x-button.png</iconset>
     </property>
    </widget>
-   <widget class="QLabel" name="la_name">
+   <widget class="QLabel" name="la_alici_name">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -199,7 +199,7 @@ background-color: rgb(255, 255, 255);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="la_surname">
+   <widget class="QLabel" name="la_alici_surname">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -229,7 +229,7 @@ background-color: rgb(255, 255, 255);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="la_id">
+   <widget class="QLabel" name="la_alici_id">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -259,7 +259,7 @@ background-color: rgb(255, 255, 255);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="la_money_amount">
+   <widget class="QLabel" name="la_amount">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -289,7 +289,7 @@ background-color: rgb(255, 255, 255);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="li_idnumber">
+   <widget class="QLineEdit" name="li_alici_id">
     <property name="geometry">
      <rect>
       <x>350</x>
@@ -305,8 +305,11 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <property name="text">
      <string/>
     </property>
+    <property name="maxLength">
+     <number>11</number>
+    </property>
    </widget>
-   <widget class="QPushButton" name="backB">
+   <widget class="QPushButton" name="B_back">
     <property name="geometry">
      <rect>
       <x>90</x>
