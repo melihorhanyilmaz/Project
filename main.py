@@ -256,6 +256,8 @@ class CustomerScreen(QMainWindow):
         self.B_exit_cust_menu.clicked.connect(self.button_exit)
         self.B_statement.clicked.connect(self.account_statement)
         self.B_settings.clicked.connect(self.button_settings)
+        self.B_internal.clicked.connect(self.button_internal)
+        self.B_external.clicked.connect(self.button_external)
      
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor()
@@ -293,6 +295,16 @@ class CustomerScreen(QMainWindow):
     def button_exit(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
+    def button_internal(self):
+        self.internalScreen = InternalScreen()
+        widget.addWidget(self.internalScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
+    def button_external(self):
+        self.externalScreen = ExternalScreen()
+        widget.addWidget(self.externalScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
    
 class CustomerSettings(QMainWindow):
@@ -645,6 +657,65 @@ class WithdrawScreen(QMainWindow):
 
     def action500(self):
         self.li_amount_withdraw.setText("500")
+
+"""class InternalScreen(QMainWindow):
+    def __init__(self):
+        super(InternalScreen, self).__init__()
+        loadUi("internal.ui", self)
+        #self.la_welcome.show()
+        #self.la_balance.show()
+        #self.li_alici_id.setValidator(QIntValidator(self))
+        self.B_exit.clicked.connect(self.button_exit)
+        self.B_back.clicked.connect(self.button_back)
+        #self.B_send.clicked.connect(self.button_send)
+    def button_exit(self):
+        loginScreen = LoginScreen()
+        widget.addWidget(loginScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+    def button_back(self):
+        self.customerScreen = CustomerScreen()
+        widget.addWidget(self.customerScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+   ######### def button_send(self):
+class ExternalScreen(QMainWindow):
+    def __init__(self):
+        super(ExternalScreen, self).__init__()
+        loadUi("external.ui", self)
+        #self.la_welcome.show()
+        #self.la_balance.show()
+        #self.li_alici_id.setValidator(QIntValidator(self))
+        self.B_exit.clicked.connect(self.button_exit)
+        self.B_back.clicked.connect(self.button_back)
+        #self.B_send.clicked.connect(self.button_external_send)
+    
+    def button_external_send(self):
+        self.id_alici=str(self.li_alici_id.text())
+        self.send_amount=str(self.li_amount.text())
+        self.balance=self.la_balance
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM customer_info WHERE customer_id =%s ",(self.id_alici))
+        result1=cur.fetchone()
+        if result1:
+            self.la_error.setText("Please choose Internal money transfer option!")
+        else:
+             if self.send_amount   > 0 and self.send_amount<=balance:
+                 balance=balance-self.send_amount
+             else:
+                 self.la_error.setText(" Insufficient Current Balance ,please check your Current Balance")
+        cur.close()
+        conn.commit()
+        conn.close()
+    
+    def button_exit(self):
+        loginScreen = LoginScreen()
+        widget.addWidget(loginScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+    
+    def button_back(self):
+        self.customerScreen = CustomerScreen()
+        widget.addWidget(self.customerScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)"""
 
 class StatementScreen(QDialog):
     def __init__(self):
