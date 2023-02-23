@@ -28,11 +28,10 @@ class LoginScreen(QMainWindow):
             if str(self.id_number).startswith("1") and len(self.id_number) == 7:
                 conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
                 cur = conn.cursor() 
-                cur.execute("SELECT * FROM admin_info WHERE admin_id = ' "+ self.id_number +"' and password = '"+ self.password +"'")
-                result=cur.fetchone() 
+                cur.execute("SELECT * FROM admin_info WHERE admin_id = '"+ self.id_number +"'")
+                result=cur.fetchone()
                 if result:
                     self.go_to_admin_page()
-            
                 cur.close()
                 conn.commit()
                 conn.close()
@@ -227,8 +226,6 @@ class CustomerScreen(QMainWindow):
     def __init__(self):
         super(CustomerScreen, self).__init__()
         loadUi('customerpage.ui', self)
-        #print('cust init çalıştı')
-        print(self.id)
         self.B_deposit.clicked.connect(self.button_deposit)
         self.B_withdraw.clicked.connect(self.button_withdraw)
         self.B_exit_cust_menu.clicked.connect(self.button_exit)
@@ -332,20 +329,27 @@ class DepositScreen(QMainWindow):
 
     def button_ok(self):
         self.money=self.li_amount_withdraw.text()
-        try:
-            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-            cur = conn.cursor() 
-            cur.execute("SELECT balance FROM customer_info WHERE customer_id = ' "+ self.id_number +"'")
-            result=cur.fetchone()
-            print(result)
-            self.new_balance = result+self.money
-            cur.execute('UPDATE customer_info SET balance=%s where customer_id=%s',(self.new_balance,self.id))
-            cur.execute('UPDATE customer_info SET deposit_money=%s where customer_id=%s',(self.money,self.id))
-            cur.close()
-            conn.commit()
-            conn.close()    
-        except:
-            self.la_error.setText("")
+        #try:
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT balance FROM customer_info WHERE customer_id = '"+ self.id +"'") 
+        result=cur.fetchone()[0]
+        print(result)
+        cur.close()
+        conn.commit()
+        conn.close()
+        if result: 
+            self.new_balance = result + int(self.money)    
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        cur.execute('UPDATE customer_info SET deposit_money = %s WHERE customer_id=%s',(self.money,self.id))
+        cur.execute('UPDATE customer_info SET balance= %s WHERE customer_id = %s', (self.new_balance, self.id))
+        cur.close()
+        conn.commit()
+        conn.close()
+        self.la_error.setText("Your money is in the account.")
+        # except:
+        #    self.la_error.setText("Something went wrong. Please try again")
                 
               
         
@@ -473,22 +477,29 @@ class WithdrawScreen(QMainWindow):
 
     def button_ok(self):
         self.money=self.li_amount_withdraw.text() 
-        try:
+        #ğtry:
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT balance FROM customer_info WHERE customer_id = '"+ self.id +"'") 
+        result=cur.fetchone()[0]
+        print(result)
+        cur.close()
+        conn.commit()
+        conn.close()
+        if result>int(self.money): 
+            self.new_balance = result - int(self.money)
             conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-            cur = conn.cursor() 
-            cur.execute("SELECT balance FROM customer_info WHERE customer_id = ' "+ self.id_number +"'")
-            result=cur.fetchone() 
-            if result < self.money or result == 0 :
-                self.la_error.setText("")
-            else:
-                self.new_balance = result-self.money
-                cur.execute('UPDATE customer_info SET balance=%s where customer_id=%s',(self.new_balance,self.id))
-                cur.execute('UPDATE customer_info SET withdraw_money=%s where customer_id=%s',(self.money,self.id))
-                cur.close()
-                conn.commit()
-                conn.close()
-        except:
-            self.la_error.setText("")
+            cur = conn.cursor()
+            cur.execute('UPDATE customer_info SET withdraw_money = %s WHERE customer_id=%s',(self.money,self.id))
+            cur.execute('UPDATE customer_info SET balance= %s WHERE customer_id = %s', (self.new_balance, self.id))
+            cur.close()
+            conn.commit()
+            conn.close()
+            self.la_error.setText(f"From your account {self.money} € has been withdrawn")
+        else: 
+            self.la_error.setText(f"You have only {result} € in your account")
+        #except:
+            #self.la_error.setText("Something went wrong. Please try again")
         
          
         #self.button_back()

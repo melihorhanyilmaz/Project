@@ -46,7 +46,7 @@ border-radius: 20 </string>
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>210</y>
+      <y>250</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -452,7 +452,7 @@ border-radius: 20 ;</string>
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>160</y>
+      <y>200</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -470,7 +470,7 @@ background-color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>40</y>
+      <y>80</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -519,7 +519,7 @@ border-radius: 20 ;</string>
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>90</y>
+      <y>130</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -538,10 +538,10 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_error">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>270</y>
-      <width>231</width>
-      <height>31</height>
+      <x>150</x>
+      <y>10</y>
+      <width>481</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
