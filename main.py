@@ -82,7 +82,32 @@ class NewAdminScreen(QMainWindow):
         self.B_updatecust.clicked.connect(self.button_update_customer)
         self.B_exit.clicked.connect(self.button_exit)  
 
-       
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT SUM(balance) FROM customer_info") 
+        totalmoney=cur.fetchone()[0]
+        cur.close()
+        conn.commit()
+        conn.close()
+        self.la_totalmoney.setText(str(totalmoney))
+
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT SUM(withdraw_money) FROM customer_info") 
+        dwithdraw=cur.fetchone()[0]
+        cur.close()
+        conn.commit()
+        conn.close()
+        self.la_dailywithdraw.setText(str(dwithdraw))
+
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT SUM(deposit_money) FROM customer_info") 
+        ddeposit=cur.fetchone()[0]
+        cur.close()
+        conn.commit()
+        conn.close()
+        self.la_dailydeposit.setText(str(ddeposit))
 
     def button_info(self):
         custInfoScreen = CustomerInfoScreen()
@@ -498,7 +523,7 @@ class WithdrawScreen(QMainWindow):
 
     def button_ok(self):
         self.money=self.li_amount_withdraw.text() 
-        #ğtry:
+        #try:
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor()
         cur.execute("SELECT balance FROM customer_info WHERE customer_id = '"+ self.id +"'") 
