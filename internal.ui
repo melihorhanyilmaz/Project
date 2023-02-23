@@ -14,7 +14,9 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(54, 100, 139);</string>
+   <string notr="true">background-color: rgb(54, 100, 139);
+color: rgb(255, 255, 255);
+font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="B_send">
@@ -57,7 +59,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      <string/>
     </property>
     <property name="maxLength">
-     <number>11</number>
+     <number>7</number>
     </property>
    </widget>
    <widget class="QLabel" name="la_welcome">
@@ -246,9 +248,9 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_balance">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>420</x>
       <y>100</y>
-      <width>511</width>
+      <width>261</width>
       <height>51</height>
      </rect>
     </property>
@@ -259,7 +261,7 @@ color: rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>CURRENT BALANCE:</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLineEdit" name="li_alici_name">
@@ -332,6 +334,25 @@ border-radius: 20;
      <bool>false</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="la_welcome_2">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>100</y>
+      <width>191</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+color: rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="text">
+     <string>CURRENT BALANCE</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -339,7 +360,7 @@ border-radius: 20;
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

@@ -756,33 +756,48 @@ class ExternalScreen(QMainWindow):
         loadUi("external.ui", self)
         self.la_welcome.show()
         self.la_balance.show()
-        self.li_id.setValidator(QIntValidator(self))
+        self.li_alici_id.setValidator(QIntValidator(self))
+        self.li_amount.setValidator(QIntValidator(self))
         self.B_exit.clicked.connect(self.button_exit)
         self.B_back.clicked.connect(self.button_back)
         self.B_send.clicked.connect(self.button_external_send)
 
     def button_external_send(self):
-        id_alici=str(self.li_alici_id.text())
-        send_amount=float(self.li_amount.text())
-        balance=self.balance
+        self.id_alici=str(self.li_alici_id.text())
+        self.send_amount=int(self.li_amount.text())
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor()
-        cur.execute("SELECT * FROM customer_info WHERE customer_id = %s"+ (self.id))
-        result1=cur.fetchone()
-        if result1 is None:
-            #Allow external money transfer
-            if send_amount   > 0 and send_amount<=balance:
-                 balance=balance-send_amount
-                 #Update the balance
-            else:
-                 self.la_error.setText(" Insufficient Current Balance ,please check your Current Balance")
-        else:
-            #Deny External money transfer as recipient is a customer of the Bank
-             self.la_error.setText("Please choose Internal Money Transfer Option")
+        cur.execute("SELECT balance FROM customer_info WHERE customer_id ='"+ self.id +"'")
+        balance=cur.fetchone()[0]
         cur.close()
-        conn.commit()
         conn.close()
+        if balance >0 :
+            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+            cur = conn.cursor()
+            cur.execute("SELECT customer_id FROM customer_info WHERE customer_id = %s ",(self.id_alici,))#seleckt customer_id diyip fetcone [?]
+            checkid = cur.fetchone()
+            cur.close()
+            conn.close()
+            if checkid:
+                 #Deny External money transfer as recipient is a customer of the Bank
+                self.la_error.setText("Please choose Internal Money Transfer Option!")
+            else:
+                if self.send_amount<= balance:
+                #Allow external money transfer
+                 new_balance = balance - self.send_amount
+                 conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+                 cur = conn.cursor()
+                 cur.execute('UPDATE customer_info SET balance=%s WHERE customer_id=%s ',(new_balance,self.id) )
+                 conn.commit()
+                 self.la_balance.setText(str(new_balance))
+                 self.la_error.setText("Money Transfer succesful!")
+                 cur.close()
+                 conn.close()
+                else:
+                    self.la_error.setText("Insufficient Current Balance ,please check your Current Balance")
 
+            
+           
     def button_exit(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
