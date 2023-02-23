@@ -1,4 +1,4 @@
-import sys, random, datetime, csv, re
+import sys, random, datetime, csv, re, os
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
@@ -281,7 +281,9 @@ class CustomerScreen(QMainWindow):
         
     #go to screen withdraw money
     def account_statement(self):
-        pass
+        statementScreen = StatementScreen()
+        widget.addWidget(statementScreen)
+        widget.setCurrentIndex(widget.currentIndex()+1)
 
     def button_settings(self):
         changecustomer = CustomerSettings()
@@ -655,8 +657,69 @@ class StatementScreen(QDialog):
         self.tableWidget.setColumnWidth(2,100)
         self.tableWidget.setColumnWidth(3,75)
         self.tableWidget.setColumnWidth(4,100)
-        self.loaddata()
         self.now = datetime.datetime.now()
+
+        # File name.
+        fileName = 'customer_actions.csv'
+
+        # Database connection variable.
+        connect = None
+
+        # Check if the file path exists.
+        if os.path.exists(fileName):
+
+            try:
+
+                # Connect to database.
+                conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+
+            except psycopg2.DatabaseError as e:
+
+                # Confirm unsuccessful connection and stop program execution.
+                print("Database connection unsuccessful.")
+                quit()
+
+            # Cursor to execute query.
+            cursor = conn.cursor()
+
+            # SQL to select data from the person table.
+            sqlSelect = \
+                "SELECT custactions_id, customer_id, cust_actions, amount, action_date \
+                FROM customer_actions"
+
+            try:
+
+                # Execute query.
+                cursor.execute(sqlSelect)
+
+                # Fetch the data returned.
+                results = cursor.fetchall()
+
+                # Extract the table headers.
+                headers = [i[0] for i in cursor.description]
+
+                # Open CSV file for writing.
+                csvFile = csv.writer(open(fileName, 'w'),
+                                    delimiter=',', lineterminator='\r\n',
+                                    quoting=csv.QUOTE_ALL, escapechar='\\')
+
+                # Add the headers and data to the CSV file.
+                csvFile.writerow(headers)
+                csvFile.writerows(results)
+
+                # Message stating export successful.
+                print("Data export successful.")
+
+            except psycopg2.DatabaseError as e:
+
+                # Message stating export unsuccessful.
+                print("Data export unsuccessful.")
+                quit()
+
+        else:
+
+            # Message stating file path does not exist.
+            print("File path does not exist.")
 
     def button_back(self):
         customerScreen = CustomerScreen()
