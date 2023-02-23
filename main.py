@@ -23,6 +23,8 @@ class LoginScreen(QMainWindow):
         DepositScreen.id = self.id_number
         CustomerInfoScreen.id = self.id_number
         CustomerSettings.id = self.id_number
+        InternalScreen.id = self.id_number
+        ExternalScreen.id = self.id_number
       
         #try: 
         if str(self.id_number).startswith("1") and len(self.id_number) == 7:
@@ -658,16 +660,54 @@ class WithdrawScreen(QMainWindow):
     def action500(self):
         self.li_amount_withdraw.setText("500")
 
-"""class InternalScreen(QMainWindow):
+class InternalScreen(QMainWindow):
     def __init__(self):
         super(InternalScreen, self).__init__()
         loadUi("internal.ui", self)
-        #self.la_welcome.show()
-        #self.la_balance.show()
-        #self.li_alici_id.setValidator(QIntValidator(self))
+        self.la_welcome.show()
+        self.la_balance.show()
+        self.li_id.setValidator(QIntValidator(self))
         self.B_exit.clicked.connect(self.button_exit)
         self.B_back.clicked.connect(self.button_back)
-        #self.B_send.clicked.connect(self.button_send)
+        self.B_send.clicked.connect(self.button_internal_send)
+    
+    def button_internal_send(self):
+        id_alici=str(self.li_alici_id.text())
+        send_amount=(self.li_amount.text())
+        name_alici=str(self.li_alici_name.text())
+        surname_alici=str(self.li_alici_surname.text())
+        #checking if id number exist or not
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT balance FROM customer_info WHERE customer_id = %s"+ (self.id))###self.customer_id mi olmali?
+        balance=cur.fetchone()[0]
+        if not balance:
+            self.la_error.setText("ID NUMBER is not exist.Please enter a invalid ID Number")
+            cur.close()
+            conn.close()
+        else: #check if recipient's name and surname match with ID number
+            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+            cur = conn.cursor()
+            cur.execute("SELECT * FROM customer_info WHERE customer_id = %s AND first_name=%s AND surname=%s",(id_alici,name_alici,surname_alici))
+            result_match=cur.fetchone()
+            if not result_match:
+                self.la_error.setText("Recipient ID ,Name and Surname not matched!!!")
+                cur.close()
+                conn.close()
+                return
+            else:#bakiye dusur ve upload yap##########uploadi externalda yapmayi unttum onu da yap
+                if (send_amount)>0 and (send_amount)<=balance:
+                    conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+                    cur = conn.cursor()
+                    cur.execute("UPDATE customer_info SET balance=%s WHERE customer_id=%s ",(balance,self.customer_id) )
+                    ###########self.customer_id mi olacak???????????????????????????????????????????????????????
+                    conn.commit()
+                    self.balance.setText(str(balance))
+                    self.la_error.setText("Money Transfer succesful!")
+                else:
+                    self.la_error.setText("Insufficient Current Balance")
+                cur.close()
+                conn.close()
     def button_exit(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
@@ -676,46 +716,49 @@ class WithdrawScreen(QMainWindow):
         self.customerScreen = CustomerScreen()
         widget.addWidget(self.customerScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
-   ######### def button_send(self):
+
 class ExternalScreen(QMainWindow):
     def __init__(self):
         super(ExternalScreen, self).__init__()
         loadUi("external.ui", self)
-        #self.la_welcome.show()
-        #self.la_balance.show()
-        #self.li_alici_id.setValidator(QIntValidator(self))
+        self.la_welcome.show()
+        self.la_balance.show()
+        self.li_id.setValidator(QIntValidator(self))
         self.B_exit.clicked.connect(self.button_exit)
         self.B_back.clicked.connect(self.button_back)
-        #self.B_send.clicked.connect(self.button_external_send)
-    
+        self.B_send.clicked.connect(self.button_external_send)
+
     def button_external_send(self):
-        self.id_alici=str(self.li_alici_id.text())
-        self.send_amount=str(self.li_amount.text())
-        self.balance=self.la_balance
+        id_alici=str(self.li_alici_id.text())
+        send_amount=float(self.li_amount.text())
+        balance=self.balance
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor()
-        cur.execute("SELECT * FROM customer_info WHERE customer_id =%s ",(self.id_alici))
+        cur.execute("SELECT * FROM customer_info WHERE customer_id = %s"+ (self.id))
         result1=cur.fetchone()
-        if result1:
-            self.la_error.setText("Please choose Internal money transfer option!")
-        else:
-             if self.send_amount   > 0 and self.send_amount<=balance:
-                 balance=balance-self.send_amount
-             else:
+        if result1 is None:
+            #Allow external money transfer
+            if send_amount   > 0 and send_amount<=balance:
+                 balance=balance-send_amount
+                 #Update the balance
+            else:
                  self.la_error.setText(" Insufficient Current Balance ,please check your Current Balance")
+        else:
+            #Deny External money transfer as recipient is a customer of the Bank
+             self.la_error.setText("Please choose Internal Money Transfer Option")
         cur.close()
         conn.commit()
         conn.close()
-    
+
     def button_exit(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
-    
+        
     def button_back(self):
         self.customerScreen = CustomerScreen()
         widget.addWidget(self.customerScreen)
-        widget.setCurrentIndex(widget.currentIndex()+1)"""
+        widget.setCurrentIndex(widget.currentIndex()+1)
 
 class StatementScreen(QDialog):
     def __init__(self):
