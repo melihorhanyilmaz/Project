@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1000</width>
+    <height>1000</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,21 +20,22 @@
    <widget class="QLabel" name="la_error">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>120</x>
       <y>430</y>
-      <width>491</width>
+      <width>451</width>
       <height>16</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 0, 0);
-font: 75 12pt &quot;MS Sans Serif&quot;;</string>
+     <string notr="true">color: rgb(255, 255, 255);
+font: 75 12pt &quot;MS Shell Dlg 2&quot;;
+</string>
     </property>
     <property name="text">
-     <string>HATA MESAJI</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QLineEdit" name="li_miktar">
+   <widget class="QLineEdit" name="li_amount">
     <property name="geometry">
      <rect>
       <x>350</x>
@@ -54,9 +55,9 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_balance">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>430</x>
       <y>110</y>
-      <width>511</width>
+      <width>251</width>
       <height>51</height>
      </rect>
     </property>
@@ -67,16 +68,16 @@ color: rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>CURRENT BALANCE:</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="exitB">
+   <widget class="QPushButton" name="B_exit">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>500</y>
-      <width>100</width>
-      <height>40</height>
+      <x>640</x>
+      <y>460</y>
+      <width>101</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -86,14 +87,14 @@ border-radius: 20;
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Exit</string>
+     <string>EXIT</string>
     </property>
     <property name="icon">
      <iconset>
       <normaloff>../../Downloads/x-button.png</normaloff>../../Downloads/x-button.png</iconset>
     </property>
    </widget>
-   <widget class="QLineEdit" name="li_name">
+   <widget class="QLineEdit" name="li_alici_name">
     <property name="geometry">
      <rect>
       <x>350</x>
@@ -110,7 +111,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLineEdit" name="li_surname">
+   <widget class="QLineEdit" name="li_alici_surname">
     <property name="geometry">
      <rect>
       <x>350</x>
@@ -146,32 +147,30 @@ color: rgb(255, 255, 255);
      <string>  INFOTECHBANK ATM EXTERNAL MONEY TRANSFER</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="sendB">
+   <widget class="QPushButton" name="B_send">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>400</y>
-      <width>100</width>
-      <height>40</height>
+      <x>620</x>
+      <y>370</y>
+      <width>171</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(255, 240, 245);
-background-color: rgb(50, 173, 58);
-
+color: rgb(34, 64, 89);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;
-border-radius: 20;
-color: rgb(255, 255, 255);</string>
+border-radius: 20 </string>
     </property>
     <property name="text">
-     <string>Send</string>
+     <string>SEND</string>
     </property>
     <property name="icon">
      <iconset>
       <normaloff>../../Downloads/x-button.png</normaloff>../../Downloads/x-button.png</iconset>
     </property>
    </widget>
-   <widget class="QLabel" name="la_name">
+   <widget class="QLabel" name="la_alici_name">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -201,7 +200,7 @@ background-color: rgb(255, 255, 255);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="la_surname">
+   <widget class="QLabel" name="la_alici_surname">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -231,7 +230,7 @@ background-color: rgb(255, 255, 255);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="la_id">
+   <widget class="QLabel" name="la_alici_id">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -261,7 +260,7 @@ background-color: rgb(255, 255, 255);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="la_money_amount">
+   <widget class="QLabel" name="la_amount">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -291,7 +290,7 @@ background-color: rgb(255, 255, 255);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="li_idnumber">
+   <widget class="QLineEdit" name="li_alici_id">
     <property name="geometry">
      <rect>
       <x>350</x>
@@ -307,14 +306,17 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <property name="text">
      <string/>
     </property>
+    <property name="maxLength">
+     <number>7</number>
+    </property>
    </widget>
-   <widget class="QPushButton" name="backB">
+   <widget class="QPushButton" name="B_back">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>450</y>
-      <width>100</width>
-      <height>40</height>
+      <x>90</x>
+      <y>460</y>
+      <width>101</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -325,10 +327,29 @@ border-radius: 20;
 </string>
     </property>
     <property name="text">
-     <string>Back</string>
+     <string>BACK</string>
     </property>
     <property name="checkable">
      <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_welcome_2">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>110</y>
+      <width>191</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+color: rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="text">
+     <string>CURRENT BALANCE</string>
     </property>
    </widget>
   </widget>
@@ -337,8 +358,8 @@ border-radius: 20;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>26</height>
+     <width>1000</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>
