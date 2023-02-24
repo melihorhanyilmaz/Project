@@ -173,7 +173,7 @@ border-radius: 20 </string>
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>500</y>
+      <y>370</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -196,9 +196,9 @@ color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>400</y>
-      <width>100</width>
-      <height>40</height>
+      <y>490</y>
+      <width>101</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -220,9 +220,9 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>450</y>
-      <width>100</width>
-      <height>40</height>
+      <y>430</y>
+      <width>101</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -542,7 +542,7 @@ color: rgb(255, 255, 255);</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
