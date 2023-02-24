@@ -19,45 +19,77 @@
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>120</y>
-     <width>500</width>
+     <x>170</x>
+     <y>110</y>
+     <width>480</width>
      <height>450</height>
     </rect>
    </property>
    <property name="layoutDirection">
     <enum>Qt::LeftToRight</enum>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(54, 100, 139);
+background-color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;
+border-radius: 20 
+</string>
+   </property>
    <column>
     <property name="text">
-     <string>Customer Action ID</string>
+     <string>ACTION</string>
+    </property>
+    <property name="font">
+     <font>
+      <stylestrategy>PreferDefault</stylestrategy>
+     </font>
+    </property>
+    <property name="textAlignment">
+     <set>AlignLeading|AlignVCenter</set>
+    </property>
+    <property name="background">
+     <color>
+      <red>54</red>
+      <green>100</green>
+      <blue>139</blue>
+     </color>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>Customer ID</string>
+     <string>AMOUNT</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignLeading|AlignVCenter</set>
+    </property>
+    <property name="background">
+     <color>
+      <red>54</red>
+      <green>100</green>
+      <blue>139</blue>
+     </color>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>Action</string>
+     <string>DATE</string>
     </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Amount</string>
+    <property name="textAlignment">
+     <set>AlignLeading|AlignVCenter</set>
     </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Date</string>
+    <property name="background">
+     <color>
+      <red>54</red>
+      <green>100</green>
+      <blue>139</blue>
+     </color>
     </property>
    </column>
   </widget>
   <widget class="QLabel" name="la_baslik">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>110</x>
      <y>10</y>
      <width>611</width>
      <height>81</height>
@@ -77,7 +109,7 @@ font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
   <widget class="QPushButton" name="B_exit">
    <property name="geometry">
     <rect>
-     <x>670</x>
+     <x>690</x>
      <y>550</y>
      <width>100</width>
      <height>40</height>
@@ -100,7 +132,7 @@ color: rgb(255, 255, 255);
   <widget class="QPushButton" name="B_back">
    <property name="geometry">
     <rect>
-     <x>670</x>
+     <x>690</x>
      <y>500</y>
      <width>100</width>
      <height>40</height>

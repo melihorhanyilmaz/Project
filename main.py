@@ -26,6 +26,7 @@ class LoginScreen(QMainWindow):
         CustomerSettings.id = self.id_number
         InternalScreen.id = self.id_number
         ExternalScreen.id = self.id_number
+        StatementScreen.id = self.id_number
       
         #try: 
         if str(self.id_number).startswith("1") and len(self.id_number) == 7:
@@ -834,24 +835,23 @@ class StatementScreen(QDialog):
         loadUi('accountstatementpage.ui', self)
         self.B_back.clicked.connect(self.button_back)
         self.B_exit.clicked.connect(self.button_exit)
-        self.tableWidget.setColumnWidth(0,125)
-        self.tableWidget.setColumnWidth(1,100)
-        self.tableWidget.setColumnWidth(2,100)
-        self.tableWidget.setColumnWidth(3,75)
-        self.tableWidget.setColumnWidth(4,100)
+        self.tableWidget.setColumnWidth(0,150)
+        self.tableWidget.setColumnWidth(1,150)
+        self.tableWidget.setColumnWidth(2,150)
         self.now = datetime.datetime.now()
 
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor()
-        cur.execute("SELECT * FROM customer_actions")
+        cur.execute("SELECT cust_actions, amount, action_date FROM customer_actions WHERE customer_id = '"+ self.id +"'") 
+        #rows=cur.fetchone()[0]
         rows = cur.fetchall()
         
         self.tableWidget.setRowCount(len(rows))
         self.tableWidget.setColumnCount(len(rows[0]))
 
         for i, row in enumerate(rows):
-            for j, item in enumerate(row):
-                self.tableWidget.setItem(i, j, QTableWidgetItem(str(item)))
+            for j, column in enumerate(row):
+                self.tableWidget.setItem(i, j, QTableWidgetItem(str(column)))
         
 
     def button_back(self):
