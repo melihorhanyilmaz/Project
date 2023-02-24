@@ -14,6 +14,7 @@ class LoginScreen(QMainWindow):
         self.la_welcome.show()
         self.li_id.setValidator(QIntValidator(self))
         self.okB.clicked.connect(self.login)
+        self.eraseB.clicked.connect(self.erase_button)
     
     def login(self):
         self.id_number=str(self.li_id.text())
@@ -56,6 +57,11 @@ class LoginScreen(QMainWindow):
             self.la_error.setText("Please input valid IDNumber and Password")
         #except:
                 #self.la_error.setText("Please input Password")
+
+    def erase_button(self):
+        # clearing the label text
+        self.li_id.setText("")
+        self.li_password.setText("")
 
 
     def go_to_customer_page(self):
@@ -822,7 +828,6 @@ class ExternalScreen(QMainWindow):
         widget.addWidget(self.customerScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
 
-
 class StatementScreen(QDialog):
     def __init__(self):
         super(StatementScreen,self).__init__() 
@@ -836,67 +841,18 @@ class StatementScreen(QDialog):
         self.tableWidget.setColumnWidth(4,100)
         self.now = datetime.datetime.now()
 
-        # File name.
-        fileName = 'customer_actions.csv'
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM customer_actions")
+        rows = cur.fetchall()
+        
+        self.tableWidget.setRowCount(len(rows))
+        self.tableWidget.setColumnCount(len(rows[0]))
 
-        # Database connection variable.
-        connect = None
-
-        # Check if the file path exists.
-        if os.path.exists(fileName):
-
-            try:
-
-                # Connect to database.
-                conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-
-            except psycopg2.DatabaseError as e:
-
-                # Confirm unsuccessful connection and stop program execution.
-                print("Database connection unsuccessful.")
-                quit()
-
-            # Cursor to execute query.
-            cursor = conn.cursor()
-
-            # SQL to select data from the person table.
-            sqlSelect = \
-                "SELECT custactions_id, customer_id, cust_actions, amount, action_date \
-                FROM customer_actions"
-
-            try:
-
-                # Execute query.
-                cursor.execute(sqlSelect)
-
-                # Fetch the data returned.
-                results = cursor.fetchall()
-
-                # Extract the table headers.
-                headers = [i[0] for i in cursor.description]
-
-                # Open CSV file for writing.
-                csvFile = csv.writer(open(fileName, 'w'),
-                                    delimiter=',', lineterminator='\r\n',
-                                    quoting=csv.QUOTE_ALL, escapechar='\\')
-
-                # Add the headers and data to the CSV file.
-                csvFile.writerow(headers)
-                csvFile.writerows(results)
-
-                # Message stating export successful.
-                print("Data export successful.")
-
-            except psycopg2.DatabaseError as e:
-
-                # Message stating export unsuccessful.
-                print("Data export unsuccessful.")
-                quit()
-
-        else:
-
-            # Message stating file path does not exist.
-            print("File path does not exist.")
+        for i, row in enumerate(rows):
+            for j, item in enumerate(row):
+                self.tableWidget.setItem(i, j, QTableWidgetItem(str(item)))
+        
 
     def button_back(self):
         customerScreen = CustomerScreen()
