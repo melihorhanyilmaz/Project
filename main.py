@@ -666,81 +666,70 @@ class InternalScreen(QMainWindow):
         loadUi("internal.ui", self)
         self.la_welcome.show()
         self.la_balance.show()
-        self.li_id.setValidator(QIntValidator(self))
+        self.li_alici_id.setValidator(QIntValidator(self))
         self.B_exit.clicked.connect(self.button_exit)
         self.B_back.clicked.connect(self.button_back)
         self.B_send.clicked.connect(self.button_internal_send)
-    
-    def button_internal_send(self):
-        self.id_alici=str(self.li_alici_id.text())
-        self.send_amount=(self.li_amount.text())
-        self.name_alici=str(self.li_alici_name.text())
-        self.surname_alici=str(self.li_alici_surname.text())
-        #checking if id number exist or not
+
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor()
-        cur.execute("SELECT balance FROM customer_info WHERE customer_id = %s"+ (self.id))
+        cur.execute("SELECT balance FROM customer_info WHERE customer_id = '"+ self.id +"'") 
+        result=cur.fetchone()[0]
+        cur.close()
+        conn.commit()
+        conn.close()
+        self.la_balance.setText(str(result))
+        
+    
+    def button_internal_send(self):
+        self.id_alici=self.li_alici_id.text()
+        self.send_amount=int(self.li_amount.text())
+        self.name_alici=self.li_alici_name.text()
+        self.surname_alici=self.li_alici_surname.text()
+       
+       
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT balance FROM customer_info WHERE customer_id = '"+ self.id +"'") 
         balance=cur.fetchone()[0]
         cur.close()
+        conn.commit()
         conn.close()
         if balance >0 :
             conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
             cur = conn.cursor()
-            cur.execute("SELECT * FROM customer_info WHERE customer_id = %s AND first_name=%s AND surname=%s",(self.id_alici,self.name_alici,self.surname_alici))
-            checklist = cur.fetchall()
+            cur.execute("SELECT * FROM customer_info WHERE customer_id = %s AND first_name= %s AND surname= %s",(self.id_alici,self.name_alici,self.surname_alici))
+            checklist = cur.fetchone()
             cur.close()
+            conn.commit()
             conn.close()
-            if checklist and (self.send_amount)<= balance:
-                new_balance = balance - self.send_amount
-                conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-                cur = conn.cursor()
-                cur.execute("SELECT balance FROM customer_info WHERE customer_id = %s ",(self.id_alici))
-                add_alici = cur.fetchall()[0]
-                balance_alici = add_alici + self.send_amount
-                cur.execute("UPDATE customer_info SET balance=%s WHERE customer_id=%s ",(balance_alici,self.id_alici) )
-                cur.close()
-                conn.close()
-
-
-
-
-
-
-
-                #################################################
-                conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-                cur = conn.cursor()
-                cur.execute("UPDATE customer_info SET balance=%s WHERE customer_id=%s ",(new_balance,self.id) )
-                cur.execute("UPDATE customer_info SET balance=%s WHERE customer_id=%s ",(balance_alici,self.id) )
-                conn.commit()
-                self.balance.setText(str(balance))
-                self.la_error.setText("Money Transfer succesful!")
-
-            
-        else: #check if recipient's name and surname match with ID number
-            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-            cur = conn.cursor()
-            cur.execute("SELECT * FROM customer_info WHERE customer_id = %s AND first_name=%s AND surname=%s",(self.id_alici,self.name_alici,self.surname_alici))
-            result_match=cur.fetchone()
-            if not result_match:
-                self.la_error.setText("Recipient ID ,Name and Surname not matched!!!")
-                cur.close()
-                conn.close()
-                return
-            else:#bakiye dusur ve upload yap##########uploadi externalda yapmayi unttum onu da yap
-                if (send_amount)>0 and (send_amount)<=balance:
+            if checklist:
+                if int(self.send_amount)<= balance:
                     conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
                     cur = conn.cursor()
-                    cur.execute("UPDATE customer_info SET balance=%s WHERE customer_id=%s ",(balance,self.customer_id) )
-                    ###########self.customer_id mi olacak???????????????????????????????????????????????????????
+                    cur.execute("SELECT balance FROM customer_info WHERE customer_id = '"+ self.id_alici +"'")
+                    add_alici = cur.fetchone()[0]                  
+                    balance_alici = add_alici + int(self.send_amount)                    
+                    cur.execute("UPDATE customer_info SET balance=%s WHERE customer_id=%s ",(balance_alici,self.id_alici) )
+                    cur.close()
                     conn.commit()
-                    self.balance.setText(str(balance))
+                    conn.close()
+                    new_balance = balance -int(self.send_amount)
+                    conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+                    cur = conn.cursor()
+                    cur.execute("UPDATE customer_info SET balance=%s WHERE customer_id=%s ",(new_balance,self.id) )
+                    cur.close()
+                    conn.commit()
+                    conn.close()
                     self.la_error.setText("Money Transfer succesful!")
-                else:
-                    self.la_error.setText("Insufficient Current Balance")
-                cur.close()
-                conn.close()
-                ###########################################################################################
+                    self.la_balance.setText(str(new_balance))
+                elif int(self.send_amount)> balance:
+                    self.la_error.setText(f"You have only {balance} € in your account")
+            else:
+                self.la_error.setText(f"{self.id_alici} This ID number has not exist")
+        else: 
+            self.la_error.setText(f"You have only {balance} € in your account")
+        
     def button_exit(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
@@ -757,10 +746,18 @@ class ExternalScreen(QMainWindow):
         self.la_welcome.show()
         self.la_balance.show()
         self.li_alici_id.setValidator(QIntValidator(self))
-        self.li_amount.setValidator(QIntValidator(self))
         self.B_exit.clicked.connect(self.button_exit)
         self.B_back.clicked.connect(self.button_back)
         self.B_send.clicked.connect(self.button_external_send)
+
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT balance FROM customer_info WHERE customer_id = '"+ self.id +"'") 
+        result=cur.fetchone()[0]
+        cur.close()
+        conn.commit()
+        conn.close()
+        self.la_balance.setText(str(result))
 
     def button_external_send(self):
         self.id_alici=str(self.li_alici_id.text())
@@ -770,6 +767,7 @@ class ExternalScreen(QMainWindow):
         cur.execute("SELECT balance FROM customer_info WHERE customer_id ='"+ self.id +"'")
         balance=cur.fetchone()[0]
         cur.close()
+        conn.commit()
         conn.close()
         if balance >0 :
             conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
@@ -777,6 +775,7 @@ class ExternalScreen(QMainWindow):
             cur.execute("SELECT customer_id FROM customer_info WHERE customer_id = %s ",(self.id_alici,))#seleckt customer_id diyip fetcone [?]
             checkid = cur.fetchone()
             cur.close()
+            conn.commit()
             conn.close()
             if checkid:
                  #Deny External money transfer as recipient is a customer of the Bank
@@ -792,12 +791,11 @@ class ExternalScreen(QMainWindow):
                  self.la_balance.setText(str(new_balance))
                  self.la_error.setText("Money Transfer succesful!")
                  cur.close()
+                 conn.commit()
                  conn.close()
                 else:
                     self.la_error.setText("Insufficient Current Balance ,please check your Current Balance")
-
-            
-           
+    
     def button_exit(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
@@ -807,6 +805,8 @@ class ExternalScreen(QMainWindow):
         self.customerScreen = CustomerScreen()
         widget.addWidget(self.customerScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
+
+
 
 class StatementScreen(QDialog):
     def __init__(self):
