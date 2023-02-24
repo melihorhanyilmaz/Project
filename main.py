@@ -27,6 +27,7 @@ class LoginScreen(QMainWindow):
         InternalScreen.id = self.id_number
         ExternalScreen.id = self.id_number
         StatementScreen.id = self.id_number
+        self.now = datetime.datetime.now()
       
         #try: 
         if str(self.id_number).startswith("1") and len(self.id_number) == 7:
@@ -47,6 +48,7 @@ class LoginScreen(QMainWindow):
             cur.execute("SELECT * FROM customer_info WHERE customer_id = ' "+ self.id_number +"' and password = '"+ self.password +"'")
             result=cur.fetchone()
             if result:
+                cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id_number, "Login", "", str(self.now)))
                 self.go_to_customer_page()
             elif len(self.id_number) < 7 or str(self.id_number).startswith('9'):
                 self.la_error.setText("Please input valid IDNumber and Password")
@@ -354,7 +356,7 @@ class CustomerSettings(QMainWindow):
         self.new_email=self.li_name.text()      #buradaki buton adlarini new_name,new_email yapmali miyiz?
         self.new_password = self.li_password.text()
         self.new_confpassword = self.li_confpass.text()
-        #self.now = str(datetime.datetime.now())
+        self.now = datetime.datetime.now()
         
         if self.new_email=="" or self.new_password == "" or self.new_confpassword == "" or self.new_password != self.new_confpassword:
             self.la_error.setText("Please input all fields.")
@@ -365,6 +367,7 @@ class CustomerSettings(QMainWindow):
             cur = conn.cursor()
             cur.execute('UPDATE customer_info SET email=%s where customer_id=%s',(self.new_email,self.id))
             cur.execute('UPDATE customer_info SET password=%s where customer_id=%s',(self.new_password,self.id))
+            cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Update Info", "", str(self.now)))
             cur.close()
             conn.commit()
             conn.close()
@@ -407,6 +410,7 @@ class DepositScreen(QMainWindow):
 
     def button_ok(self):
         self.money=self.li_amount_withdraw.text()
+        self.now = datetime.datetime.now()
         #try:
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor()
@@ -421,6 +425,7 @@ class DepositScreen(QMainWindow):
         cur = conn.cursor()
         cur.execute('UPDATE customer_info SET deposit_money = %s WHERE customer_id=%s',(self.money,self.id))
         cur.execute('UPDATE customer_info SET balance= %s WHERE customer_id = %s', (self.new_balance, self.id))
+        cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Deposit", self.money, str(self.now)))
         cur.close()
         conn.commit()
         conn.close()
@@ -562,6 +567,7 @@ class WithdrawScreen(QMainWindow):
 
     def button_ok(self):
         self.money=self.li_amount_withdraw.text() 
+        self.now = datetime.datetime.now()
         #try:
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor()
@@ -576,6 +582,8 @@ class WithdrawScreen(QMainWindow):
             cur = conn.cursor()
             cur.execute('UPDATE customer_info SET withdraw_money = %s WHERE customer_id=%s',(self.money,self.id))
             cur.execute('UPDATE customer_info SET balance= %s WHERE customer_id = %s', (self.new_balance, self.id))
+            cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Withdraw", self.money, str(self.now)))
+
             cur.close()
             conn.commit()
             conn.close()
@@ -709,6 +717,7 @@ class InternalScreen(QMainWindow):
         self.send_amount=int(self.li_amount.text())
         self.name_alici=self.li_alici_name.text()
         self.surname_alici=self.li_alici_surname.text()
+        self.now = datetime.datetime.now()
        
        
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
@@ -741,7 +750,8 @@ class InternalScreen(QMainWindow):
                     conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
                     cur = conn.cursor()
                     cur.execute("UPDATE customer_info SET balance=%s WHERE customer_id=%s ",(new_balance,self.id))
-                    cur.execute("UPDATE customer_info SET internal_money=%s WHERE customer_id=%s ",(self.send_amount,self.id) )
+                    cur.execute("UPDATE customer_info SET internal_money=%s WHERE customer_id=%s ",(self.send_amount,self.id))
+                    cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Internal", self.send_amount, str(self.now)))
                     cur.close()
                     conn.commit()
                     conn.close()
@@ -786,6 +796,7 @@ class ExternalScreen(QMainWindow):
     def button_external_send(self):
         self.id_alici=str(self.li_alici_id.text())
         self.send_amount=int(self.li_amount.text())
+        self.now = datetime.datetime.now()
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor()
         cur.execute("SELECT balance FROM customer_info WHERE customer_id ='"+ self.id +"'")
@@ -812,6 +823,7 @@ class ExternalScreen(QMainWindow):
                  cur = conn.cursor()
                  cur.execute('UPDATE customer_info SET balance=%s WHERE customer_id=%s ',(new_balance,self.id) )
                  cur.execute("UPDATE customer_info SET external_money=%s WHERE customer_id=%s ",(self.send_amount,self.id) )
+                 cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "External", self.send_amount, str(self.now)))
                  conn.commit()
                  self.la_balance.setText(str(new_balance))
                  self.la_error.setText("Money Transfer succesful!")
@@ -845,7 +857,6 @@ class StatementScreen(QDialog):
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor()
         cur.execute("SELECT cust_actions, amount, action_date FROM customer_actions WHERE customer_id = '"+ self.id +"'") 
-        #rows=cur.fetchone()[0]
         rows = cur.fetchall()
         
         self.tableWidget.setRowCount(len(rows))
