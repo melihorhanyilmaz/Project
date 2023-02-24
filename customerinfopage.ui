@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>990</width>
     <height>600</height>
    </rect>
   </property>
@@ -17,7 +17,7 @@
    <string notr="true">background-color: rgb(54, 100, 139);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="la_start_date">
+   <widget class="QLabel" name="la_date">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -137,7 +137,7 @@ color: rgb(255, 255, 255);
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="la_finish_date">
+   <widget class="QLabel" name="la_customer">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -175,7 +175,7 @@ font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="la_customer">
+   <widget class="QLabel" name="la_activity">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -288,7 +288,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      </property>
     </item>
    </widget>
-   <widget class="QComboBox" name="c_date_2">
+   <widget class="QComboBox" name="c_customer">
     <property name="geometry">
      <rect>
       <x>410</x>
@@ -314,7 +314,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>990</width>
      <height>21</height>
     </rect>
    </property>

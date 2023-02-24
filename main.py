@@ -131,17 +131,33 @@ class NewAdminScreen(QMainWindow):
         widget.addWidget(loginScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
 
-class CustomerInfoScreen(QDialog):
+class CustomerInfoScreen(QMainWindow):
     def __init__(self):
         super(CustomerInfoScreen,self).__init__()
-        loadUi('all_customer.ui', self)
+        loadUi('customerinfopage.ui', self)
         self.B_back.clicked.connect(self.button_back)
         self.B_exit.clicked.connect(self.exit_allcustom)
         list = ["Melih", "Sema", "Ebubekir"]
-        self.c_date_2.addItems(list)
-        self.c_date_2.setEditable(True)
+        self.c_customer.addItems(list)
+        self.c_customer.setEditable(True)
         #self.B_refresh.clicked.connect(self.loadCsv)
         
+    def date_filter(self):
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM customer_info ORDER BY customer_id ASC ") 
+        date_list=cur.fetchall()
+        cur.close()
+        conn.commit()
+        conn.close()
+        print(date_list)
+
+    def customer_filter(self):
+        pass
+
+    def action_filtert(self):
+        pass
+
         
     def button_back(self):
         newAdminScreen = NewAdminScreen()
@@ -805,7 +821,6 @@ class ExternalScreen(QMainWindow):
         self.customerScreen = CustomerScreen()
         widget.addWidget(self.customerScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
-
 
 
 class StatementScreen(QDialog):
