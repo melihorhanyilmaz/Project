@@ -37,44 +37,42 @@ font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_name">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>50</x>
       <y>130</y>
-      <width>241</width>
-      <height>51</height>
+      <width>141</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(54, 100, 139);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;
-background-color: rgb(255, 255, 255);</string>
+     <string notr="true">color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
-     <string> New E-mail</string>
+     <string>New E-mail</string>
     </property>
    </widget>
    <widget class="QLabel" name="la_password">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>50</x>
       <y>200</y>
-      <width>241</width>
-      <height>51</height>
+      <width>171</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(54, 100, 139);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;
-background-color: rgb(255, 255, 255);</string>
+     <string notr="true">color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
-     <string> New Password</string>
+     <string>New Password</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="li_name">
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>130</y>
+      <y>131</y>
       <width>291</width>
       <height>51</height>
      </rect>
@@ -97,32 +95,22 @@ color: rgb(255, 255, 255);</string>
      <string notr="true">font: 63 14pt &quot;Montserrat SemiBold&quot;;
 color: rgb(255, 255, 255);</string>
     </property>
-    <property name="inputMask">
-     <string/>
-    </property>
-    <property name="maxLength">
-     <number>7</number>
-    </property>
-    <property name="echoMode">
-     <enum>QLineEdit::Password</enum>
-    </property>
    </widget>
    <widget class="QLabel" name="la_confpass">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>270</y>
-      <width>241</width>
-      <height>51</height>
+      <x>50</x>
+      <y>280</y>
+      <width>221</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(54, 100, 139);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;
-background-color: rgb(255, 255, 255);</string>
+     <string notr="true">color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
-     <string> Confirm Password</string>
+     <string>Confirm Password</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="li_confpass">
@@ -138,20 +126,14 @@ background-color: rgb(255, 255, 255);</string>
      <string notr="true">font: 63 14pt &quot;Montserrat SemiBold&quot;;
 color: rgb(255, 255, 255);</string>
     </property>
-    <property name="maxLength">
-     <number>7</number>
-    </property>
-    <property name="echoMode">
-     <enum>QLineEdit::Password</enum>
-    </property>
    </widget>
    <widget class="QPushButton" name="B_exit">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>490</y>
-      <width>101</width>
-      <height>41</height>
+      <x>660</x>
+      <y>500</y>
+      <width>100</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -162,7 +144,7 @@ color: rgb(255, 255, 255);
 </string>
     </property>
     <property name="text">
-     <string>EXIT</string>
+     <string>Exit</string>
     </property>
     <property name="checkable">
      <bool>false</bool>
@@ -171,10 +153,10 @@ color: rgb(255, 255, 255);
    <widget class="QPushButton" name="B_back">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>440</y>
-      <width>101</width>
-      <height>41</height>
+      <x>660</x>
+      <y>450</y>
+      <width>100</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -184,7 +166,7 @@ font: 63 14pt ;Montserrat SemiBold;
 border-radius: 20;</string>
     </property>
     <property name="text">
-     <string>BACK</string>
+     <string>Back</string>
     </property>
     <property name="checkable">
      <bool>false</bool>
@@ -193,10 +175,10 @@ border-radius: 20;</string>
    <widget class="QLabel" name="la_error">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>250</x>
       <y>350</y>
       <width>461</width>
-      <height>51</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -215,27 +197,24 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <property name="text">
      <string>Please enter 7 characters for new password</string>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
    </widget>
    <widget class="QPushButton" name="B_save">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>390</y>
-      <width>101</width>
-      <height>41</height>
+      <x>660</x>
+      <y>400</y>
+      <width>100</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 240, 245);
-color: rgb(34, 64, 89);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;
-border-radius: 20 </string>
+     <string notr="true">background-color: rgb(50, 173, 58);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20;
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>SAVE</string>
+     <string>Save</string>
     </property>
     <property name="checkable">
      <bool>false</bool>
@@ -248,7 +227,7 @@ border-radius: 20 </string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
