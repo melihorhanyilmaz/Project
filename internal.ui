@@ -228,7 +228,7 @@ font: 75 12pt &quot;MS Sans Serif&quot;;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLineEdit" name="li_aici_surname">
+   <widget class="QLineEdit" name="li_alici_surname">
     <property name="geometry">
      <rect>
       <x>350</x>
