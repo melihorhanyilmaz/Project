@@ -97,6 +97,12 @@ color: rgb(255, 255, 255);</string>
      <string notr="true">font: 63 14pt &quot;Montserrat SemiBold&quot;;
 color: rgb(255, 255, 255);</string>
     </property>
+    <property name="maxLength">
+     <number>7</number>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
    </widget>
    <widget class="QLabel" name="la_confpass">
     <property name="geometry">
@@ -128,6 +134,12 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <property name="styleSheet">
      <string notr="true">font: 63 14pt &quot;Montserrat SemiBold&quot;;
 color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="maxLength">
+     <number>7</number>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
     </property>
    </widget>
    <widget class="QPushButton" name="B_exit">
@@ -230,7 +242,7 @@ color: rgb(255, 255, 255);</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

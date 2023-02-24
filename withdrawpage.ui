@@ -46,7 +46,7 @@ border-radius: 20 </string>
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>210</y>
+      <y>250</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -452,7 +452,7 @@ border-radius: 20 ;</string>
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>160</y>
+      <y>200</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -470,7 +470,7 @@ background-color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>40</y>
+      <y>80</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -519,7 +519,7 @@ border-radius: 20 ;</string>
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>100</y>
+      <y>140</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -533,6 +533,26 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_error">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>50</y>
+      <width>341</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 75 12pt &quot;MS Sans Serif&quot;;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
