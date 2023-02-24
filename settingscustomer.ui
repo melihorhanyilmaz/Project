@@ -39,12 +39,13 @@ font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
      <rect>
       <x>50</x>
       <y>130</y>
-      <width>141</width>
+      <width>221</width>
       <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
+     <string notr="true">color: rgb(54, 100, 139);
+background-color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
@@ -56,12 +57,13 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      <rect>
       <x>50</x>
       <y>200</y>
-      <width>171</width>
+      <width>221</width>
       <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
+     <string notr="true">color: rgb(54, 100, 139);
+background-color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
@@ -106,7 +108,8 @@ color: rgb(255, 255, 255);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
+     <string notr="true">color: rgb(54, 100, 139);
+background-color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
