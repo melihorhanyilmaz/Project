@@ -5,7 +5,9 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.uic import loadUi
 import psycopg2
-
+import hashlib
+import binascii
+from psycopg2 import sql
 
 class LoginScreen(QMainWindow):
     def __init__(self):
@@ -15,6 +17,12 @@ class LoginScreen(QMainWindow):
         self.li_id.setValidator(QIntValidator(self))
         self.okB.clicked.connect(self.login)
         self.eraseB.clicked.connect(self.erase_button)
+    
+    def hash_password(self, password):
+        salt = hashlib.sha256(os.urandom(60)).hexdigest().encode('ascii')
+        pwdhash = hashlib.pbkdf2_hmac('sha512', password.encode('utf-8'), salt, 100000)
+        pwdhash = binascii.hexlify(pwdhash)
+        return (salt + pwdhash).decode('ascii')
     
     def login(self):
         self.id_number=str(self.li_id.text())
@@ -28,6 +36,33 @@ class LoginScreen(QMainWindow):
         ExternalScreen.id = self.id_number
         StatementScreen.id = self.id_number
         self.now = datetime.datetime.now()
+
+        conn = psycopg2.connect("dbname=atm_proje user=postgres password=12345")
+        cur = conn.cursor()
+        # Retrieve the hashed password and id number from the database using the id number provided by the user during login
+        cur.execute("SELECT customer_id, password FROM customer_info WHERE customer_id = %s", (self.id_number,))
+        row = cur.fetchone()
+        if row is not None:
+            hashed_password = row[1]
+            # Hash the password entered by the user
+            pwdhash = hashlib.pbkdf2_hmac('sha512', self.password.encode('utf-8'), hashed_password[:64].encode('ascii'), 100000)
+            pwdhash = binascii.hexlify(pwdhash).decode('ascii')
+            # Compare the hashed password from the database with the hashed password entered by the user
+            if pwdhash == hashed_password[64:]:
+                # Passwords match, login successful
+                CustomerScreen.id_number = self.id_number
+                self.la_error.setText("Login Successful")
+                customerScreen = CustomerScreen()
+                widget.addWidget(customerScreen)
+                widget.setCurrentIndex(widget.currentIndex()+1)
+            else:
+                # Passwords don't match, login failed
+                self.la_error.setText("Invalid Password")
+        else:
+            # User with the given id number not found, login failed
+            self.la_error.setText("User not found")
+        cur.close()
+        conn.close()
       
         #try: 
         if str(self.id_number).startswith("1") and len(self.id_number) == 7:
@@ -146,28 +181,61 @@ class CustomerInfoScreen(QMainWindow):
         loadUi('customerinfopage.ui', self)
         self.B_back.clicked.connect(self.button_back)
         self.B_exit.clicked.connect(self.exit_allcustom)
-        list = ["Melih", "Sema", "Ebubekir"]
-        self.c_customer.addItems(list)
-        self.c_customer.setEditable(True)
+        #list = ["Melih", "Sema", "Ebubekir"]
+        #self.c_customer.addItems(list)
+        #self.c_customer.setEditable(True)
         #self.B_refresh.clicked.connect(self.loadCsv)
         
-    def date_filter(self):
+        self.B_find.clicked.connect(self.clicker)
+        #Adding Items
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor()
-        cur.execute("SELECT * FROM customer_info ORDER BY customer_id ASC ") 
-        date_list=cur.fetchall()
-        cur.close()
-        conn.commit()
-        conn.close()
-        print(date_list)
+        cur.execute("SELECT customer_id FROM customer_info ") 
+        rows = cur.fetchall()
+     
+        #self.tableWidget.setRowCount(len(rows))
+        #self.tableWidget.setColumnCount(len(rows[0]))
 
-    def customer_filter(self):
-        pass
+        for i, row in enumerate(rows):
+            self.c_date_2.addItem(str((row)[0]))
+            print(i)
 
-    def action_filtert(self):
-        pass
+    def clicker(self):
+        if str(self.c_date_2.currentText()) == "All Customers":
+            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+            cur = conn.cursor()
+            cur.execute("SELECT first_name, surname, email, balance FROM customer_info") 
+            rows = cur.fetchall()
+        
+            self.tableWidget.setRowCount(len(rows))
+            self.tableWidget.setColumnCount(len(rows[0]))
+
+            for i, row in enumerate(rows):
+                for j, column in enumerate(row):
+                    self.tableWidget.setItem(i, j, QTableWidgetItem(str(column)))
+            #○cur.close()
+            #conn.commit()
+            #conn.close()
+        else:
+            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+            cur = conn.cursor()
+            cur.execute("SELECT first_name, surname, email, balance FROM customer_info WHERE customer_id = '"+ self.c_date_2.currentText() +"'") 
+            rows = cur.fetchall()
+        
+            self.tableWidget.setRowCount(len(rows))
+            self.tableWidget.setColumnCount(len(rows[0]))
+
+            for i, row in enumerate(rows):
+                for j, column in enumerate(row):
+                    self.tableWidget.setItem(i, j, QTableWidgetItem(str(column)))
 
         
+    
+    
+    
+                
+                
+                
     def button_back(self):
         newAdminScreen = NewAdminScreen()
         widget.addWidget(newAdminScreen)
@@ -185,6 +253,12 @@ class CreateCustomerScreen(QMainWindow):
         self.B_save.clicked.connect(self.add_customer)
         self.B_back.clicked.connect(self.button_back)
         self.B_exit.clicked.connect(self.button_exit)
+
+    def hash_password(self, password):
+        salt = hashlib.sha256(os.urandom(60)).hexdigest().encode('ascii')
+        pwdhash = hashlib.pbkdf2_hmac('sha512', password.encode('utf-8'), salt, 100000)
+        pwdhash = binascii.hexlify(pwdhash)
+        return (salt + pwdhash).decode('ascii')
 
     def add_customer(self):
         self.name=self.li_name.text()
@@ -205,9 +279,12 @@ class CreateCustomerScreen(QMainWindow):
         if self.name=="" or self.surname=="" or self.email=="" or self.password== 0 : 
             self.la_error.setText("Please input all fields.")
         else:
+            # Hash the password
+            hashed_password = self.hash_password(self.password)
+            # Connect to the database and insert the customer information
             conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-            cur = conn.cursor() 
-            cur.execute('INSERT INTO customer_info (password, first_name, surname, email, balance) VALUES(%s,%s,%s,%s,%s)',(self.password,str(self.name),str(self.surname),str(self.email),self.firstbalance))
+            cur = conn.cursor()
+            cur.execute('INSERT INTO customer_info (password, first_name, surname, email, balance) VALUES(%s,%s,%s,%s,%s)',(hashed_password,str(self.name),str(self.surname),str(self.email),(self.firstbalance)))
             cur.close()
             conn.commit()
             conn.close()
