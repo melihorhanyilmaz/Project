@@ -23,8 +23,8 @@
    <widget class="QPushButton" name="B_10">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>150</y>
+      <x>30</x>
+      <y>180</y>
       <width>191</width>
       <height>41</height>
      </rect>
@@ -45,8 +45,8 @@ border-radius: 20 </string>
    <widget class="QLineEdit" name="li_amount_withdraw">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>250</y>
+      <x>260</x>
+      <y>260</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -62,8 +62,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QPushButton" name="B_50">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>210</y>
+      <x>30</x>
+      <y>240</y>
       <width>191</width>
       <height>41</height>
      </rect>
@@ -84,8 +84,8 @@ border-radius: 20 </string>
    <widget class="QPushButton" name="B_200">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>270</y>
+      <x>30</x>
+      <y>300</y>
       <width>191</width>
       <height>41</height>
      </rect>
@@ -106,8 +106,8 @@ border-radius: 20 </string>
    <widget class="QPushButton" name="B_500">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>270</y>
+      <x>530</x>
+      <y>300</y>
       <width>191</width>
       <height>41</height>
      </rect>
@@ -128,8 +128,8 @@ border-radius: 20 </string>
    <widget class="QPushButton" name="B_100">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>210</y>
+      <x>530</x>
+      <y>240</y>
       <width>191</width>
       <height>41</height>
      </rect>
@@ -150,8 +150,8 @@ border-radius: 20 </string>
    <widget class="QPushButton" name="B_20">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>150</y>
+      <x>530</x>
+      <y>180</y>
       <width>191</width>
       <height>41</height>
      </rect>
@@ -173,7 +173,7 @@ border-radius: 20 </string>
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>370</y>
+      <y>510</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -196,7 +196,7 @@ color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>490</y>
+      <y>410</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -220,16 +220,17 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>430</y>
+      <y>460</y>
       <width>101</width>
       <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(240, 240, 119);
+     <string notr="true">background-color: rgb(242, 192, 54);
 color: rgb(54, 100, 139);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;
+font: 63 14pt ;Montserrat SemiBold;
 border-radius: 20;
+
 </string>
     </property>
     <property name="text">
@@ -242,8 +243,8 @@ border-radius: 20;
    <widget class="QPushButton" name="fourB">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>380</y>
+      <x>260</x>
+      <y>390</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -261,8 +262,8 @@ border-radius: 20 ;</string>
    <widget class="QPushButton" name="sevenB">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>440</y>
+      <x>260</x>
+      <y>450</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -280,8 +281,8 @@ border-radius: 20 ;</string>
    <widget class="QPushButton" name="oneB">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>320</y>
+      <x>260</x>
+      <y>330</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -299,8 +300,8 @@ border-radius: 20 ;</string>
    <widget class="QPushButton" name="fiveB">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>380</y>
+      <x>350</x>
+      <y>390</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -318,8 +319,8 @@ border-radius: 20 ;</string>
    <widget class="QPushButton" name="eightB">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>440</y>
+      <x>350</x>
+      <y>450</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -337,8 +338,8 @@ border-radius: 20 ;</string>
    <widget class="QPushButton" name="nineB">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>440</y>
+      <x>440</x>
+      <y>450</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -356,8 +357,8 @@ border-radius: 20 ;</string>
    <widget class="QPushButton" name="threeB">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>320</y>
+      <x>440</x>
+      <y>330</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -375,8 +376,8 @@ border-radius: 20 ;</string>
    <widget class="QPushButton" name="twoB">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>320</y>
+      <x>350</x>
+      <y>330</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -394,8 +395,8 @@ border-radius: 20 ;</string>
    <widget class="QPushButton" name="zeroB">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>500</y>
+      <x>350</x>
+      <y>510</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -413,8 +414,8 @@ border-radius: 20 ;</string>
    <widget class="QPushButton" name="sixB">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>380</y>
+      <x>440</x>
+      <y>390</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -432,8 +433,8 @@ border-radius: 20 ;</string>
    <widget class="QPushButton" name="delB">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>500</y>
+      <x>440</x>
+      <y>510</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -451,8 +452,8 @@ border-radius: 20 ;</string>
    <widget class="QLabel" name="la_name">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>200</y>
+      <x>260</x>
+      <y>210</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -469,8 +470,8 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_bal">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>80</y>
+      <x>260</x>
+      <y>90</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -490,7 +491,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;
 background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>CURRENT BALANCE</string>
+     <string>Current Balance</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -499,8 +500,8 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="clearB">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>500</y>
+      <x>260</x>
+      <y>510</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -518,8 +519,8 @@ border-radius: 20 ;</string>
    <widget class="QLabel" name="la_balance">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>140</y>
+      <x>260</x>
+      <y>150</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -538,10 +539,10 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_error">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>50</y>
-      <width>341</width>
-      <height>16</height>
+      <x>180</x>
+      <y>40</y>
+      <width>361</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -550,6 +551,55 @@ font: 75 12pt &quot;MS Sans Serif&quot;;</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>0</y>
+      <width>161</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::DefaultContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>logo.png</normaloff>logo.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>150</width>
+      <height>150</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>0</y>
+      <width>361</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(242, 192, 54);
+font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>WITHDRAW MONEY</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>

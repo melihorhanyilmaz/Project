@@ -20,18 +20,21 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>10</y>
-      <width>271</width>
+      <x>120</x>
+      <y>40</y>
+      <width>361</width>
       <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
+     <string notr="true">color: rgb(242, 192, 54);
+font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>CHANGE SETTINGS</string>
+     <string>CHANGE CUSTOMER INFO</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="la_name">
@@ -49,7 +52,7 @@ background-color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
-     <string>New E-mail</string>
+     <string> New E-mail</string>
     </property>
    </widget>
    <widget class="QLabel" name="la_password">
@@ -67,7 +70,7 @@ background-color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
-     <string>New Password</string>
+     <string> New Password</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="li_name">
@@ -119,7 +122,7 @@ background-color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
-     <string>Confirm Password</string>
+     <string> Confirm Password</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="li_confpass">
@@ -175,10 +178,11 @@ color: rgb(255, 255, 255);
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(240, 240, 119);
+     <string notr="true">background-color: rgb(242, 192, 54);
 color: rgb(54, 100, 139);
 font: 63 14pt ;Montserrat SemiBold;
-border-radius: 20;</string>
+border-radius: 20;
+</string>
     </property>
     <property name="text">
      <string>Back</string>
@@ -190,7 +194,7 @@ border-radius: 20;</string>
    <widget class="QLabel" name="la_error">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>180</x>
       <y>350</y>
       <width>461</width>
       <height>41</height>
@@ -233,6 +237,35 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="checkable">
      <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>0</y>
+      <width>161</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::DefaultContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>logo.png</normaloff>logo.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>150</width>
+      <height>150</height>
+     </size>
     </property>
    </widget>
   </widget>

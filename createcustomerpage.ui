@@ -20,8 +20,8 @@
    <widget class="QLineEdit" name="li_name">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>110</y>
+      <x>320</x>
+      <y>140</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -37,8 +37,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLineEdit" name="li_surname">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>160</y>
+      <x>320</x>
+      <y>190</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -51,8 +51,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLineEdit" name="li_email">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>210</y>
+      <x>320</x>
+      <y>240</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -118,8 +118,8 @@ color: rgb(255, 255, 255);
    <widget class="QLabel" name="la_name">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>110</y>
+      <x>90</x>
+      <y>140</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -136,8 +136,8 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_surname">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>160</y>
+      <x>90</x>
+      <y>190</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -154,8 +154,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_mail">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>210</y>
+      <x>90</x>
+      <y>240</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -172,8 +172,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_accnumber">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>260</y>
+      <x>90</x>
+      <y>290</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -190,15 +190,15 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>0</y>
-      <width>611</width>
+      <x>90</x>
+      <y>20</y>
+      <width>451</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
+     <string notr="true">color: rgb(242, 192, 54);
+font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string> CREATE CUSTOMER</string>
@@ -210,8 +210,8 @@ font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_curbalance">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>310</y>
+      <x>90</x>
+      <y>340</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -228,8 +228,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLineEdit" name="li_balance">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>310</y>
+      <x>320</x>
+      <y>340</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -242,62 +242,30 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      <string>999999999999</string>
     </property>
    </widget>
-   <widget class="QLabel" name="la_password">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>360</y>
-      <width>221</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(54, 100, 139);
-background-color: rgb(255, 255, 255);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Password</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="li_password">
-    <property name="geometry">
-     <rect>
-      <x>390</x>
-      <y>360</y>
-      <width>221</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
-    </property>
-    <property name="inputMask">
-     <string>9999999</string>
-    </property>
-    <property name="maxLength">
-     <number>7</number>
-    </property>
-   </widget>
    <widget class="QLabel" name="la_error">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>440</y>
-      <width>221</width>
-      <height>13</height>
+      <x>110</x>
+      <y>400</y>
+      <width>421</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="la_id">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>260</y>
+      <x>320</x>
+      <y>290</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -323,9 +291,9 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(240, 240, 119);
+     <string notr="true">background-color: rgb(242, 192, 54);
 color: rgb(54, 100, 139);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;
+font: 63 14pt ;Montserrat SemiBold;
 border-radius: 20;
 </string>
     </property>
@@ -336,6 +304,35 @@ border-radius: 20;
      <bool>false</bool>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>0</y>
+      <width>161</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::DefaultContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>logo.png</normaloff>logo.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>150</width>
+      <height>150</height>
+     </size>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -343,7 +340,7 @@ border-radius: 20;
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

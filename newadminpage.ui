@@ -20,15 +20,15 @@
    <widget class="QLabel" name="label_baslik">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>0</y>
-      <width>611</width>
+      <x>210</x>
+      <y>10</y>
+      <width>351</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
+     <string notr="true">color: rgb(242, 192, 54);
+font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>ADMIN SCREEN</string>
@@ -315,6 +315,35 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>0</y>
+      <width>161</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::DefaultContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>logo.png</normaloff>logo.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>150</width>
+      <height>150</height>
+     </size>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -322,7 +351,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

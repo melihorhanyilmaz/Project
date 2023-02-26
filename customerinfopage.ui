@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>942</width>
+    <height>787</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,11 +20,14 @@
    <widget class="QLabel" name="la_start_date">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>40</y>
-      <width>221</width>
+      <x>20</x>
+      <y>170</y>
+      <width>201</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::ActionsContextMenu</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(54, 100, 139);
@@ -32,17 +35,24 @@ background-color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
-     <string> Date</string>
+     <string>First  Date</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>240</y>
-      <width>611</width>
-      <height>311</height>
+      <x>20</x>
+      <y>370</y>
+      <width>771</width>
+      <height>351</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 63 10pt &quot;Montserrat SemiBold&quot;;
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="rowCount">
      <number>20</number>
@@ -79,46 +89,11 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <column/>
     <column/>
    </widget>
-   <widget class="QComboBox" name="c_date">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>40</y>
-      <width>231</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(54, 100, 139);
-background-color: rgb(255, 255, 255);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
-    </property>
-    <item>
-     <property name="text">
-      <string>Last One Week</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Last One Month</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Last Three Months</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Last Six Months</string>
-     </property>
-    </item>
-   </widget>
    <widget class="QPushButton" name="B_exit">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>510</y>
+      <x>830</x>
+      <y>650</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -140,9 +115,9 @@ color: rgb(255, 255, 255);
    <widget class="QLabel" name="la_finish_date">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>90</y>
-      <width>221</width>
+      <x>460</x>
+      <y>170</y>
+      <width>201</width>
       <height>41</height>
      </rect>
     </property>
@@ -158,15 +133,15 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_title">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>0</y>
-      <width>611</width>
+      <x>160</x>
+      <y>60</y>
+      <width>501</width>
       <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
+     <string notr="true">color: rgb(242, 192, 54);
+font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>CUSTOMER INFO</string>
@@ -178,9 +153,9 @@ font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_customer">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>140</y>
-      <width>221</width>
+      <x>680</x>
+      <y>170</y>
+      <width>201</width>
       <height>41</height>
      </rect>
     </property>
@@ -196,16 +171,16 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QPushButton" name="B_back">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>460</y>
+      <x>830</x>
+      <y>600</y>
       <width>100</width>
       <height>40</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(240, 240, 119);
+     <string notr="true">background-color: rgb(242, 192, 54);
 color: rgb(54, 100, 139);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;
+font: 63 14pt ;Montserrat SemiBold;
 border-radius: 20;
 </string>
     </property>
@@ -216,34 +191,12 @@ border-radius: 20;
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="B_find">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>190</y>
-      <width>100</width>
-      <height>40</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(54, 100, 139);
-background-color: rgb(255, 255, 255);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;
-border-radius: 20 </string>
-    </property>
-    <property name="text">
-     <string>Find</string>
-    </property>
-    <property name="checkable">
-     <bool>false</bool>
-    </property>
-   </widget>
    <widget class="QComboBox" name="c_activity">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>140</y>
-      <width>231</width>
+      <x>680</x>
+      <y>220</y>
+      <width>201</width>
       <height>41</height>
      </rect>
     </property>
@@ -254,27 +207,22 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <item>
      <property name="text">
-      <string>All Activities</string>
+      <string>All Actions</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Logins</string>
+      <string>Login</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Logouts</string>
+      <string>Internal Money</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Internal Money Transfer</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>External Money Transfer</string>
+      <string>External Money</string>
      </property>
     </item>
     <item>
@@ -288,12 +236,12 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      </property>
     </item>
    </widget>
-   <widget class="QComboBox" name="c_date_2">
+   <widget class="QComboBox" name="c_customer">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>90</y>
-      <width>231</width>
+      <x>460</x>
+      <y>220</y>
+      <width>201</width>
       <height>41</height>
      </rect>
     </property>
@@ -308,14 +256,125 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      </property>
     </item>
    </widget>
+   <widget class="QPushButton" name="B_find_day">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>290</y>
+      <width>100</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(50, 173, 58);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20;
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Find </string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="c_firstdate">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>220</y>
+      <width>201</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(54, 100, 139);
+background-color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
+    </property>
+    <property name="calendarPopup">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="c_lastdate">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>220</y>
+      <width>201</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(54, 100, 139);
+background-color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
+    </property>
+    <property name="calendarPopup">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_start_date_2">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>170</y>
+      <width>201</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::ActionsContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(54, 100, 139);
+background-color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Last  Date</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>0</y>
+      <width>161</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::DefaultContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>logo.png</normaloff>logo.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>150</width>
+      <height>150</height>
+     </size>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>26</height>
+     <width>942</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>942</width>
+    <height>691</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,8 +20,8 @@
    <widget class="QLineEdit" name="li_id">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>150</y>
+      <x>370</x>
+      <y>170</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -46,8 +46,8 @@ font: 63 14pt ;Montserrat SemiBold;
    <widget class="QLineEdit" name="li_password">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>270</y>
+      <x>370</x>
+      <y>230</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -68,14 +68,14 @@ color: rgb(0, 0, 0);
    <widget class="QLabel" name="la_id">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>100</y>
-      <width>221</width>
+      <x>90</x>
+      <y>170</y>
+      <width>271</width>
       <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 63 9pt ;Montserrat SemiBold;
+     <string notr="true">font: 63 12pt &quot;Montserrat SemiBold&quot;;
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
@@ -88,9 +88,9 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_password">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>220</y>
-      <width>221</width>
+      <x>90</x>
+      <y>230</y>
+      <width>261</width>
       <height>41</height>
      </rect>
     </property>
@@ -101,7 +101,7 @@ color: rgb(255, 255, 255);</string>
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 63 9pt ;Montserrat SemiBold;
+     <string notr="true">font: 63 12pt &quot;Montserrat SemiBold&quot;;
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
@@ -111,14 +111,14 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="eraseB">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>450</y>
+      <x>650</x>
+      <y>470</y>
       <width>100</width>
       <height>40</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(240, 240, 119);
+     <string notr="true">background-color: rgb(242, 192, 54);
 color: rgb(54, 100, 139);
 font: 63 14pt ;Montserrat SemiBold;
 border-radius: 20;</string>
@@ -128,14 +128,14 @@ border-radius: 20;</string>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../Downloads/is-less-than (1).png</normaloff>../../Downloads/is-less-than (1).png</iconset>
+      <normaloff>../../../../Downloads/is-less-than (1).png</normaloff>../../../../Downloads/is-less-than (1).png</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="okB">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>400</y>
+      <x>650</x>
+      <y>420</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -153,14 +153,14 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../Downloads/accept.png</normaloff>../../Downloads/accept.png</iconset>
+      <normaloff>../../../../Downloads/accept.png</normaloff>../../../../Downloads/accept.png</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="cancelB">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>500</y>
+      <x>650</x>
+      <y>520</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -176,40 +176,43 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../Downloads/x-button.png</normaloff>../../Downloads/x-button.png</iconset>
+      <normaloff>../../../../Downloads/x-button.png</normaloff>../../../../Downloads/x-button.png</iconset>
     </property>
    </widget>
    <widget class="QLabel" name="la_welcome">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>10</y>
-      <width>511</width>
+      <x>180</x>
+      <y>50</y>
+      <width>491</width>
       <height>71</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">
+     <string notr="true">color: rgb(242, 192, 54);
 font: 75 22pt &quot;MS Shell Dlg 2&quot;;
-color: rgb(255, 255, 255);
+
 </string>
     </property>
     <property name="text">
      <string> WELCOME TO INFOTECHBANK ATM</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="la_error">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>320</y>
-      <width>341</width>
-      <height>16</height>
+      <x>160</x>
+      <y>295</y>
+      <width>401</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 75 12pt &quot;MS Sans Serif&quot;;</string>
+     <string notr="true">font: 63 11pt &quot;Montserrat SemiBold&quot;;
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string/>
@@ -218,30 +221,33 @@ font: 75 12pt &quot;MS Sans Serif&quot;;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>340</y>
-      <width>401</width>
-      <height>201</height>
+      <x>220</x>
+      <y>360</y>
+      <width>291</width>
+      <height>291</height>
      </rect>
     </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::DefaultContextMenu</enum>
+    </property>
     <property name="styleSheet">
-     <string notr="true">
-background-image: url(:/newPrefix/Downloads/atm-machine.png);</string>
+     <string notr="true">transperency : 24;</string>
     </property>
     <property name="text">
      <string/>
     </property>
-    <property name="pixmap">
-     <pixmap>../../Downloads/atm-machine.png</pixmap>
+    <property name="icon">
+     <iconset>
+      <normaloff>logo.png</normaloff>logo.png</iconset>
     </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="wordWrap">
-     <bool>false</bool>
+    <property name="iconSize">
+     <size>
+      <width>275</width>
+      <height>275</height>
+     </size>
     </property>
    </widget>
   </widget>
@@ -250,7 +256,7 @@ background-image: url(:/newPrefix/Downloads/atm-machine.png);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>942</width>
      <height>21</height>
     </rect>
    </property>
@@ -258,7 +264,7 @@ background-image: url(:/newPrefix/Downloads/atm-machine.png);</string>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="../tus_resim.qrc"/>
+  <include location="logo.png"/>
  </resources>
  <connections>
   <connection>

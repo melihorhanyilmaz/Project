@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>595</height>
+    <height>592</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -135,9 +135,9 @@ color: rgb(255, 255, 255);
    <widget class="QLineEdit" name="li_select_opr">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>110</y>
-      <width>481</width>
+      <x>130</x>
+      <y>120</y>
+      <width>471</width>
       <height>41</height>
      </rect>
     </property>
@@ -148,8 +148,8 @@ color: rgb(255, 255, 255);
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
+     <string notr="true">color: rgb(242, 192, 54);
+font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>  PLEASE SELECT AN OPERATION</string>
@@ -157,12 +157,15 @@ font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
     <property name="frame">
      <bool>false</bool>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="la_current_balance">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>30</y>
+      <x>50</x>
+      <y>50</y>
       <width>181</width>
       <height>41</height>
      </rect>
@@ -178,8 +181,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_balance">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>30</y>
+      <x>230</x>
+      <y>50</y>
       <width>281</width>
       <height>41</height>
      </rect>
@@ -189,7 +192,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Current Balanca Hier</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="B_internal">
@@ -258,6 +261,35 @@ border-radius: 20 </string>
      <bool>false</bool>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>0</y>
+      <width>161</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::DefaultContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>logo.png</normaloff>logo.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>150</width>
+      <height>150</height>
+     </size>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -265,7 +297,7 @@ border-radius: 20 </string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

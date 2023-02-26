@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>1000</height>
+    <width>800</width>
+    <height>595</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,8 +20,8 @@
    <widget class="QLabel" name="la_error">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>430</y>
+      <x>110</x>
+      <y>450</y>
       <width>451</width>
       <height>16</height>
      </rect>
@@ -38,8 +38,8 @@ font: 75 12pt &quot;MS Shell Dlg 2&quot;;
    <widget class="QLineEdit" name="li_amount">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>370</y>
+      <x>340</x>
+      <y>390</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -55,8 +55,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_balance">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>110</y>
+      <x>250</x>
+      <y>60</y>
       <width>251</width>
       <height>51</height>
      </rect>
@@ -74,8 +74,8 @@ color: rgb(255, 255, 255);
    <widget class="QPushButton" name="B_exit">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>460</y>
+      <x>660</x>
+      <y>510</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -87,7 +87,7 @@ border-radius: 20;
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>EXIT</string>
+     <string>Exit</string>
     </property>
     <property name="icon">
      <iconset>
@@ -97,8 +97,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLineEdit" name="li_alici_name">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>190</y>
+      <x>340</x>
+      <y>210</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -114,8 +114,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLineEdit" name="li_alici_surname">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>250</y>
+      <x>340</x>
+      <y>270</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -131,17 +131,15 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_welcome">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>10</y>
-      <width>511</width>
-      <height>71</height>
+      <x>40</x>
+      <y>130</y>
+      <width>581</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">
-font: 75 16pt &quot;MS Shell Dlg 2&quot;;
-color: rgb(255, 255, 255);
-</string>
+     <string notr="true">color: rgb(242, 192, 54);
+font: 75 18pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>  INFOTECHBANK ATM EXTERNAL MONEY TRANSFER</string>
@@ -150,20 +148,20 @@ color: rgb(255, 255, 255);
    <widget class="QPushButton" name="B_send">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>370</y>
-      <width>171</width>
+      <x>660</x>
+      <y>410</y>
+      <width>100</width>
       <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 240, 245);
-color: rgb(34, 64, 89);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;
-border-radius: 20 </string>
+     <string notr="true">background-color: rgb(50, 173, 58);
+font: 63 14pt ;Montserrat SemiBold;
+border-radius: 20;
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>SEND</string>
+     <string>Send</string>
     </property>
     <property name="icon">
      <iconset>
@@ -173,8 +171,8 @@ border-radius: 20 </string>
    <widget class="QLabel" name="la_alici_name">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>190</y>
+      <x>80</x>
+      <y>210</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -194,7 +192,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;
 background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>NAME</string>
+     <string>Name</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -203,8 +201,8 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_alici_surname">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>250</y>
+      <x>80</x>
+      <y>270</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -224,7 +222,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;
 background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>SURNAME</string>
+     <string>Surname</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -233,8 +231,8 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_alici_id">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>310</y>
+      <x>80</x>
+      <y>330</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -254,7 +252,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;
 background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>ID NUMBER</string>
+     <string>ID Number</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -263,8 +261,8 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_amount">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>370</y>
+      <x>80</x>
+      <y>390</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -284,7 +282,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;
 background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>MONEY AMOUNT</string>
+     <string>Money Amount</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -293,8 +291,8 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLineEdit" name="li_alici_id">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>310</y>
+      <x>340</x>
+      <y>330</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -313,21 +311,21 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QPushButton" name="B_back">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>660</x>
       <y>460</y>
       <width>101</width>
       <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(240, 240, 119);
+     <string notr="true">background-color: rgb(242, 192, 54);
 color: rgb(54, 100, 139);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;
+font: 63 14pt ;Montserrat SemiBold;
 border-radius: 20;
 </string>
     </property>
     <property name="text">
-     <string>BACK</string>
+     <string>Back</string>
     </property>
     <property name="checkable">
      <bool>false</bool>
@@ -336,20 +334,48 @@ border-radius: 20;
    <widget class="QLabel" name="la_welcome_2">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>110</y>
+      <x>60</x>
+      <y>60</y>
       <width>191</width>
       <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">
-font: 75 16pt &quot;MS Shell Dlg 2&quot;;
-color: rgb(255, 255, 255);
+     <string notr="true">color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;
 </string>
     </property>
     <property name="text">
-     <string>CURRENT BALANCE</string>
+     <string>Current Balance</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>0</y>
+      <width>161</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::DefaultContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>logo.png</normaloff>logo.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>150</width>
+      <height>150</height>
+     </size>
     </property>
    </widget>
   </widget>
@@ -358,7 +384,7 @@ color: rgb(255, 255, 255);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1000</width>
+     <width>800</width>
      <height>21</height>
     </rect>
    </property>
