@@ -316,6 +316,13 @@ class UpdateScreen(QMainWindow):
         self.B_update.clicked.connect(self.update_customer)
         self.B_back.clicked.connect(self.button_back)
         self.B_exit.clicked.connect(self.button_exit)
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT customer_id FROM customer_info ") 
+        rows = cur.fetchall()
+
+        for i, row in enumerate(rows):
+            self.c_id.addItem(str((row)[0]))
 
     def update_customer(self):
         self.customer_id=self.li_customerid.text()
