@@ -134,18 +134,21 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_welcome">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>70</x>
       <y>180</y>
-      <width>581</width>
+      <width>681</width>
       <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(242, 192, 54);
-font: 75 18pt &quot;MS Shell Dlg 2&quot;;</string>
+font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>  INFOTECHBANK ATM EXTERNAL MONEY TRANSFER</string>
+     <string>INFOTECHBANK ATM EXTERNAL MONEY TRANSFER</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="B_send">
