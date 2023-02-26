@@ -224,13 +224,7 @@ class CustomerInfoScreen(QMainWindow):
                 for j, column in enumerate(row):
                     self.tableWidget.setItem(i, j, QTableWidgetItem(str(column)))
 
-        
-    
-    
-    
-                
-                
-                
+              
     def button_back(self):
         newAdminScreen = NewAdminScreen()
         widget.addWidget(newAdminScreen)
@@ -432,14 +426,13 @@ class CustomerSettings(QMainWindow):
         widget.setCurrentIndex(widget.currentIndex()+1)
 
     def save_change(self):
-        self.new_email=self.li_name.text()      #buradaki buton adlarini new_name,new_email yapmali miyiz?
+        self.new_email=self.li_name.text()     
         self.new_password = self.li_password.text()
         self.new_confpassword = self.li_confpass.text()
         self.now = datetime.datetime.now()
         
         if self.new_email=="" or self.new_password == "" or self.new_confpassword == "" or self.new_password != self.new_confpassword:
             self.la_error.setText("Please input all fields.")
-            #print("Bosluklar kontrol edildi")
             
         else:
             conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
@@ -504,7 +497,7 @@ class DepositScreen(QMainWindow):
         cur = conn.cursor()
         cur.execute('UPDATE customer_info SET deposit_money = %s WHERE customer_id=%s',(self.money,self.id))
         cur.execute('UPDATE customer_info SET balance= %s WHERE customer_id = %s', (self.new_balance, self.id))
-        cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Deposit", self.money, str(self.now)))
+        cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Deposit Money", self.money, str(self.now)))
         cur.close()
         conn.commit()
         conn.close()
@@ -661,7 +654,7 @@ class WithdrawScreen(QMainWindow):
             cur = conn.cursor()
             cur.execute('UPDATE customer_info SET withdraw_money = %s WHERE customer_id=%s',(self.money,self.id))
             cur.execute('UPDATE customer_info SET balance= %s WHERE customer_id = %s', (self.new_balance, self.id))
-            cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Withdraw", self.money, str(self.now)))
+            cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Withdraw Money", self.money, str(self.now)))
 
             cur.close()
             conn.commit()
@@ -830,7 +823,7 @@ class InternalScreen(QMainWindow):
                     cur = conn.cursor()
                     cur.execute("UPDATE customer_info SET balance=%s WHERE customer_id=%s ",(new_balance,self.id))
                     cur.execute("UPDATE customer_info SET internal_money=%s WHERE customer_id=%s ",(self.send_amount,self.id))
-                    cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Internal", self.send_amount, str(self.now)))
+                    cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Internal Money", self.send_amount, str(self.now)))
                     cur.close()
                     conn.commit()
                     conn.close()
@@ -902,7 +895,7 @@ class ExternalScreen(QMainWindow):
                  cur = conn.cursor()
                  cur.execute('UPDATE customer_info SET balance=%s WHERE customer_id=%s ',(new_balance,self.id) )
                  cur.execute("UPDATE customer_info SET external_money=%s WHERE customer_id=%s ",(self.send_amount,self.id) )
-                 cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "External", self.send_amount, str(self.now)))
+                 cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "External Money", self.send_amount, str(self.now)))
                  conn.commit()
                  self.la_balance.setText(str(new_balance))
                  self.la_error.setText("Money Transfer succesful!")
