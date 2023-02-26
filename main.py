@@ -83,7 +83,7 @@ class LoginScreen(QMainWindow):
             cur.execute("SELECT * FROM customer_info WHERE customer_id = ' "+ self.id_number +"' and password = '"+ self.password +"'")
             result=cur.fetchone()
             if result:
-                cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id_number, "Login", "", str(self.now)))
+                cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id_number, "Login", 0, str(self.now)))
                 self.go_to_customer_page()
             elif len(self.id_number) < 7 or str(self.id_number).startswith('9'):
                 self.la_error.setText("Please input valid IDNumber and Password")
@@ -138,8 +138,8 @@ class NewAdminScreen(QMainWindow):
         self.la_totalmoney.setText(str(totalmoney))
 
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-        cur = conn.cursor()
-        cur.execute("SELECT SUM(withdraw_money) FROM customer_info") 
+        cur = conn.cursor() 
+        cur.execute("SELECT SUM(amount) FROM customer_actions WHERE cust_actions = 'Withdraw' AND action_date >= NOW() - INTERVAL '24 hours'")
         dwithdraw=cur.fetchone()[0]
         cur.close()
         conn.commit()
@@ -148,7 +148,7 @@ class NewAdminScreen(QMainWindow):
 
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor()
-        cur.execute("SELECT SUM(deposit_money) FROM customer_info") 
+        cur.execute("SELECT SUM(amount) FROM customer_actions WHERE cust_actions = 'Deposit' AND action_date >= NOW() - INTERVAL '24 hours'")
         ddeposit=cur.fetchone()[0]
         cur.close()
         conn.commit()
@@ -444,7 +444,7 @@ class CustomerSettings(QMainWindow):
             cur = conn.cursor()
             cur.execute('UPDATE customer_info SET email=%s where customer_id=%s',(self.new_email,self.id))
             cur.execute('UPDATE customer_info SET password=%s where customer_id=%s',(self.new_password,self.id))
-            cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Update Info", "", str(self.now)))
+            cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Update Info", 0, str(self.now)))
             cur.close()
             conn.commit()
             conn.close()
@@ -462,7 +462,7 @@ class DepositScreen(QMainWindow):
         cur.close()
         conn.commit()
         conn.close()
-        self.la_balance.setText(str(result))
+        self.li_balance.setText(str(result))
         self.buttons()
        
          
@@ -507,7 +507,7 @@ class DepositScreen(QMainWindow):
         conn.commit()
         conn.close()
         self.la_error.setText("Your money is in the account.")
-        self.la_balance.setText(str(self.new_balance))
+        self.li_balance.setText(str(self.new_balance))
         # except:
         #    self.la_error.setText("Something went wrong. Please try again")
                 
