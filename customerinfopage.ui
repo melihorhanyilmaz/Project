@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>942</width>
-    <height>787</height>
+    <width>1000</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -45,8 +45,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>370</y>
-      <width>771</width>
+      <y>350</y>
+      <width>791</width>
       <height>351</height>
      </rect>
     </property>
@@ -92,8 +92,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="B_exit">
     <property name="geometry">
      <rect>
-      <x>830</x>
-      <y>650</y>
+      <x>860</x>
+      <y>640</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -133,7 +133,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_title">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>190</x>
       <y>60</y>
       <width>501</width>
       <height>31</height>
@@ -171,8 +171,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QPushButton" name="B_back">
     <property name="geometry">
      <rect>
-      <x>830</x>
-      <y>600</y>
+      <x>860</x>
+      <y>590</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -256,11 +256,11 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      </property>
     </item>
    </widget>
-   <widget class="QPushButton" name="B_find_day">
+   <widget class="QPushButton" name="B_find">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>290</y>
+      <x>410</x>
+      <y>280</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -341,7 +341,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>770</x>
+      <x>830</x>
       <y>0</y>
       <width>161</width>
       <height>161</height>
@@ -373,7 +373,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>942</width>
+     <width>1000</width>
      <height>21</height>
     </rect>
    </property>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1000</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,8 +20,8 @@
    <widget class="QLabel" name="label_baslik">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>10</y>
+      <x>290</x>
+      <y>60</y>
       <width>351</width>
       <height>81</height>
      </rect>
@@ -40,8 +40,8 @@ font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QPushButton" name="B_updatecust">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>470</y>
+      <x>350</x>
+      <y>520</y>
       <width>251</width>
       <height>51</height>
      </rect>
@@ -75,8 +75,8 @@ border-radius: 20 </string>
    <widget class="QPushButton" name="B_newcust">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>400</y>
+      <x>350</x>
+      <y>450</y>
       <width>251</width>
       <height>51</height>
      </rect>
@@ -110,8 +110,8 @@ border-radius: 20 </string>
    <widget class="QPushButton" name="B_exit">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>500</y>
+      <x>820</x>
+      <y>610</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -133,8 +133,8 @@ color: rgb(255, 255, 255);
    <widget class="QPushButton" name="B_info">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>330</y>
+      <x>350</x>
+      <y>380</y>
       <width>251</width>
       <height>51</height>
      </rect>
@@ -168,8 +168,8 @@ border-radius: 20 </string>
    <widget class="QLabel" name="la_total">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>100</y>
+      <x>360</x>
+      <y>150</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -198,8 +198,8 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_withdraw">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>210</y>
+      <x>210</x>
+      <y>260</y>
       <width>251</width>
       <height>41</height>
      </rect>
@@ -222,8 +222,8 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_deposit">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>210</y>
+      <x>480</x>
+      <y>260</y>
       <width>241</width>
       <height>41</height>
      </rect>
@@ -246,8 +246,8 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_totalmoney">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>150</y>
+      <x>360</x>
+      <y>200</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -272,8 +272,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_dailywithdraw">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>260</y>
+      <x>210</x>
+      <y>310</y>
       <width>251</width>
       <height>41</height>
      </rect>
@@ -295,8 +295,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_dailydeposit">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>260</y>
+      <x>480</x>
+      <y>310</y>
       <width>241</width>
       <height>41</height>
      </rect>
@@ -318,7 +318,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>830</x>
       <y>0</y>
       <width>161</width>
       <height>161</height>
@@ -350,7 +350,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1000</width>
      <height>21</height>
     </rect>
    </property>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>816</width>
-    <height>624</height>
+    <width>1000</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,10 +19,10 @@
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>100</y>
+     <x>150</x>
+     <y>140</y>
      <width>480</width>
-     <height>450</height>
+     <height>561</height>
     </rect>
    </property>
    <property name="layoutDirection">
@@ -89,8 +89,8 @@ border-radius: 20
   <widget class="QLabel" name="la_baslik">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>10</y>
+     <x>150</x>
+     <y>50</y>
      <width>481</width>
      <height>81</height>
     </rect>
@@ -109,8 +109,8 @@ font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
   <widget class="QPushButton" name="B_exit">
    <property name="geometry">
     <rect>
-     <x>690</x>
-     <y>550</y>
+     <x>790</x>
+     <y>620</y>
      <width>100</width>
      <height>40</height>
     </rect>
@@ -132,8 +132,8 @@ color: rgb(255, 255, 255);
   <widget class="QPushButton" name="B_back">
    <property name="geometry">
     <rect>
-     <x>690</x>
-     <y>500</y>
+     <x>790</x>
+     <y>570</y>
      <width>100</width>
      <height>40</height>
     </rect>
@@ -155,7 +155,7 @@ border-radius: 20;
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>650</x>
+     <x>830</x>
      <y>10</y>
      <width>161</width>
      <height>161</height>

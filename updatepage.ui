@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1000</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,8 +20,8 @@
    <widget class="QLineEdit" name="li_email">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>260</y>
+      <x>410</x>
+      <y>370</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -40,8 +40,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLineEdit" name="li_surname">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>210</y>
+      <x>410</x>
+      <y>320</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -54,8 +54,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_surname">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>210</y>
+      <x>180</x>
+      <y>320</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -72,8 +72,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_error">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>330</y>
+      <x>190</x>
+      <y>440</y>
       <width>441</width>
       <height>31</height>
      </rect>
@@ -91,8 +91,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_name">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>160</y>
+      <x>180</x>
+      <y>270</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -109,8 +109,8 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_mail">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>260</y>
+      <x>180</x>
+      <y>370</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -127,8 +127,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QPushButton" name="B_exit">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>500</y>
+      <x>770</x>
+      <y>570</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -150,8 +150,8 @@ color: rgb(255, 255, 255);
    <widget class="QPushButton" name="B_update">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>400</y>
+      <x>770</x>
+      <y>470</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -174,8 +174,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="B_back">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>450</y>
+      <x>770</x>
+      <y>520</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -196,8 +196,8 @@ border-radius: 20;</string>
    <widget class="QLabel" name="la_baslik">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>10</y>
+      <x>180</x>
+      <y>120</y>
       <width>441</width>
       <height>81</height>
      </rect>
@@ -216,8 +216,8 @@ font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLineEdit" name="li_name">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>160</y>
+      <x>410</x>
+      <y>270</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -233,8 +233,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QComboBox" name="c_id">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>110</y>
+      <x>410</x>
+      <y>220</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -253,8 +253,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_id">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>110</y>
+      <x>180</x>
+      <y>220</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -271,7 +271,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>830</x>
       <y>0</y>
       <width>161</width>
       <height>161</height>
@@ -303,7 +303,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1000</width>
      <height>21</height>
     </rect>
    </property>

@@ -139,7 +139,7 @@ class NewAdminScreen(QMainWindow):
 
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor() 
-        cur.execute("SELECT SUM(amount) FROM customer_actions WHERE cust_actions = 'Withdraw' AND action_date >= NOW() - INTERVAL '24 hours'")
+        cur.execute("SELECT SUM(amount) FROM customer_actions WHERE cust_actions = 'Withdraw Money' AND action_date >= NOW() - INTERVAL '24 hours'")
         dwithdraw=cur.fetchone()[0]
         cur.close()
         conn.commit()
@@ -148,7 +148,7 @@ class NewAdminScreen(QMainWindow):
 
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor()
-        cur.execute("SELECT SUM(amount) FROM customer_actions WHERE cust_actions = 'Deposit' AND action_date >= NOW() - INTERVAL '24 hours'")
+        cur.execute("SELECT SUM(amount) FROM customer_actions WHERE cust_actions = 'Deposit Money' AND action_date >= NOW() - INTERVAL '24 hours'")
         ddeposit=cur.fetchone()[0]
         cur.close()
         conn.commit()
@@ -181,12 +181,7 @@ class CustomerInfoScreen(QMainWindow):
         loadUi('customerinfopage.ui', self)
         self.B_back.clicked.connect(self.button_back)
         self.B_exit.clicked.connect(self.exit_allcustom)
-        #list = ["Melih", "Sema", "Ebubekir"]
-        #self.c_customer.addItems(list)
-        #self.c_customer.setEditable(True)
-        #self.B_refresh.clicked.connect(self.loadCsv)
-        
-        self.B_find.clicked.connect(self.clicker)
+        self.B_find.clicked.connect(self.filter_customer)
         #Adding Items
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor()
@@ -197,11 +192,11 @@ class CustomerInfoScreen(QMainWindow):
         #self.tableWidget.setColumnCount(len(rows[0]))
 
         for i, row in enumerate(rows):
-            self.c_date_2.addItem(str((row)[0]))
-            print(i)
+            self.c_customer.addItem(str((row)[0]))
+         
 
-    def clicker(self):
-        if str(self.c_date_2.currentText()) == "All Customers":
+    def filter_customer(self):
+        if str(self.c_customer.currentText()) == "All Customers":
             conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
             cur = conn.cursor()
             cur.execute("SELECT first_name, surname, email, balance FROM customer_info") 
@@ -219,7 +214,7 @@ class CustomerInfoScreen(QMainWindow):
         else:
             conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
             cur = conn.cursor()
-            cur.execute("SELECT first_name, surname, email, balance FROM customer_info WHERE customer_id = '"+ self.c_date_2.currentText() +"'") 
+            cur.execute("SELECT first_name, surname, email, balance FROM customer_info WHERE customer_id = '"+ self.c_customer.currentText() +"'") 
             rows = cur.fetchall()
         
             self.tableWidget.setRowCount(len(rows))
@@ -967,7 +962,7 @@ if __name__ == "__main__":
     window = LoginScreen()
     widget = QStackedWidget()
     widget.addWidget(window)
-    widget.setFixedHeight(1000)
+    widget.setFixedHeight(750)
     widget.setFixedWidth(1000)
     widget.show()
     try:

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>942</width>
-    <height>691</height>
+    <width>1000</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,8 +20,8 @@
    <widget class="QLineEdit" name="li_id">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>170</y>
+      <x>430</x>
+      <y>160</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -46,8 +46,8 @@ font: 63 14pt ;Montserrat SemiBold;
    <widget class="QLineEdit" name="li_password">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>230</y>
+      <x>430</x>
+      <y>220</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -68,8 +68,8 @@ color: rgb(0, 0, 0);
    <widget class="QLabel" name="la_id">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>170</y>
+      <x>150</x>
+      <y>160</y>
       <width>271</width>
       <height>41</height>
      </rect>
@@ -88,8 +88,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_password">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>230</y>
+      <x>150</x>
+      <y>220</y>
       <width>261</width>
       <height>41</height>
      </rect>
@@ -111,8 +111,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="eraseB">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>470</y>
+      <x>760</x>
+      <y>540</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -134,8 +134,8 @@ border-radius: 20;</string>
    <widget class="QPushButton" name="okB">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>420</y>
+      <x>760</x>
+      <y>490</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -159,8 +159,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="cancelB">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>520</y>
+      <x>760</x>
+      <y>590</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -182,8 +182,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_welcome">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>50</y>
+      <x>240</x>
+      <y>40</y>
       <width>491</width>
       <height>71</height>
      </rect>
@@ -205,14 +205,14 @@ font: 75 22pt &quot;MS Shell Dlg 2&quot;;
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>295</y>
-      <width>401</width>
+      <y>280</y>
+      <width>491</width>
       <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">font: 63 11pt &quot;Montserrat SemiBold&quot;;
-color: rgb(255, 255, 255);</string>
+</string>
     </property>
     <property name="text">
      <string/>
@@ -224,10 +224,10 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>360</y>
-      <width>291</width>
-      <height>291</height>
+      <x>260</x>
+      <y>350</y>
+      <width>341</width>
+      <height>341</height>
      </rect>
     </property>
     <property name="contextMenuPolicy">
@@ -245,8 +245,8 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="iconSize">
      <size>
-      <width>275</width>
-      <height>275</height>
+      <width>320</width>
+      <height>320</height>
      </size>
     </property>
    </widget>
@@ -256,7 +256,7 @@ color: rgb(255, 255, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>942</width>
+     <width>1000</width>
      <height>21</height>
     </rect>
    </property>
