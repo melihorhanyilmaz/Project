@@ -20,7 +20,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>280</x>
       <y>100</y>
       <width>361</width>
       <height>41</height>
@@ -40,10 +40,10 @@ font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="la_name">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>180</x>
       <y>190</y>
-      <width>221</width>
-      <height>41</height>
+      <width>251</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -58,10 +58,10 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_password">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>180</x>
       <y>260</y>
-      <width>221</width>
-      <height>41</height>
+      <width>251</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -76,7 +76,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLineEdit" name="li_name">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>440</x>
       <y>191</y>
       <width>291</width>
       <height>51</height>
@@ -90,7 +90,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLineEdit" name="li_password">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>440</x>
       <y>260</y>
       <width>291</width>
       <height>51</height>
@@ -110,10 +110,10 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_confpass">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>340</y>
-      <width>221</width>
-      <height>41</height>
+      <x>180</x>
+      <y>330</y>
+      <width>251</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -128,7 +128,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLineEdit" name="li_confpass">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>440</x>
       <y>330</y>
       <width>291</width>
       <height>51</height>
@@ -148,7 +148,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="B_exit">
     <property name="geometry">
      <rect>
-      <x>720</x>
+      <x>830</x>
       <y>570</y>
       <width>100</width>
       <height>40</height>
@@ -171,7 +171,7 @@ color: rgb(255, 255, 255);
    <widget class="QPushButton" name="B_back">
     <property name="geometry">
      <rect>
-      <x>720</x>
+      <x>830</x>
       <y>520</y>
       <width>100</width>
       <height>40</height>
@@ -194,8 +194,8 @@ border-radius: 20;
    <widget class="QLabel" name="la_error">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>410</y>
+      <x>220</x>
+      <y>400</y>
       <width>461</width>
       <height>41</height>
      </rect>
@@ -216,11 +216,14 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <property name="text">
      <string>Please enter 7 characters for new password</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QPushButton" name="B_save">
     <property name="geometry">
      <rect>
-      <x>720</x>
+      <x>830</x>
       <y>470</y>
       <width>100</width>
       <height>40</height>

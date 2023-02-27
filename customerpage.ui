@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="layoutDirection">
-     <enum>Qt::RightToLeft</enum>
+     <enum>Qt::LeftToRight</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(255, 240, 245);
@@ -36,7 +36,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;
 border-radius: 20 </string>
     </property>
     <property name="text">
-     <string>    Deposit Funds</string>
+     <string>Deposit</string>
     </property>
     <property name="icon">
      <iconset>
@@ -62,7 +62,7 @@ border-radius: 20 </string>
      </rect>
     </property>
     <property name="layoutDirection">
-     <enum>Qt::RightToLeft</enum>
+     <enum>Qt::LeftToRight</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(255, 240, 245);
@@ -71,7 +71,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;
 border-radius: 20 </string>
     </property>
     <property name="text">
-     <string>    Withdraw Cash</string>
+     <string>Withdraw</string>
     </property>
     <property name="icon">
      <iconset>
@@ -135,7 +135,7 @@ color: rgb(255, 255, 255);
    <widget class="QLineEdit" name="li_select_opr">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>260</x>
       <y>190</y>
       <width>471</width>
       <height>41</height>
@@ -161,38 +161,27 @@ font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="la_current_balance">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>120</y>
-      <width>181</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Current Balance</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="la_balance">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>350</x>
       <y>120</y>
-      <width>281</width>
+      <width>301</width>
       <height>41</height>
      </rect>
     </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
     <property name="styleSheet">
-     <string notr="true">font: 63 14pt &quot;Montserrat SemiBold&quot;;
-color: rgb(255, 255, 255);</string>
+     <string notr="true">color: rgb(255, 255, 255);
+font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="B_internal">
@@ -255,7 +244,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;
 border-radius: 20 </string>
     </property>
     <property name="text">
-     <string>Settings</string>
+     <string>Change Informations</string>
     </property>
     <property name="checkable">
      <bool>false</bool>
@@ -288,6 +277,36 @@ border-radius: 20 </string>
       <width>150</width>
       <height>150</height>
      </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_balance_2">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>70</y>
+      <width>301</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat SemiBold</family>
+      <pointsize>14</pointsize>
+      <weight>7</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(54, 100, 139);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;
+background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Current Balance</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>

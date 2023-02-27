@@ -239,7 +239,10 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="inputMask">
-     <string>999999999999</string>
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>32765</number>
     </property>
    </widget>
    <widget class="QLabel" name="la_password">

@@ -20,17 +20,15 @@
    <widget class="QLineEdit" name="li_id">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>460</x>
       <y>160</y>
-      <width>221</width>
+      <width>241</width>
       <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 240, 245);
-color: rgb(0, 0, 0);
-font: 63 14pt ;Montserrat SemiBold;
-
+     <string notr="true">color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;
 </string>
     </property>
     <property name="maxLength">
@@ -46,16 +44,15 @@ font: 63 14pt ;Montserrat SemiBold;
    <widget class="QLineEdit" name="li_password">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>460</x>
       <y>220</y>
-      <width>221</width>
+      <width>241</width>
       <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 240, 245);
-color: rgb(0, 0, 0);
-
+     <string notr="true">color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;
 </string>
     </property>
     <property name="maxLength">
@@ -68,18 +65,19 @@ color: rgb(0, 0, 0);
    <widget class="QLabel" name="la_id">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>190</x>
       <y>160</y>
-      <width>271</width>
+      <width>261</width>
       <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 63 12pt &quot;Montserrat SemiBold&quot;;
-color: rgb(255, 255, 255);</string>
+     <string notr="true">color: rgb(54, 100, 139);
+background-color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
-     <string> PLEASE ENTER  ID NUMBER:</string>
+     <string> ID NUMBER</string>
     </property>
     <property name="textFormat">
      <enum>Qt::AutoText</enum>
@@ -88,7 +86,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_password">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>190</x>
       <y>220</y>
       <width>261</width>
       <height>41</height>
@@ -101,11 +99,12 @@ color: rgb(255, 255, 255);</string>
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 63 12pt &quot;Montserrat SemiBold&quot;;
-color: rgb(255, 255, 255);</string>
+     <string notr="true">color: rgb(54, 100, 139);
+background-color: rgb(255, 255, 255);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
-     <string>  PLEASE ENTER PASSWORD:</string>
+     <string> PASSWORD</string>
     </property>
    </widget>
    <widget class="QPushButton" name="eraseB">
@@ -182,7 +181,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_welcome">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>200</x>
       <y>40</y>
       <width>491</width>
       <height>71</height>
@@ -204,7 +203,7 @@ font: 75 22pt &quot;MS Shell Dlg 2&quot;;
    <widget class="QLabel" name="la_error">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>200</x>
       <y>280</y>
       <width>491</width>
       <height>41</height>
@@ -224,7 +223,7 @@ font: 75 22pt &quot;MS Shell Dlg 2&quot;;
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>280</x>
       <y>350</y>
       <width>341</width>
       <height>341</height>

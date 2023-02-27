@@ -96,6 +96,10 @@ class LoginScreen(QMainWindow):
         #except:
                 #self.la_error.setText("Please input Password")
 
+
+        self.li_id.clear()
+        self.li_password.clear()
+
     def erase_button(self):
         # clearing the label text
         self.li_id.setText("")
@@ -103,16 +107,12 @@ class LoginScreen(QMainWindow):
 
 
     def go_to_customer_page(self):
-        self.li_id.clear()
-        self.li_password.clear()
         customerScreen = CustomerScreen()
         widget.addWidget(customerScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
         
 
     def go_to_admin_page(self):
-        self.li_id.clear()
-        self.li_password.clear()
         adminScreen = NewAdminScreen()
         widget.addWidget(adminScreen)
         widget.setCurrentIndex(widget.currentIndex()+1)
@@ -314,14 +314,27 @@ class UpdateScreen(QMainWindow):
         for i, row in enumerate(rows):
             self.c_id.addItem(str((row)[0]))
 
+        #Send signal to change_id for change the line edits
+        self.c_id.currentIndexChanged.connect(self.change_id)
+
+    def change_id(self):
+        conn = psycopg2.connect("dbname=atm_proje user=postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT first_name, surname, email FROM customer_info WHERE customer_id = '"+ self.c_id.currentText() +"'") 
+        result = cur.fetchone()
+        self.li_name.setText(result[0])
+        self.li_surname.setText(result[1])
+        self.li_email.setText(result[2])     
+        cur.close()
+        conn.commit()
+        conn.close()        
+
     def update_customer(self):
-        self.customer_id=self.li_customerid.text()
         self.new_name=self.li_name.text()      
         self.new_surname = self.li_surname.text()
         self.new_email = self.li_email.text()
-        self.new_password = self.li_newpassword.text()
         #self.now = str(datetime.datetime.now())
-        
+
         if self.new_name=="" or self.new_surname=="" or self.new_email=="" or self.new_password== 0 : 
             self.la_error.setText("Please input all fields.")
             
@@ -329,10 +342,9 @@ class UpdateScreen(QMainWindow):
         else:
             conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
             cur = conn.cursor()
-            cur.execute('UPDATE customer_info SET first_name=%s where customer_id=%s',(self.new_name,self.customer_id))
-            cur.execute('UPDATE customer_info SET surname=%s where customer_id=%s',(self.new_surname,self.customer_id))
-            cur.execute('UPDATE customer_info SET email=%s where customer_id=%s',(self.new_email,self.customer_id))
-            cur.execute('UPDATE customer_info SET password=%s where customer_id=%s',(self.new_password,self.customer_id))
+            cur.execute('UPDATE customer_info SET first_name=%s where customer_id=%s',(self.new_name,self.c_id.currentText()))
+            cur.execute('UPDATE customer_info SET surname=%s where customer_id=%s',(self.new_surname,self.c_id.currentText()))
+            cur.execute('UPDATE customer_info SET email=%s where customer_id=%s',(self.new_email,self.c_id.currentText()))
             cur.close()
             conn.commit()
             conn.close()
@@ -452,7 +464,7 @@ class CustomerSettings(QMainWindow):
          
                 conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
                 cur = conn.cursor()
-                cur.execute('UPDATE customer_info SET email=%s where customer_id=%s',(self.new_email,self.id))
+                cur.execute('UPDATE customer_info SET email=%s WHERE customer_id=%s',(self.new_email,self.id))
                 cur.close()
                 conn.commit()
                 conn.close()
@@ -469,7 +481,7 @@ class CustomerSettings(QMainWindow):
                 if self.new_confpassword==self.new_password:
                     conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
                     cur = conn.cursor()
-                    cur.execute('UPDATE customer_info SET password=%s where customer_id=%s',(hashed_password,self.id))
+                    cur.execute('UPDATE customer_info SET password=%s WHERE customer_id=%s',(hashed_password,self.id))
                     cur.close()
                     conn.commit()
                     conn.close()
