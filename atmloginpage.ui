@@ -234,7 +234,7 @@ font: 75 22pt &quot;MS Shell Dlg 2&quot;;
      <enum>Qt::DefaultContextMenu</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">transperency : 24;</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>
