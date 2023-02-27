@@ -30,8 +30,8 @@
      <enum>Qt::ActionsContextMenu</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(54, 100, 139);
-background-color: rgb(255, 255, 255);
+     <string notr="true">background-color: rgb(54, 100, 139);
+color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
@@ -122,12 +122,15 @@ color: rgb(255, 255, 255);
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(54, 100, 139);
-background-color: rgb(255, 255, 255);
+     <string notr="true">background-color: rgb(54, 100, 139);
+color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
      <string> Customer</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="la_title">
@@ -160,12 +163,15 @@ font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(54, 100, 139);
-background-color: rgb(255, 255, 255);
+     <string notr="true">background-color: rgb(54, 100, 139);
+color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
      <string> Activity</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="B_back">
@@ -327,8 +333,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      <enum>Qt::ActionsContextMenu</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(54, 100, 139);
-background-color: rgb(255, 255, 255);
+     <string notr="true">background-color: rgb(54, 100, 139);
+color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">

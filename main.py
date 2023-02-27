@@ -182,15 +182,16 @@ class CustomerInfoScreen(QMainWindow):
         self.B_back.clicked.connect(self.button_back)
         self.B_exit.clicked.connect(self.exit_allcustom)
         self.B_find.clicked.connect(self.filter_customer)
-        #Adding Items
+        self.last_day = QDateTime.currentDateTime()
+        self.first_day= self.last_day.addDays(-7)
+        self.c_firstdate.setDateTime(self.first_day)
+        self.c_lastdate.setDateTime(self.last_day)
+        #Adding Items to combobox All Customer ID's 
         conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
         cur = conn.cursor()
         cur.execute("SELECT customer_id FROM customer_info ") 
         rows = cur.fetchall()
      
-        #self.tableWidget.setRowCount(len(rows))
-        #self.tableWidget.setColumnCount(len(rows[0]))
-
         for i, row in enumerate(rows):
             self.c_customer.addItem(str((row)[0]))
          
