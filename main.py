@@ -20,7 +20,7 @@ class LoginScreen(QMainWindow):
     
     def hash_password(self, password):
         salt = hashlib.sha256(os.urandom(60)).hexdigest().encode('ascii')
-        pwdhash = hashlib.pbkdf2_hmac('sha512', password.encode('utf-8'), salt, 100000)
+        pwdhash = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
         pwdhash = binascii.hexlify(pwdhash)
         return (salt + pwdhash).decode('ascii')
     
@@ -45,7 +45,7 @@ class LoginScreen(QMainWindow):
         if row is not None:
             hashed_password = row[1]
             # Hash the password entered by the user
-            pwdhash = hashlib.pbkdf2_hmac('sha512', self.password.encode('utf-8'), hashed_password[:64].encode('ascii'), 100000)
+            pwdhash = hashlib.pbkdf2_hmac('sha256', self.password.encode('utf-8'), hashed_password[:64].encode('ascii'), 100000)
             pwdhash = binascii.hexlify(pwdhash).decode('ascii')
             # Compare the hashed password from the database with the hashed password entered by the user
             if pwdhash == hashed_password[64:]:
@@ -246,7 +246,7 @@ class CreateCustomerScreen(QMainWindow):
 
     def hash_password(self, password):
         salt = hashlib.sha256(os.urandom(60)).hexdigest().encode('ascii')
-        pwdhash = hashlib.pbkdf2_hmac('sha512', password.encode('utf-8'), salt, 100000)
+        pwdhash = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
         pwdhash = binascii.hexlify(pwdhash)
         return (salt + pwdhash).decode('ascii')
 
@@ -415,7 +415,23 @@ class CustomerSettings(QMainWindow):
         self.B_exit.clicked.connect(self.button_exit)
         self.B_back.clicked.connect(self.button_back)
         self.B_save.clicked.connect(self.save_change)
+        self.set_email()
+    def hash_password(self, password):
+        salt = hashlib.sha256(os.urandom(60)).hexdigest().encode('ascii')
+        pwdhash = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
+        pwdhash = binascii.hexlify(pwdhash)
+        return (salt + pwdhash).decode('ascii')
+    
+        
+    def set_email(self):
+        conn = psycopg2.connect("dbname=atm_proje user=postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT email FROM customer_info WHERE customer_id = '"+ self.id +"'") 
+        result = cur.fetchone()
+        self.li_name.setText(result[0])
 
+        cur.close()
+        conn.close()
     def button_exit(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
@@ -432,14 +448,40 @@ class CustomerSettings(QMainWindow):
         self.new_confpassword = self.li_confpass.text()
         self.now = datetime.datetime.now()
         
-        if self.new_email=="" or self.new_password == "" or self.new_confpassword == "" or self.new_password != self.new_confpassword:
-            self.la_error.setText("Please input all fields.")
+        if  self.new_password == "" and self.new_confpassword == ""  :
+         
+                conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+                cur = conn.cursor()
+                cur.execute('UPDATE customer_info SET email=%s where customer_id=%s',(self.new_email,self.id))
+                cur.close()
+                conn.commit()
+                conn.close()
+                self.la_error.setText("Succesfully Changed")
+           
             
+                
+        elif  self.new_password != "" :
+            if self.new_confpassword =="":
+                self.la_error.setText("Please Confirm Password!!!")
+            else:
+                # Hash the password
+                hashed_password = self.hash_password(self.new_password)
+                if self.new_confpassword==self.new_password:
+                    conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+                    cur = conn.cursor()
+                    cur.execute('UPDATE customer_info SET password=%s where customer_id=%s',(hashed_password,self.id))
+                    cur.close()
+                    conn.commit()
+                    conn.close()
+                    self.la_error.setText("Succesfully Changed")
+                else:
+                    self.la_error.setText("New Password and Confirmed Password matched not!!!")
+                
         else:
             conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
             cur = conn.cursor()
             cur.execute('UPDATE customer_info SET email=%s where customer_id=%s',(self.new_email,self.id))
-            cur.execute('UPDATE customer_info SET password=%s where customer_id=%s',(self.new_password,self.id))
+            cur.execute('UPDATE customer_info SET password=%s where customer_id=%s',(hashed_password,self.id))
             cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Update Info", 0, str(self.now)))
             cur.close()
             conn.commit()
