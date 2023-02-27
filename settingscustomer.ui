@@ -203,7 +203,7 @@ border-radius: 20;
     <property name="font">
      <font>
       <family>Montserrat SemiBold</family>
-      <pointsize>14</pointsize>
+      <pointsize>12</pointsize>
       <weight>7</weight>
       <italic>false</italic>
       <bold>false</bold>
@@ -211,7 +211,7 @@ border-radius: 20;
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(255, 255, 255);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
+font: 63 12pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
      <string>Please enter 7 characters for new password</string>

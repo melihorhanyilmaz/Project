@@ -21,7 +21,7 @@
     <property name="geometry">
      <rect>
       <x>440</x>
-      <y>200</y>
+      <y>250</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -38,7 +38,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <property name="geometry">
      <rect>
       <x>440</x>
-      <y>250</y>
+      <y>300</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -52,7 +52,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <property name="geometry">
      <rect>
       <x>440</x>
-      <y>300</y>
+      <y>350</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -119,7 +119,7 @@ color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>200</y>
+      <y>250</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -137,7 +137,7 @@ background-color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>250</y>
+      <y>300</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -155,7 +155,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>300</y>
+      <y>350</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -173,7 +173,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>350</y>
+      <y>200</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -242,7 +242,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
      <string/>
     </property>
     <property name="maxLength">
-     <number>32765</number>
+     <number>15</number>
     </property>
    </widget>
    <widget class="QLabel" name="la_password">
@@ -260,7 +260,7 @@ background-color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
-     <string>Password</string>
+     <string> Password</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="li_password">
@@ -295,6 +295,10 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 63 12pt &quot;Montserrat SemiBold&quot;;</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -303,7 +307,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <property name="geometry">
      <rect>
       <x>440</x>
-      <y>350</y>
+      <y>200</y>
       <width>221</width>
       <height>41</height>
      </rect>

@@ -1,4 +1,4 @@
-import sys, random, datetime, csv, re, os
+import sys, datetime, os
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
@@ -15,6 +15,7 @@ class LoginScreen(QMainWindow):
         loadUi("atmloginpage.ui", self)
         self.la_welcome.show()
         self.li_id.setValidator(QIntValidator(self))
+        self.li_password.setValidator(QIntValidator(self))
         self.okB.clicked.connect(self.login)
         self.eraseB.clicked.connect(self.erase_button)
     
@@ -243,6 +244,20 @@ class CreateCustomerScreen(QMainWindow):
         self.B_save.clicked.connect(self.add_customer)
         self.B_back.clicked.connect(self.button_back)
         self.B_exit.clicked.connect(self.button_exit)
+        self.li_balance.setValidator(QIntValidator(self))
+        self.li_password.setValidator(QIntValidator(self))
+        self.id()
+
+    def id(self):
+        conn = psycopg2.connect("dbname=atm_proje user=postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT customer_id FROM customer_info ORDER BY customer_id DESC LIMIT 1") 
+        result = cur.fetchone()[0]
+        new_id = int(result) + 1
+        self.la_id.setText(str(new_id)) 
+        cur.close()
+        conn.commit()
+        conn.close()      
 
     def hash_password(self, password):
         salt = hashlib.sha256(os.urandom(60)).hexdigest().encode('ascii')
@@ -428,6 +443,7 @@ class CustomerSettings(QMainWindow):
         self.B_back.clicked.connect(self.button_back)
         self.B_save.clicked.connect(self.save_change)
         self.set_email()
+
     def hash_password(self, password):
         salt = hashlib.sha256(os.urandom(60)).hexdigest().encode('ascii')
         pwdhash = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
@@ -441,9 +457,9 @@ class CustomerSettings(QMainWindow):
         cur.execute("SELECT email FROM customer_info WHERE customer_id = '"+ self.id +"'") 
         result = cur.fetchone()
         self.li_name.setText(result[0])
-
         cur.close()
         conn.close()
+
     def button_exit(self):
         loginScreen = LoginScreen()
         widget.addWidget(loginScreen)
@@ -465,6 +481,7 @@ class CustomerSettings(QMainWindow):
                 conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
                 cur = conn.cursor()
                 cur.execute('UPDATE customer_info SET email=%s WHERE customer_id=%s',(self.new_email,self.id))
+                cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Update Info", 0, str(self.now)))
                 cur.close()
                 conn.commit()
                 conn.close()
@@ -482,6 +499,7 @@ class CustomerSettings(QMainWindow):
                     conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
                     cur = conn.cursor()
                     cur.execute('UPDATE customer_info SET password=%s WHERE customer_id=%s',(hashed_password,self.id))
+                    cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Update Info", 0, str(self.now)))
                     cur.close()
                     conn.commit()
                     conn.close()
@@ -512,7 +530,7 @@ class DepositScreen(QMainWindow):
         cur.close()
         conn.commit()
         conn.close()
-        self.li_balance.setText(str(result))
+        self.la_balance.setText(str(result))
         self.buttons()
        
          
@@ -557,7 +575,7 @@ class DepositScreen(QMainWindow):
         conn.commit()
         conn.close()
         self.la_error.setText("Your money is in the account.")
-        self.li_balance.setText(str(self.new_balance))
+        self.la_balance.setText(str(self.new_balance))
         # except:
         #    self.la_error.setText("Something went wrong. Please try again")
                 
@@ -825,6 +843,7 @@ class InternalScreen(QMainWindow):
         self.la_welcome.show()
         self.la_balance.show()
         self.li_alici_id.setValidator(QIntValidator(self))
+        self.li_amount.setValidator(QIntValidator(self))
         self.B_exit.clicked.connect(self.button_exit)
         self.B_back.clicked.connect(self.button_back)
         self.B_send.clicked.connect(self.button_internal_send)
@@ -907,6 +926,7 @@ class ExternalScreen(QMainWindow):
         self.la_welcome.show()
         self.la_balance.show()
         self.li_alici_id.setValidator(QIntValidator(self))
+        self.li_amount.setValidator(QIntValidator(self))
         self.B_exit.clicked.connect(self.button_exit)
         self.B_back.clicked.connect(self.button_back)
         self.B_send.clicked.connect(self.button_external_send)

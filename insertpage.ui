@@ -251,7 +251,7 @@ border-radius: 20 ;</string>
      <string>2</string>
     </property>
    </widget>
-   <widget class="QLabel" name="la_balance">
+   <widget class="QLabel" name="la_bal">
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -286,23 +286,6 @@ background-color: rgb(255, 255, 255);</string>
      <rect>
       <x>290</x>
       <y>310</y>
-      <width>261</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="li_balance">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>190</y>
       <width>261</width>
       <height>41</height>
      </rect>
@@ -411,7 +394,7 @@ border-radius: 20 ;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(255, 255, 255);
-font: 75 12pt &quot;MS Sans Serif&quot;;</string>
+font: 63 12pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
      <string/>
@@ -473,6 +456,29 @@ font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="frame">
      <bool>false</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_balance">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>190</y>
+      <width>261</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 63 14pt &quot;Montserrat SemiBold&quot;;
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="text">
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
