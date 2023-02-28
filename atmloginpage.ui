@@ -266,22 +266,5 @@ font: 63 12pt &quot;Montserrat SemiBold&quot;;
  <resources>
   <include location="logo.png"/>
  </resources>
- <connections>
-  <connection>
-   <sender>cancelB</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>698</x>
-     <y>395</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>741</x>
-     <y>296</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
