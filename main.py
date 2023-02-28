@@ -53,9 +53,13 @@ class LoginScreen(QMainWindow):
                 # Passwords match, login successful
                 CustomerScreen.id_number = self.id_number
                 self.la_error.setText("Login Successful")
-                customerScreen = CustomerScreen()
-                widget.addWidget(customerScreen)
-                widget.setCurrentIndex(widget.currentIndex()+1)
+                conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+                cur = conn.cursor() 
+                cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id_number, "Login", 0, str(self.now)))
+                cur.close()
+                conn.commit()
+                conn.close()
+                self.go_to_customer_page()
             else:
                 # Passwords don't match, login failed
                 self.la_error.setText("Invalid Password")
@@ -73,6 +77,7 @@ class LoginScreen(QMainWindow):
             result=cur.fetchone()
             if result:
                 self.go_to_admin_page()
+            print(result)
             cur.close()
             conn.commit()
             conn.close()
@@ -88,6 +93,7 @@ class LoginScreen(QMainWindow):
                 self.go_to_customer_page()
             elif len(self.id_number) < 7 or str(self.id_number).startswith('9'):
                 self.la_error.setText("Please input valid IDNumber and Password")
+            print(result)
             cur.close()
             conn.commit()
             conn.close()
@@ -337,10 +343,7 @@ class CreateCustomerScreen(QMainWindow):
         self.password = self.li_password.text()
         self.now = str(datetime.datetime.now())
         
-       
-        self.withdrawmoney = 0
-        self.depositmoney = 0
-        self.sum = 0
+
         WithdrawScreen.firstbalance = self.firstbalance
         DepositScreen.firstbalance = self.firstbalance
         CustomerScreen.balance = self.firstbalance     
@@ -359,13 +362,16 @@ class CreateCustomerScreen(QMainWindow):
             conn.close()
             self.la_error.setText("Succesfully Created")
 
-           
+            self.la_id.clear()
             self.li_name.clear()
             self.li_surname.clear()
             self.li_email.clear()
             self.li_balance.clear()
             self.li_password.clear()
-            
+
+        
+        
+        
         
     def button_back(self):
         newAdminScreen = NewAdminScreen()
@@ -792,7 +798,6 @@ class WithdrawScreen(QMainWindow):
             cur.execute('UPDATE customer_info SET withdraw_money = %s WHERE customer_id=%s',(self.money,self.id))
             cur.execute('UPDATE customer_info SET balance= %s WHERE customer_id = %s', (self.new_balance, self.id))
             cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Withdraw Money", self.money, str(self.now)))
-
             cur.close()
             conn.commit()
             conn.close()
