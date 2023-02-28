@@ -31,7 +31,7 @@ class LoginScreen(QMainWindow):
         CustomerScreen.id = self.id_number
         WithdrawScreen.id = self.id_number
         DepositScreen.id = self.id_number
-        CustomerInfoScreen.id = self.id_number
+        #○CustomerInfoScreen.id = self.id_number
         CustomerSettings.id = self.id_number
         InternalScreen.id = self.id_number
         ExternalScreen.id = self.id_number
@@ -107,6 +107,7 @@ class LoginScreen(QMainWindow):
         self.li_password.setText("")
 
 
+
     def go_to_customer_page(self):
         customerScreen = CustomerScreen()
         widget.addWidget(customerScreen)
@@ -180,9 +181,13 @@ class CustomerInfoScreen(QMainWindow):
     def __init__(self):
         super(CustomerInfoScreen,self).__init__()
         loadUi('customerinfopage.ui', self)
-        self.B_back.clicked.connect(self.button_back)
+        
         self.B_exit.clicked.connect(self.exit_allcustom)
-        self.B_find.clicked.connect(self.filter_customer)
+        self.c_customer.setEditable(True)
+        self.B_find.clicked.connect(self.filter_all)
+        self.B_back.clicked.connect(self.button_back)
+        
+        #default last week selection code
         self.last_day = QDateTime.currentDateTime()
         self.first_day= self.last_day.addDays(-7)
         self.c_firstdate.setDateTime(self.first_day)
@@ -192,41 +197,100 @@ class CustomerInfoScreen(QMainWindow):
         cur = conn.cursor()
         cur.execute("SELECT customer_id FROM customer_info ") 
         rows = cur.fetchall()
-     
         for i, row in enumerate(rows):
             self.c_customer.addItem(str((row)[0]))
-         
-
-    def filter_customer(self):
-        if str(self.c_customer.currentText()) == "All Customers":
-            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-            cur = conn.cursor()
-            cur.execute("SELECT first_name, surname, email, balance FROM customer_info") 
-            rows = cur.fetchall()
+        cur.close()
+        conn.commit()
+        conn.close()
+    
+    def filter_all(self):
+        self.lastday=self.last_day.toString("yyyy-MM-dd")
+        self.firstday=self.first_day.toString("yyyy-MM-dd")
+        #default 1 week selected
+        self.fday= self.c_firstdate.calendarWidget().selectedDate().toString("yyyy-MM-dd ")
+        self.lday= self.c_lastdate.calendarWidget().selectedDate().toString("yyyy-MM-dd ")
+        self.custom_select = self.c_customer.currentText()
         
-            self.tableWidget.setRowCount(len(rows))
-            self.tableWidget.setColumnCount(len(rows[0]))
+        if str(self.c_customer.currentText()) == "All Customers" and str(self.c_activity.currentText()) == "All Actions"  :
+            self.filter_actions()
+        elif str(self.c_customer.currentText()) == "All Customers" and str(self.c_activity.currentText()) != "All Actions" :
+            self.login_allcustomer()
+        elif str(self.c_customer.currentText()) == self.custom_select  and str(self.c_activity.currentText()) == "All Actions" :
+            self.customer_allaction()
+        elif str(self.c_customer.currentText()) == self.custom_select  and str(self.c_activity.currentText()) != "All Actions" :
+            self.customer_activity()
 
-            for i, row in enumerate(rows):
-                for j, column in enumerate(row):
-                    self.tableWidget.setItem(i, j, QTableWidgetItem(str(column)))
-            #○cur.close()
-            #conn.commit()
-            #conn.close()
-        else:
-            conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-            cur = conn.cursor()
-            cur.execute("SELECT first_name, surname, email, balance FROM customer_info WHERE customer_id = '"+ self.c_customer.currentText() +"'") 
-            rows = cur.fetchall()
+    def filter_actions(self):
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        cur.execute("SELECT customer_id, cust_actions, amount, action_date FROM customer_actions WHERE action_date between %s and %s" , (self.fday,self.lday))  
+        rows = cur.fetchall()
+
+        self.tableWidget.setRowCount(len(rows))
+        self.tableWidget.setColumnCount(len(rows[0]))
+
+        for i, row in enumerate(rows):
+            for j, column in enumerate(row):
+                self.tableWidget.setItem(i, j, QTableWidgetItem(str(column)))
+        cur.close()
+        conn.commit()
+        conn.close()
+    
+    # select information from table  all customers login action
+    def login_allcustomer(self):
+        self.actselect = self.c_activity.currentText()
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        #○cur.execute("SELECT customer_id, cust_actions, amount, action_date FROM customer_actions  WHERE action_date between %s and %s" , (self.fday,self.lday))  
+        cur.execute("SELECT * FROM customer_actions, customer_info WHERE customer_actions.cust_actions= '"+ self.actselect +"' and  customer_actions.action_date between %s and %s" , (self.fday,self.lday))
+        rows = cur.fetchall()
         
-            self.tableWidget.setRowCount(len(rows))
-            self.tableWidget.setColumnCount(len(rows[0]))
+        self.tableWidget.setRowCount(len(rows))
+        self.tableWidget.setColumnCount(len(rows[0]))
 
-            for i, row in enumerate(rows):
-                for j, column in enumerate(row):
-                    self.tableWidget.setItem(i, j, QTableWidgetItem(str(column)))
+        for i, row in enumerate(rows):
+            for j, column in enumerate(row):
+                self.tableWidget.setItem(i, j, QTableWidgetItem(str(column)))
+        cur.close()
+        conn.commit()
+        conn.close()
+    
+    def customer_allaction(self):
+        self.custselect = self.c_customer.currentText()
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        #○cur.execute("SELECT customer_id, cust_actions, amount, action_date FROM customer_actions  WHERE action_date between %s and %s" , (self.fday,self.lday))  
+        cur.execute("SELECT * FROM customer_info, customer_actions WHERE customer_info.customer_id= '"+ self.custselect +"' and customer_actions.action_date between %s and %s" , (self.fday,self.lday))
+        rows = cur.fetchall()
+        
+        self.tableWidget.setRowCount(len(rows))
+        self.tableWidget.setColumnCount(len(rows[0]))
 
-              
+        for i, row in enumerate(rows):
+            for j, column in enumerate(row):
+                self.tableWidget.setItem(i, j, QTableWidgetItem(str(column)))
+        cur.close()
+        conn.commit()
+        conn.close()
+    def customer_activity(self):
+        self.custselect = self.c_customer.currentText()
+        self.actselect = self.c_activity.currentText()
+        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        cur = conn.cursor()
+        #○cur.execute("SELECT customer_id, cust_actions, amount, action_date FROM customer_actions  WHERE action_date between %s and %s" , (self.fday,self.lday))  
+        cur.execute("SELECT * FROM customer_info, customer_actions WHERE customer_info.customer_id= '"+ self.custselect +"' and customer_actions.cust_actions ='"+ self.actselect +"' and customer_actions.action_date between %s and %s" , (self.fday,self.lday))
+        rows = cur.fetchall()
+        
+        self.tableWidget.setRowCount(len(rows))
+        self.tableWidget.setColumnCount(len(rows[0]))
+
+        for i, row in enumerate(rows):
+            for j, column in enumerate(row):
+                self.tableWidget.setItem(i, j, QTableWidgetItem(str(column)))
+        cur.close()
+        conn.commit()
+        conn.close()
+
     def button_back(self):
         newAdminScreen = NewAdminScreen()
         widget.addWidget(newAdminScreen)
@@ -350,7 +414,7 @@ class UpdateScreen(QMainWindow):
         self.new_email = self.li_email.text()
         #self.now = str(datetime.datetime.now())
 
-        if self.new_name=="" or self.new_surname=="" or self.new_email=="" or self.new_password== 0 : 
+        if self.new_name=="" or self.new_surname=="" or self.new_email=="" : 
             self.la_error.setText("Please input all fields.")
             
          
