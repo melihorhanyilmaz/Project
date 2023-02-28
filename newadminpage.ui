@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>750</height>
+    <height>742</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -40,7 +40,7 @@ font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QPushButton" name="B_updatecust">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>340</x>
       <y>520</y>
       <width>251</width>
       <height>51</height>
@@ -75,7 +75,7 @@ border-radius: 20 </string>
    <widget class="QPushButton" name="B_newcust">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>340</x>
       <y>450</y>
       <width>251</width>
       <height>51</height>
@@ -133,7 +133,7 @@ color: rgb(255, 255, 255);
    <widget class="QPushButton" name="B_info">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>340</x>
       <y>380</y>
       <width>251</width>
       <height>51</height>

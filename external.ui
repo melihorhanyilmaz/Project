@@ -20,7 +20,7 @@
    <widget class="QLabel" name="la_error">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>170</x>
       <y>500</y>
       <width>491</width>
       <height>31</height>
@@ -41,7 +41,7 @@ font: 75 12pt &quot;MS Shell Dlg 2&quot;;
    <widget class="QLineEdit" name="li_amount">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>430</x>
       <y>440</y>
       <width>231</width>
       <height>41</height>
@@ -50,25 +50,6 @@ font: 75 12pt &quot;MS Shell Dlg 2&quot;;
     <property name="styleSheet">
      <string notr="true">color: rgb(255, 255, 255);
 font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="la_balance">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>110</y>
-      <width>251</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">
-font: 75 16pt &quot;MS Shell Dlg 2&quot;;
-color: rgb(255, 255, 255);
-</string>
     </property>
     <property name="text">
      <string/>
@@ -100,7 +81,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLineEdit" name="li_alici_name">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>430</x>
       <y>260</y>
       <width>231</width>
       <height>41</height>
@@ -117,7 +98,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLineEdit" name="li_alici_surname">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>430</x>
       <y>320</y>
       <width>231</width>
       <height>41</height>
@@ -129,26 +110,6 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
      <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="la_welcome">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>180</y>
-      <width>681</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(242, 192, 54);
-font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>INFOTECHBANK ATM EXTERNAL MONEY TRANSFER</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="B_send">
@@ -177,7 +138,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_alici_name">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>170</x>
       <y>260</y>
       <width>231</width>
       <height>41</height>
@@ -207,7 +168,7 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_alici_surname">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>170</x>
       <y>320</y>
       <width>231</width>
       <height>41</height>
@@ -237,7 +198,7 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_alici_id">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>170</x>
       <y>380</y>
       <width>231</width>
       <height>41</height>
@@ -267,7 +228,7 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="la_amount">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>170</x>
       <y>440</y>
       <width>231</width>
       <height>41</height>
@@ -297,7 +258,7 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLineEdit" name="li_alici_id">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>430</x>
       <y>380</y>
       <width>231</width>
       <height>41</height>
@@ -337,24 +298,6 @@ border-radius: 20;
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="la_welcome_2">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>110</y>
-      <width>191</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 63 14pt &quot;Montserrat SemiBold&quot;;
-</string>
-    </property>
-    <property name="text">
-     <string>Current Balance</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
@@ -382,6 +325,82 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;
       <width>150</width>
       <height>150</height>
      </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_welcome">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>30</y>
+      <width>701</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(242, 192, 54);
+font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>  INFOTECHBANK ATM INTERNAL MONEY TRANSFER</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_bal">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>140</y>
+      <width>301</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat SemiBold</family>
+      <pointsize>14</pointsize>
+      <weight>7</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(54, 100, 139);
+font: 63 14pt &quot;Montserrat SemiBold&quot;;
+background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Current Balance</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_balance">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>190</y>
+      <width>301</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>

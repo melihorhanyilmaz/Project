@@ -21,7 +21,7 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>270</y>
+      <y>360</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -56,7 +56,7 @@ border-radius: 20 </string>
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>350</y>
+      <y>440</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -91,7 +91,7 @@ border-radius: 20 </string>
     <property name="geometry">
      <rect>
       <x>610</x>
-      <y>430</y>
+      <y>520</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -136,7 +136,7 @@ color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>190</y>
+      <y>270</y>
       <width>471</width>
       <height>41</height>
      </rect>
@@ -149,10 +149,10 @@ color: rgb(255, 255, 255);
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(242, 192, 54);
-font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
+font: 75 18pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>  PLEASE SELECT AN OPERATION</string>
+     <string>  Please Select An Operation</string>
     </property>
     <property name="frame">
      <bool>false</bool>
@@ -165,7 +165,7 @@ font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="geometry">
      <rect>
       <x>350</x>
-      <y>120</y>
+      <y>190</y>
       <width>301</width>
       <height>41</height>
      </rect>
@@ -191,7 +191,7 @@ font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
     <property name="geometry">
      <rect>
       <x>610</x>
-      <y>270</y>
+      <y>360</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -213,7 +213,7 @@ border-radius: 20 </string>
     <property name="geometry">
      <rect>
       <x>610</x>
-      <y>350</y>
+      <y>440</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -235,7 +235,7 @@ border-radius: 20 </string>
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>430</y>
+      <y>520</y>
       <width>231</width>
       <height>41</height>
      </rect>
@@ -282,11 +282,11 @@ border-radius: 20 </string>
      </size>
     </property>
    </widget>
-   <widget class="QLabel" name="la_balance_2">
+   <widget class="QLabel" name="la_bal">
     <property name="geometry">
      <rect>
       <x>350</x>
-      <y>70</y>
+      <y>140</y>
       <width>301</width>
       <height>41</height>
      </rect>
@@ -307,6 +307,26 @@ background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Current Balance</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_baslik">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>20</y>
+      <width>351</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(242, 192, 54);
+font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>CUSTOMER SCREEN</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>

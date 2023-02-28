@@ -21,7 +21,7 @@
     <property name="geometry">
      <rect>
       <x>410</x>
-      <y>370</y>
+      <y>380</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -72,14 +72,15 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QLabel" name="la_error">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>440</y>
-      <width>441</width>
+      <x>180</x>
+      <y>450</y>
+      <width>451</width>
       <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">color: rgb(255, 255, 255);
+font: 63 12pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="text">
      <string/>
@@ -92,7 +93,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>270</y>
+      <y>260</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -110,7 +111,7 @@ background-color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>370</y>
+      <y>380</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -196,8 +197,8 @@ border-radius: 20;</string>
    <widget class="QLabel" name="la_baslik">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>120</y>
+      <x>190</x>
+      <y>80</y>
       <width>441</width>
       <height>81</height>
      </rect>
@@ -217,7 +218,7 @@ font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="geometry">
      <rect>
       <x>410</x>
-      <y>270</y>
+      <y>260</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -234,7 +235,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <property name="geometry">
      <rect>
       <x>410</x>
-      <y>220</y>
+      <y>200</y>
       <width>221</width>
       <height>41</height>
      </rect>
@@ -254,7 +255,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>220</y>
+      <y>200</y>
       <width>221</width>
       <height>41</height>
      </rect>

@@ -19,7 +19,7 @@
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>200</x>
      <y>140</y>
      <width>480</width>
      <height>561</height>
@@ -89,7 +89,7 @@ border-radius: 20
   <widget class="QLabel" name="la_baslik">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>200</x>
      <y>50</y>
      <width>481</width>
      <height>81</height>
