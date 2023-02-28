@@ -52,7 +52,7 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">font: 63 10pt &quot;Montserrat SemiBold&quot;;
-color: rgb(255, 255, 255);</string>
+color: rgb(242, 192, 54);</string>
     </property>
     <property name="rowCount">
      <number>20</number>
