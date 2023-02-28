@@ -970,7 +970,7 @@ class InternalScreen(QMainWindow):
                 elif int(self.send_amount)> balance:
                     self.la_error.setText(f"You have only {balance} € in your account")
             else:
-                self.la_error.setText(f"{self.id_alici} This ID number has not exist")
+                self.la_error.setText("This customer has not exist")
         else: 
             self.la_error.setText(f"You have only {balance} € in your account")
         
