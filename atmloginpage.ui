@@ -210,7 +210,8 @@ font: 75 22pt &quot;MS Shell Dlg 2&quot;;
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 63 11pt &quot;Montserrat SemiBold&quot;;
+     <string notr="true">color: rgb(255, 255, 255);
+font: 63 12pt &quot;Montserrat SemiBold&quot;;
 </string>
     </property>
     <property name="text">

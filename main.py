@@ -346,7 +346,7 @@ class CreateCustomerScreen(QMainWindow):
         CustomerScreen.balance = self.firstbalance     
         
         if self.name=="" or self.surname=="" or self.email=="" or self.password== 0 : 
-            self.la_error.setText("Please input all fields.")
+            self.la_error.setText("Please Input All Fields")
         else:
             # Hash the password
             hashed_password = self.hash_password(self.password)
@@ -415,7 +415,7 @@ class UpdateScreen(QMainWindow):
         #self.now = str(datetime.datetime.now())
 
         if self.new_name=="" or self.new_surname=="" or self.new_email=="" : 
-            self.la_error.setText("Please input all fields.")
+            self.la_error.setText("Please Input All Fields")
             
          
         else:

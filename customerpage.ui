@@ -20,7 +20,7 @@
    <widget class="QPushButton" name="B_deposit">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>120</x>
       <y>360</y>
       <width>231</width>
       <height>41</height>
@@ -55,7 +55,7 @@ border-radius: 20 </string>
    <widget class="QPushButton" name="B_withdraw">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>120</x>
       <y>440</y>
       <width>231</width>
       <height>41</height>
@@ -90,7 +90,7 @@ border-radius: 20 </string>
    <widget class="QPushButton" name="B_statement">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>580</x>
       <y>520</y>
       <width>231</width>
       <height>41</height>
@@ -135,7 +135,7 @@ color: rgb(255, 255, 255);
    <widget class="QLineEdit" name="li_select_opr">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>230</x>
       <y>270</y>
       <width>471</width>
       <height>41</height>
@@ -164,7 +164,7 @@ font: 75 18pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="la_balance">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>320</x>
       <y>190</y>
       <width>301</width>
       <height>41</height>
@@ -190,7 +190,7 @@ font: 63 18pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QPushButton" name="B_internal">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>580</x>
       <y>360</y>
       <width>231</width>
       <height>41</height>
@@ -212,7 +212,7 @@ border-radius: 20 </string>
    <widget class="QPushButton" name="B_external">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>580</x>
       <y>440</y>
       <width>231</width>
       <height>41</height>
@@ -234,7 +234,7 @@ border-radius: 20 </string>
    <widget class="QPushButton" name="B_settings">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>120</x>
       <y>520</y>
       <width>231</width>
       <height>41</height>
@@ -285,7 +285,7 @@ border-radius: 20 </string>
    <widget class="QLabel" name="la_bal">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>320</x>
       <y>140</y>
       <width>301</width>
       <height>41</height>
@@ -315,7 +315,7 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_baslik">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>300</x>
       <y>20</y>
       <width>351</width>
       <height>81</height>
