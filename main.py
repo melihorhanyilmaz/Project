@@ -194,9 +194,9 @@ class CustomerInfoScreen(QMainWindow):
         loadUi('customerinfopage.ui', self)
         
         self.B_exit.clicked.connect(self.exit_allcustom)
+        self.B_back.clicked.connect(self.button_back)
         self.c_customer.setEditable(True)
         self.B_find.clicked.connect(self.filter_all)
-        self.B_back.clicked.connect(self.button_back)
         
         #default last week selection code
         self.last_day = QDateTime.currentDateTime()
@@ -215,92 +215,36 @@ class CustomerInfoScreen(QMainWindow):
         conn.close()
     
     def filter_all(self):
-        self.lastday=self.last_day.toString("yyyy-MM-dd")
-        self.firstday=self.first_day.toString("yyyy-MM-dd")
-        #default 1 week selected
-        self.fday= self.c_firstdate.calendarWidget().selectedDate().toString("yyyy-MM-dd ")
-        self.lday= self.c_lastdate.calendarWidget().selectedDate().toString("yyyy-MM-dd ")
-        self.custom_select = self.c_customer.currentText()
-        
-        if str(self.c_customer.currentText()) == "All Customers" and str(self.c_activity.currentText()) == "All Actions"  :
-            self.filter_actions()
-        elif str(self.c_customer.currentText()) == "All Customers" and str(self.c_activity.currentText()) != "All Actions" :
-            self.login_allcustomer()
-        elif str(self.c_customer.currentText()) == self.custom_select  and str(self.c_activity.currentText()) == "All Actions" :
-            self.customer_allaction()
-        elif str(self.c_customer.currentText()) == self.custom_select  and str(self.c_activity.currentText()) != "All Actions" :
-            self.customer_activity()
+        self.lastday=self.c_lastdate.date().toString("yyyy-MM-dd")
+        self.firstday=self.c_firstdate.date().toString("yyyy-MM-dd")
+        self.customerid = self.c_customer.currentText()
+        self.activity = self.c_activity.currentText()
 
-    def filter_actions(self):
-        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+        conn = psycopg2.connect("dbname=atm_proje user=postgres password=12345")
         cur = conn.cursor()
-        cur.execute("SELECT customer_id, cust_actions, amount, action_date FROM customer_actions WHERE action_date between %s and %s" , (self.fday,self.lday))  
-        rows = cur.fetchall()
-
-        self.tableWidget.setRowCount(len(rows))
-        self.tableWidget.setColumnCount(len(rows[0]))
-
-        for i, row in enumerate(rows):
-            for j, column in enumerate(row):
-                self.tableWidget.setItem(i, j, QTableWidgetItem(str(column)))
-        cur.close()
-        conn.commit()
-        conn.close()
-    
-    # select information from table  all customers login action
-    def login_allcustomer(self):
-        self.actselect = self.c_activity.currentText()
-        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-        cur = conn.cursor()
-        #○cur.execute("SELECT customer_id, cust_actions, amount, action_date FROM customer_actions  WHERE action_date between %s and %s" , (self.fday,self.lday))  
-        cur.execute("SELECT * FROM customer_actions, customer_info WHERE customer_actions.cust_actions= '"+ self.actselect +"' and  customer_actions.action_date between %s and %s" , (self.fday,self.lday))
-        rows = cur.fetchall()
+        if self.customerid == "All Customers" and self.activity == "All Actions":
+            cur.execute("SELECT customer_actions.customer_id, customer_info.first_name, customer_info.surname, customer_info.email, customer_actions.cust_actions, customer_actions.amount, customer_actions.action_date FROM customer_actions JOIN customer_info ON customer_actions.customer_id = customer_info.customer_id WHERE customer_actions.action_date BETWEEN %s AND %s", (self.firstday, self.lastday))
         
-        self.tableWidget.setRowCount(len(rows))
-        self.tableWidget.setColumnCount(len(rows[0]))
-
-        for i, row in enumerate(rows):
-            for j, column in enumerate(row):
-                self.tableWidget.setItem(i, j, QTableWidgetItem(str(column)))
-        cur.close()
-        conn.commit()
-        conn.close()
-    
-    def customer_allaction(self):
-        self.custselect = self.c_customer.currentText()
-        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-        cur = conn.cursor()
-        #○cur.execute("SELECT customer_id, cust_actions, amount, action_date FROM customer_actions  WHERE action_date between %s and %s" , (self.fday,self.lday))  
-        cur.execute("SELECT * FROM customer_info, customer_actions WHERE customer_info.customer_id= '"+ self.custselect +"' and customer_actions.action_date between %s and %s" , (self.fday,self.lday))
-        rows = cur.fetchall()
+        elif self.customerid == "All Customers":
+            cur.execute("SELECT customer_actions.customer_id, customer_info.first_name, customer_info.surname, customer_info.email, customer_actions.cust_actions, customer_actions.amount, customer_actions.action_date FROM customer_actions JOIN customer_info ON customer_actions.customer_id = customer_info.customer_id WHERE customer_actions.cust_actions = %s AND customer_actions.action_date BETWEEN %s AND %s", (self.activity, self.firstday, self.lastday))
         
-        self.tableWidget.setRowCount(len(rows))
-        self.tableWidget.setColumnCount(len(rows[0]))
-
-        for i, row in enumerate(rows):
-            for j, column in enumerate(row):
-                self.tableWidget.setItem(i, j, QTableWidgetItem(str(column)))
-        cur.close()
-        conn.commit()
-        conn.close()
-    def customer_activity(self):
-        self.custselect = self.c_customer.currentText()
-        self.actselect = self.c_activity.currentText()
-        conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
-        cur = conn.cursor()
-        #○cur.execute("SELECT customer_id, cust_actions, amount, action_date FROM customer_actions  WHERE action_date between %s and %s" , (self.fday,self.lday))  
-        cur.execute("SELECT * FROM customer_info, customer_actions WHERE customer_info.customer_id= '"+ self.custselect +"' and customer_actions.cust_actions ='"+ self.actselect +"' and customer_actions.action_date between %s and %s" , (self.fday,self.lday))
-        rows = cur.fetchall()
+        elif self.activity == "All Actions":
+            cur.execute("SELECT customer_actions.customer_id, customer_info.first_name, customer_info.surname, customer_info.email, customer_actions.cust_actions, customer_actions.amount, customer_actions.action_date FROM customer_actions JOIN customer_info ON customer_actions.customer_id = customer_info.customer_id WHERE customer_actions.customer_id = %s AND customer_actions.action_date BETWEEN %s AND %s", (self.customerid, self.firstday, self.lastday))
         
-        self.tableWidget.setRowCount(len(rows))
-        self.tableWidget.setColumnCount(len(rows[0]))
+        else:
+            cur.execute("SELECT customer_actions.customer_id, customer_info.first_name, customer_info.surname, customer_info.email, customer_actions.cust_actions, customer_actions.amount, customer_actions.action_date FROM customer_actions JOIN customer_info ON customer_actions.customer_id = customer_info.customer_id WHERE customer_actions.customer_id = %s AND customer_actions.cust_actions = %s AND customer_actions.action_date BETWEEN %s AND %s", (self.customerid, self.activity, self.firstday, self.lastday))
 
-        for i, row in enumerate(rows):
-            for j, column in enumerate(row):
-                self.tableWidget.setItem(i, j, QTableWidgetItem(str(column)))
-        cur.close()
-        conn.commit()
-        conn.close()
+
+        results = cur.fetchall()
+        if len(results) == 0:
+            self.la_error.setText("No Information")
+        else:
+            self.tableWidget.setRowCount(len(results))
+            self.tableWidget.setColumnCount(len(results[0]))
+
+            for i, row in enumerate(results):
+                for j, column in enumerate(row):
+                    self.tableWidget.setItem(i, j, QTableWidgetItem(str(column)))
 
     def button_back(self):
         newAdminScreen = NewAdminScreen()

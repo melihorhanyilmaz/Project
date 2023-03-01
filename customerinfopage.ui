@@ -50,6 +50,9 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
       <height>351</height>
      </rect>
     </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
     <property name="styleSheet">
      <string notr="true">font: 63 10pt &quot;Montserrat SemiBold&quot;;
 color: rgb(242, 192, 54);</string>
@@ -58,7 +61,7 @@ color: rgb(242, 192, 54);</string>
      <number>20</number>
     </property>
     <property name="columnCount">
-     <number>5</number>
+     <number>12</number>
     </property>
     <attribute name="horizontalHeaderCascadingSectionResizes">
      <bool>false</bool>
@@ -83,6 +86,41 @@ color: rgb(242, 192, 54);</string>
     <row/>
     <row/>
     <row/>
+    <column>
+     <property name="text">
+      <string>CUSTOMER ID</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>NAME</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>SURNAME</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>EMAIL</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>ACTION</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>AMOUNT</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>DATE</string>
+     </property>
+    </column>
     <column/>
     <column/>
     <column/>
@@ -265,8 +303,8 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
    <widget class="QPushButton" name="B_find">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>280</y>
+      <x>400</x>
+      <y>270</y>
       <width>100</width>
       <height>40</height>
      </rect>
@@ -371,6 +409,27 @@ font: 63 14pt &quot;Montserrat SemiBold&quot;;</string>
       <width>150</width>
       <height>150</height>
      </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="la_error">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>310</y>
+      <width>491</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 63 12pt &quot;Montserrat SemiBold&quot;;
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
