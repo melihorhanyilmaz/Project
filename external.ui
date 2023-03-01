@@ -341,7 +341,7 @@ border-radius: 20;
 font: 75 20pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>  INFOTECHBANK ATM INTERNAL MONEY TRANSFER</string>
+     <string>  INFOTECHBANK ATM EXTERNAL MONEY TRANSFER</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
