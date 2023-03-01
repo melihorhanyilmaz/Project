@@ -77,7 +77,6 @@ class LoginScreen(QMainWindow):
             result=cur.fetchone()
             if result:
                 self.go_to_admin_page()
-            print(result)
             cur.close()
             conn.commit()
             conn.close()
@@ -93,7 +92,6 @@ class LoginScreen(QMainWindow):
                 self.go_to_customer_page()
             elif len(self.id_number) < 7 or str(self.id_number).startswith('9'):
                 self.la_error.setText("Please input valid IDNumber and Password")
-            print(result)
             cur.close()
             conn.commit()
             conn.close()
