@@ -55,7 +55,10 @@ class LoginScreen(QMainWindow):
                 self.la_error.setText("Login Successful")
                 conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
                 cur = conn.cursor() 
-                cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id_number, "Login", 0, str(self.now)))
+                cur.execute("SELECT balance FROM customer_info WHERE customer_id = '"+ self.id_number +"'") 
+                resultbalance=cur.fetchone()[0]
+                
+                cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id_number, "Login", resultbalance, str(self.now)))
                 cur.close()
                 conn.commit()
                 conn.close()
@@ -88,7 +91,11 @@ class LoginScreen(QMainWindow):
             cur.execute("SELECT * FROM customer_info WHERE customer_id = ' "+ self.id_number +"' and password = '"+ self.password +"'")
             result=cur.fetchone()
             if result:
-                cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id_number, "Login", 0, str(self.now)))
+                conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
+                cur = conn.cursor()
+                cur.execute("SELECT balance FROM customer_info WHERE customer_id = '"+ self.id_number +"'") 
+                resultbalance=cur.fetchone()[0]
+                cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id_number, "Login", resultbalance, str(self.now)))
                 self.go_to_customer_page()
             elif len(self.id_number) < 7 or str(self.id_number).startswith('9'):
                 self.la_error.setText("Please input valid IDNumber and Password")
@@ -548,8 +555,10 @@ class CustomerSettings(QMainWindow):
          
                 conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
                 cur = conn.cursor()
+                cur.execute("SELECT balance FROM customer_info WHERE customer_id = '"+ self.id +"'") 
+                resultbalance=cur.fetchone()[0]
                 cur.execute('UPDATE customer_info SET email=%s WHERE customer_id=%s',(self.new_email,self.id))
-                cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Update Info", 0, str(self.now)))
+                cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Update Info", resultbalance, str(self.now)))
                 cur.close()
                 conn.commit()
                 conn.close()
@@ -566,8 +575,10 @@ class CustomerSettings(QMainWindow):
                 if self.new_confpassword==self.new_password:
                     conn = psycopg2.connect("dbname=atm_proje user = postgres password=12345")
                     cur = conn.cursor()
+                    cur.execute("SELECT balance FROM customer_info WHERE customer_id = '"+ self.id +"'") 
+                    resultbalance=cur.fetchone()[0]
                     cur.execute('UPDATE customer_info SET password=%s WHERE customer_id=%s',(hashed_password,self.id))
-                    cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Update Info", 0, str(self.now)))
+                    cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Update Info", resultbalance, str(self.now)))
                     cur.close()
                     conn.commit()
                     conn.close()
@@ -580,7 +591,9 @@ class CustomerSettings(QMainWindow):
             cur = conn.cursor()
             cur.execute('UPDATE customer_info SET email=%s where customer_id=%s',(self.new_email,self.id))
             cur.execute('UPDATE customer_info SET password=%s where customer_id=%s',(hashed_password,self.id))
-            cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Update Info", 0, str(self.now)))
+            cur.execute("SELECT balance FROM customer_info WHERE customer_id = '"+ self.id +"'") 
+            resultbalance=cur.fetchone()[0]
+            cur.execute("INSERT INTO customer_actions (customer_id, cust_actions, amount, action_date) VALUES(%s,%s,%s,%s)", (self.id, "Update Info", resultbalance, str(self.now)))
             cur.close()
             conn.commit()
             conn.close()
