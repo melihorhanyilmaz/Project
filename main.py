@@ -117,8 +117,6 @@ class LoginScreen(QMainWindow):
         self.li_id.setText("")
         self.li_password.setText("")
 
-
-
     def go_to_customer_page(self):
         customerScreen = CustomerScreen()
         widget.addWidget(customerScreen)
@@ -215,6 +213,7 @@ class CustomerInfoScreen(QMainWindow):
         conn.close()
     
     def filter_all(self):
+        self.la_error.clear()
         self.lastday=self.c_lastdate.date().toString("yyyy-MM-dd")
         self.firstday=self.c_firstdate.date().toString("yyyy-MM-dd")
         self.customerid = self.c_customer.currentText()
@@ -352,16 +351,22 @@ class UpdateScreen(QMainWindow):
         self.c_id.currentIndexChanged.connect(self.change_id)
 
     def change_id(self):
-        conn = psycopg2.connect("dbname=atm_proje user=postgres password=12345")
-        cur = conn.cursor()
-        cur.execute("SELECT first_name, surname, email FROM customer_info WHERE customer_id = '"+ self.c_id.currentText() +"'") 
-        result = cur.fetchone()
-        self.li_name.setText(result[0])
-        self.li_surname.setText(result[1])
-        self.li_email.setText(result[2])     
-        cur.close()
-        conn.commit()
-        conn.close()        
+        if str(self.c_id.currentText()) != "Select ID":
+            conn = psycopg2.connect("dbname=atm_proje user=postgres password=12345")
+            cur = conn.cursor()
+            cur.execute("SELECT first_name, surname, email FROM customer_info WHERE customer_id = '"+ self.c_id.currentText() +"'") 
+            result = cur.fetchone()
+            self.li_name.setText(result[0])
+            self.li_surname.setText(result[1])
+            self.li_email.setText(result[2])     
+            cur.close()
+            conn.commit()
+            conn.close()  
+
+        else:
+            self.li_name.clear()
+            self.li_surname.clear()
+            self.li_email.clear()
 
     def update_customer(self):
         self.new_name=self.li_name.text()      
