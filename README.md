@@ -49,7 +49,7 @@ The first steps of this project were as follows:
                       GO TO THE DETAILS OF OUR PROJECT NOW
 		      
 
-What can YOU do with our ATM program?
+What can you do with our ATM program?
 
 
 -You can login to the system as admin or customer
@@ -63,18 +63,24 @@ What can YOU do with our ATM program?
 
 2.You can create a new customer.
 
+
 While doing this, unique customer ids are automatically given to new customers.
 
+
 In addition, the passwords are kept in the system as hashed.
+
 
 
 ![hash_password](https://user-images.githubusercontent.com/119568441/222585948-9151fde5-2dcd-4fb8-9a3f-f239969f9ca8.png)
 
 
+
 3.You can update an existing customer's information
 
 
+
                  B) If you LOGON the system as a customer, you can do:
+		 
 		 
 		 
 1. deposit money (cahange and save the balances automaically)
@@ -95,7 +101,9 @@ In addition, the passwords are kept in the system as hashed.
 6 see account statements      (you can filter what you want to see)
 
 
-If you want, you can watch the videos about our linkedin accounts .
+
+
+               If you want, you can watch the videos about our linkedin accounts .
 
 
 
@@ -109,10 +117,12 @@ https://www.linkedin.com/in/nuseybe-karakurt-b4782a21b?lipi=urn%3Ali%3Apage%3Ad_
 
 
 
+
 SEma Sari             
 
 
 https://github.com/semasar/Project
+
 
 
 
@@ -123,6 +133,7 @@ https://github.com/melihorhanyilmaz/Project
 
 
 https://www.linkedin.com/in/melih-orhan-y%C4%B1lmaz-706b25179?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BrnJdLLFRTMW%2BAbNfiU8Pgg%3D%3D
+
 
 
 
