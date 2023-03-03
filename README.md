@@ -146,6 +146,9 @@ SEma Sari
 https://github.com/semasar/Project
 
 
+https://www.linkedin.com/in/sema-sari?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B9J4GskNRSuuW1I1aiYspVA%3D%3D
+
+
 
 
 Melih Orhan Yilmaz   
